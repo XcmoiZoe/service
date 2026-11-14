@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 
@@ -287,8 +287,21 @@
     <!-- Contact -->
     <section class="section contact" id="contact">
       <div class="wrap contact__box">
-        <h2>Have a project in mind?</h2>
-        <p class="lead">Tell me what you need — a new website, a redesign, or help getting found on Google. Fill this in and it opens Messenger with your message ready to send. I usually reply within a day.</p>
+        <div class="contact__intro">
+          <p class="kicker">Contact</p>
+          <h2>Have a project in mind?</h2>
+          <p class="lead">Tell me what you need — a new website, a redesign, or help getting found on Google. I usually reply within a day.</p>
+          <ol class="steps">
+            <li><b>1</b><div><h3>Fill in the form</h3><p>Takes about a minute.</p></div></li>
+            <li><b>2</b><div><h3>Messenger opens</h3><p>Your message is written and copied for you.</p></div></li>
+            <li><b>3</b><div><h3>Hit send</h3><p>I'll get back to you with ideas and a quote.</p></div></li>
+          </ol>
+          <div class="contact__alt">
+            <span>Prefer another way?</span>
+            <a href="https://m.me/168737504976524" target="_blank" rel="noopener" class="link">Chat on Messenger →</a>
+            <a href="https://www.upwork.com/freelancers/emmanu2" target="_blank" rel="noopener" class="link">Hire me on Upwork →</a>
+          </div>
+        </div>
 
         <form class="inquiry" id="inquiry" novalidate>
           <div class="inquiry__row">
@@ -297,7 +310,7 @@
               <input type="text" name="name" required autocomplete="name" placeholder="Juan Dela Cruz">
             </label>
             <label class="field">
-              <span>Email or phone <em>(optional)</em></span>
+              <span>Email or phone <em>optional</em></span>
               <input type="text" name="contact" autocomplete="email" placeholder="you@email.com">
             </label>
           </div>
@@ -338,7 +351,7 @@
           </div>
 
           <label class="field">
-            <span>Website link <em>(if you have one)</em></span>
+            <span>Current website <em>optional</em></span>
             <input type="url" name="site" placeholder="https://">
           </label>
 
@@ -349,10 +362,11 @@
 
           <p class="inquiry__error" id="inquiry-error" role="alert" hidden></p>
 
-          <div class="hero__cta">
-            <button type="submit" class="btn">Send via Messenger →</button>
-            <a href="https://www.upwork.com/freelancers/emmanu2" target="_blank" rel="noopener" class="btn btn--ghost">Hire me on Upwork</a>
-          </div>
+          <button type="submit" class="btn inquiry__submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.98-.87c.17-.08.36-.09.53-.04.91.25 1.88.38 2.91.38 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg>
+            Send via Messenger
+          </button>
+          <p class="inquiry__note">Opens Messenger in a new tab. Nothing is sent until you press send there.</p>
 
           <div class="inquiry__done" id="inquiry-done" hidden>
             <p><strong>Your message is copied.</strong> Messenger opened in a new tab. If the text isn't already there, paste it (Ctrl+V or long-press → Paste) and hit send.</p>
@@ -378,6 +392,6 @@
     <img src="" alt="">
   </dialog>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>
