@@ -288,11 +288,80 @@
     <section class="section contact" id="contact">
       <div class="wrap contact__box">
         <h2>Have a project in mind?</h2>
-        <p class="lead">Tell me what you need — a new website, a redesign, or help getting found on Google. I usually reply within a day.</p>
-        <div class="hero__cta">
-          <a href="https://m.me/168737504976524" class="btn">Message me on Messenger</a>
-          <a href="https://www.upwork.com/freelancers/emmanu2" target="_blank" rel="noopener" class="btn btn--ghost">Hire me on Upwork</a>
-        </div>
+        <p class="lead">Tell me what you need — a new website, a redesign, or help getting found on Google. Fill this in and it opens Messenger with your message ready to send. I usually reply within a day.</p>
+
+        <form class="inquiry" id="inquiry" novalidate>
+          <div class="inquiry__row">
+            <label class="field">
+              <span>Your name *</span>
+              <input type="text" name="name" required autocomplete="name" placeholder="Juan Dela Cruz">
+            </label>
+            <label class="field">
+              <span>Email or phone <em>(optional)</em></span>
+              <input type="text" name="contact" autocomplete="email" placeholder="you@email.com">
+            </label>
+          </div>
+
+          <fieldset class="field">
+            <legend>What do you need? *</legend>
+            <div class="pills">
+              <label><input type="checkbox" name="service" value="Website (WordPress / custom)"><span>Website</span></label>
+              <label><input type="checkbox" name="service" value="Shopify store"><span>Shopify store</span></label>
+              <label><input type="checkbox" name="service" value="UI/UX design"><span>UI/UX design</span></label>
+              <label><input type="checkbox" name="service" value="SEO"><span>SEO</span></label>
+              <label><input type="checkbox" name="service" value="Social media / video"><span>Social media / video</span></label>
+              <label><input type="checkbox" name="service" value="N8N automation"><span>Automation</span></label>
+              <label><input type="checkbox" name="service" value="Fix / update existing site"><span>Fix my site</span></label>
+            </div>
+          </fieldset>
+
+          <div class="inquiry__row">
+            <label class="field">
+              <span>Budget</span>
+              <select name="budget">
+                <option value="">Not sure yet</option>
+                <option>Under ₱10,000 / $200</option>
+                <option>₱10,000–30,000 / $200–500</option>
+                <option>₱30,000–60,000 / $500–1,000</option>
+                <option>₱60,000+ / $1,000+</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Timeline</span>
+              <select name="timeline">
+                <option value="">Flexible</option>
+                <option>ASAP (within a week)</option>
+                <option>2–4 weeks</option>
+                <option>1–2 months</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Website link <em>(if you have one)</em></span>
+            <input type="url" name="site" placeholder="https://">
+          </label>
+
+          <label class="field">
+            <span>Project details *</span>
+            <textarea name="details" rows="4" required placeholder="What are you building, who is it for, and anything I should know…"></textarea>
+          </label>
+
+          <p class="inquiry__error" id="inquiry-error" role="alert" hidden></p>
+
+          <div class="hero__cta">
+            <button type="submit" class="btn">Send via Messenger →</button>
+            <a href="https://www.upwork.com/freelancers/emmanu2" target="_blank" rel="noopener" class="btn btn--ghost">Hire me on Upwork</a>
+          </div>
+
+          <div class="inquiry__done" id="inquiry-done" hidden>
+            <p><strong>Your message is copied.</strong> Messenger opened in a new tab. If the text isn't already there, paste it (Ctrl+V or long-press → Paste) and hit send.</p>
+            <div class="hero__cta">
+              <button type="button" class="btn btn--sm" id="inquiry-copy">Copy again</button>
+              <a href="https://m.me/168737504976524" target="_blank" rel="noopener" class="btn btn--sm btn--ghost" id="inquiry-open">Open Messenger</a>
+            </div>
+          </div>
+        </form>
       </div>
     </section>
   </main>

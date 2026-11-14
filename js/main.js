@@ -56,5 +56,94 @@
     items.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
   }
 
+  // Inquiry form -> Messenger
+  var MESSENGER = 'https://m.me/168737504976524';
+  var form = document.getElementById('inquiry');
+  if (form) {
+    var errBox = document.getElementById('inquiry-error');
+    var done = document.getElementById('inquiry-done');
+    var openLink = document.getElementById('inquiry-open');
+    var lastMsg = '';
+
+    var copyText = function (text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text).catch(function () { legacyCopy(text); });
+      }
+      legacyCopy(text);
+      return Promise.resolve();
+    };
+    var legacyCopy = function (text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    };
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = new FormData(form);
+      var name = (d.get('name') || '').trim();
+      var details = (d.get('details') || '').trim();
+      var services = d.getAll('service');
+
+      var missing = [];
+      if (!name) missing.push('your name');
+      if (!services.length) missing.push('at least one service');
+      if (!details) missing.push('project details');
+      if (missing.length) {
+        errBox.textContent = 'Please add ' + missing.join(', ') + '.';
+        errBox.hidden = false;
+        return;
+      }
+      errBox.hidden = true;
+
+      var lines = [
+        'Hi Zoe! New project inquiry from your website:',
+        '',
+        'Name: ' + name
+      ];
+      var contact = (d.get('contact') || '').trim();
+      if (contact) lines.push('Contact: ' + contact);
+      lines.push('Service: ' + services.join(', '));
+      lines.push('Budget: ' + (d.get('budget') || 'Not sure yet'));
+      lines.push('Timeline: ' + (d.get('timeline') || 'Flexible'));
+      var site = (d.get('site') || '').trim();
+      if (site) lines.push('Website: ' + site);
+      lines.push('', 'Details:', details);
+      lastMsg = lines.join('\n');
+
+      var url = MESSENGER + '?text=' + encodeURIComponent(lastMsg);
+      openLink.href = url;
+      // Open synchronously so popup blockers allow it
+      window.open(url, '_blank', 'noopener');
+      copyText(lastMsg);
+      done.hidden = false;
+    });
+
+    document.getElementById('inquiry-copy').addEventListener('click', function (e) {
+      var btn = e.currentTarget;
+      copyText(lastMsg).then(function () {
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = 'Copy again'; }, 1500);
+      });
+    });
+
+    // Clicking a service card pre-selects it in the form
+    var map = ['Website (WordPress / custom)', 'UI/UX design', 'SEO', 'Social media / video'];
+    document.querySelectorAll('.card').forEach(function (card, i) {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function () {
+        var box = form.querySelector('input[name="service"][value="' + map[i] + '"]');
+        if (box) box.checked = true;
+        document.getElementById('contact').scrollIntoView();
+      });
+    });
+  }
+
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
