@@ -46,7 +46,7 @@
   });
 
   // Reveal on scroll
-  var items = document.querySelectorAll('.section h2, .card, .plan, .addon, .project, .why__item, .process li, .faq details, .cta-band, .timeline li, .contact__box');
+  var items = document.querySelectorAll('.section h2, .card, .plan, .addon, .project, .why__item, .process li, .faq details, .case, .cta-band, .timeline li, .contact__box');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {

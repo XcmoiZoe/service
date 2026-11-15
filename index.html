@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="img/4.png">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,7 +41,7 @@
       <nav class="nav__links">
         <a href="#work">Work</a>
         <a href="#services">Services</a>
-        <a href="#process">Process</a>
+        <a href="#case-studies">Case studies</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
         <a href="#contact" class="btn btn--sm">Get a free quote</a>
@@ -122,87 +122,116 @@
 
         <div class="grid">
           <article class="project" data-cat="app">
-            <a class="project__img project__img--brand" href="https://play.google.com/store/apps/details?id=com.yesfreewifi" target="_blank" rel="noopener" style="--b1:#0b5fd6;--b2:#22c1c3">
-              <span class="brand-name">YES FREE WIFI</span><span class="brand-sub">Live on Google Play</span>
+            <a class="project__img mock mock--screens" href="https://play.google.com/store/apps/details?id=com.yesfreewifi" target="_blank" rel="noopener" style="--b1:#4c1d95;--b2:#f97316" aria-label="YES FREE WIFI on Google Play">
+              <span class="mock__screen"><img src="img/yfw-1.jpg" alt="YES FREE WIFI home screen with reward points" loading="lazy"></span>
+              <span class="mock__screen"><img src="img/yfw-2.jpg" alt="YES FREE WIFI daily roulette screen" loading="lazy"></span>
+              <span class="mock__screen"><img src="img/yfw-3.jpg" alt="YES FREE WIFI login screen" loading="lazy"></span>
             </a>
             <div class="project__body">
               <span class="tag">Flutter app · Google Play</span>
               <h3>YES FREE WIFI</h3>
-              <p>Free Wi-Fi app built in Flutter and published on the Google Play Store.</p>
-              <a href="https://play.google.com/store/apps/details?id=com.yesfreewifi" target="_blank" rel="noopener" class="link">Get it on Google Play →</a>
+              <p>Flutter app on Google Play with member login, reward points and a daily roulette.</p>
+              <div class="project__links">
+                <a href="https://play.google.com/store/apps/details?id=com.yesfreewifi" target="_blank" rel="noopener" class="link">Google Play →</a>
+                <a href="#case-yesfreewifi" class="link">Case study →</a>
+              </div>
             </div>
           </article>
 
           <article class="project" data-cat="app web">
-            <a class="project__img project__img--brand" href="https://youtu.be/w-XXgbsyz84" target="_blank" rel="noopener" style="--b1:#141414;--b2:#ff7a18">
-              <span class="brand-name">DoorAds</span><span class="brand-sub">Built with Next.js</span>
-            </a>
+            <button class="project__img mock" data-full="img/yesfreewifi-dashboard.jpg" style="--b1:#1e1b4b;--b2:#ea580c">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i></span><img src="img/yesfreewifi-dashboard.jpg" alt="YES! Free WiFi ads dashboard with impressions, clicks and connected users" loading="lazy"></span>
+            </button>
+            <div class="project__body">
+              <span class="tag">Web dashboard</span>
+              <h3>YES! Free WiFi Ads Dashboard</h3>
+              <p>Admin dashboard for Wi-Fi access points, ad campaigns, locations and reports.</p>
+              <div class="project__links"><a href="#case-yesfreewifi" class="link">Case study →</a></div>
+            </div>
+          </article>
+
+          <article class="project" data-cat="app web">
+            <button class="project__img mock mock--phone" data-full="img/doorads.jpg" style="--b1:#312e81;--b2:#8b5cf6">
+              <span class="mock__phone"><img src="img/doorads.jpg" alt="DoorAds admin home screen with staff, files and door hanger counts" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">Web app · Next.js</span>
               <h3>DoorAds</h3>
-              <p>Advertising platform web app built in Next.js.</p>
-              <a href="https://youtu.be/w-XXgbsyz84" target="_blank" rel="noopener" class="link">Watch demo →</a>
+              <p>Next.js app for managing staff and door hanger ad drop-offs.</p>
+              <div class="project__links">
+                <a href="https://youtu.be/w-XXgbsyz84" target="_blank" rel="noopener" class="link">Watch demo →</a>
+                <a href="#case-doorads" class="link">Case study →</a>
+              </div>
             </div>
           </article>
 
           <article class="project" data-cat="web">
-            <a class="project__img project__img--brand" href="https://arivcarrental.com/" target="_blank" rel="noopener" style="--b1:#10213f;--b2:#c9a227">
-              <span class="brand-name">Ariv</span><span class="brand-sub">Car Rental</span>
-            </a>
+            <button class="project__img mock" data-full="img/ariv.jpg" style="--b1:#0f1d36;--b2:#b7791f">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i><em>arivcarrental.com</em></span><img src="img/ariv.jpg" alt="Ariv Car Rental homepage" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">Website · Next.js</span>
               <h3>Ariv Car Rental</h3>
-              <p>Car rental website built in Next.js.</p>
-              <a href="https://arivcarrental.com/" target="_blank" rel="noopener" class="link">Visit live site →</a>
+              <p>Car rental booking website built in Next.js.</p>
+              <div class="project__links">
+                <a href="https://arivcarrental.com/" target="_blank" rel="noopener" class="link">Visit live site →</a>
+                <a href="#case-ariv" class="link">Case study →</a>
+              </div>
             </div>
           </article>
 
           <article class="project" data-cat="web shopify">
-            <a class="project__img project__img--brand" href="https://plentyrealbrews.com/" target="_blank" rel="noopener" style="--b1:#ff5a6e;--b2:#ffb3a7">
-              <span class="brand-name">Plenty</span><span class="brand-sub">Real Brews</span>
-            </a>
+            <button class="project__img mock" data-full="img/plenty.jpg" style="--b1:#e11d48;--b2:#fbbf24">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i><em>plentyrealbrews.com</em></span><img src="img/plenty.jpg" alt="Plenty Real Brews Shopify store homepage" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">Shopify</span>
               <h3>Plenty Real Brews</h3>
               <p>Hard kombucha store. Design updates, CSS bug fixes and SEO.</p>
-              <a href="https://plentyrealbrews.com/" target="_blank" rel="noopener" class="link">Visit live site →</a>
+              <div class="project__links"><a href="https://plentyrealbrews.com/" target="_blank" rel="noopener" class="link">Visit live site →</a></div>
             </div>
           </article>
 
           <article class="project" data-cat="web shopify">
-            <a class="project__img project__img--brand" href="https://theswellscore.com/" target="_blank" rel="noopener" style="--b1:#1f2a5a;--b2:#3f6b5a">
-              <span class="brand-name">The Swell Score</span><span class="brand-sub">The science of wellness</span>
-            </a>
+            <button class="project__img mock" data-full="img/swell.jpg" style="--b1:#1f2a5a;--b2:#3f6b5a">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i><em>theswellscore.com</em></span><img src="img/swell.jpg" alt="The Swell Score Shopify store homepage" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">Shopify</span>
               <h3>The Swell Score</h3>
               <p>Wellness &amp; beauty store. Redesign, CSS updates and SEO.</p>
-              <a href="https://theswellscore.com/" target="_blank" rel="noopener" class="link">Visit live site →</a>
+              <div class="project__links"><a href="https://theswellscore.com/" target="_blank" rel="noopener" class="link">Visit live site →</a></div>
             </div>
           </article>
 
           <article class="project" data-cat="web">
-            <button class="project__img" data-full="img/4.png"><img src="img/4.png" alt="MV Santiago Medical Center website" loading="lazy"></button>
+            <button class="project__img mock" data-full="img/4.png" style="--b1:#0e7490;--b2:#67e8f9">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i></span><img src="img/4.png" alt="MV Santiago Medical Center website" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">Website</span>
               <h3>MV Santiago Medical Center</h3>
               <p>Hospital website with online appointment booking.</p>
-              <a href="https://drive.google.com/file/d/1vnJQThaOUmRZvaTdO-5tz89unf8gMTom/view?usp=sharing" target="_blank" rel="noopener" class="link">Watch demo →</a>
+              <div class="project__links"><a href="https://drive.google.com/file/d/1vnJQThaOUmRZvaTdO-5tz89unf8gMTom/view?usp=sharing" target="_blank" rel="noopener" class="link">Watch demo →</a></div>
             </div>
           </article>
 
           <article class="project" data-cat="design">
-            <button class="project__img" data-full="img/2.png"><img src="img/2.png" alt="EyeCenter optical health app design" loading="lazy"></button>
+            <button class="project__img mock mock--canvas" data-full="img/2.png" style="--b1:#0f172a;--b2:#2563eb">
+              <span class="mock__card"><img src="img/2.png" alt="EyeCenter optical health app design" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">UI/UX design</span>
               <h3>EyeCenter</h3>
               <p>Optical health app with vision tests, schedules and stats.</p>
-              <a href="https://www.figma.com/design/5bYnmYxXP16HL3QsRPipEW/Optical-Management?node-id=0-1&p=f&t=qf8nymWtF7m3hqcH-0" target="_blank" rel="noopener" class="link">View in Figma →</a>
+              <div class="project__links"><a href="https://www.figma.com/design/5bYnmYxXP16HL3QsRPipEW/Optical-Management?node-id=0-1&p=f&t=qf8nymWtF7m3hqcH-0" target="_blank" rel="noopener" class="link">View in Figma →</a></div>
             </div>
           </article>
 
           <article class="project" data-cat="web">
-            <button class="project__img" data-full="img/about-1.jpg"><img src="img/about-1.jpg" alt="Meka Modular website" loading="lazy"></button>
+            <button class="project__img mock" data-full="img/about-1.jpg" style="--b1:#3f3f46;--b2:#a3a3a3">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i></span><img src="img/about-1.jpg" alt="Meka Modular website" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">Website</span>
               <h3>Meka Modular</h3>
@@ -210,18 +239,33 @@
             </div>
           </article>
 
-          <article class="project" data-cat="design">
-            <button class="project__img" data-full="img/12.png"><img src="img/12.png" alt="Ruskin Consulting website design" loading="lazy"></button>
+          <article class="project is-extra" data-cat="design">
+            <button class="project__img mock mock--canvas" data-full="img/12.png" style="--b1:#14532d;--b2:#4ade80">
+              <span class="mock__card"><img src="img/12.png" alt="Ruskin Consulting website design" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">UI/UX design</span>
               <h3>Ruskin Consulting</h3>
               <p>Landing page for a PPC and SEO marketing agency.</p>
-              <a href="https://www.figma.com/design/iVUIRpsnyNFxEhbb3jOBq5/ruskinconsulting?m=auto&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View in Figma →</a>
+              <div class="project__links"><a href="https://www.figma.com/design/iVUIRpsnyNFxEhbb3jOBq5/ruskinconsulting?m=auto&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View in Figma →</a></div>
             </div>
           </article>
 
           <article class="project is-extra" data-cat="web">
-            <button class="project__img" data-full="img/6.png"><img src="img/6.png" alt="SECAP SWDA website" loading="lazy"></button>
+            <button class="project__img mock" data-full="img/13.png" style="--b1:#1e3a8a;--b2:#ef4444">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i></span><img src="img/13.png" alt="Pat Plumbing, Heating and Air website" loading="lazy"></span>
+            </button>
+            <div class="project__body">
+              <span class="tag">Website</span>
+              <h3>Pat Plumbing, Heating &amp; Air</h3>
+              <p>Service business website with scheduling and service areas.</p>
+            </div>
+          </article>
+
+          <article class="project is-extra" data-cat="web">
+            <button class="project__img mock" data-full="img/6.png" style="--b1:#7c2d12;--b2:#fb923c">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i></span><img src="img/6.png" alt="SECAP SWDA website" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">Website</span>
               <h3>SECAP – SWDA</h3>
@@ -230,50 +274,61 @@
           </article>
 
           <article class="project is-extra" data-cat="design">
-            <button class="project__img" data-full="img/9.png"><img src="img/9.png" alt="Network monitoring dashboard design" loading="lazy"></button>
+            <button class="project__img mock mock--canvas" data-full="img/9.png" style="--b1:#111827;--b2:#0ea5e9">
+              <span class="mock__card"><img src="img/9.png" alt="Network monitoring dashboard design" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">UI/UX design</span>
               <h3>Network Monitoring Dashboard</h3>
               <p>Admin dashboard for terminals, access points and ad analytics.</p>
-              <a href="https://www.figma.com/design/6JZCpiLUoapp93Vb6wpRlp/Dashboard?m=auto&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View in Figma →</a>
-            </div>
-          </article>
-
-          <article class="project is-extra" data-cat="web">
-            <button class="project__img" data-full="img/13.png"><img src="img/13.png" alt="Pat Plumbing, Heating and Air website" loading="lazy"></button>
-            <div class="project__body">
-              <span class="tag">Website</span>
-              <h3>Pat Plumbing, Heating &amp; Air</h3>
-              <p>Service business website with scheduling and service areas.</p>
+              <div class="project__links"><a href="https://www.figma.com/design/6JZCpiLUoapp93Vb6wpRlp/Dashboard?m=auto&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View in Figma →</a></div>
             </div>
           </article>
 
           <article class="project is-extra" data-cat="design">
-            <button class="project__img" data-full="img/8.png"><img src="img/8.png" alt="Asphodel language academy website design" loading="lazy"></button>
+            <button class="project__img mock mock--canvas" data-full="img/8.png" style="--b1:#581c87;--b2:#f472b6">
+              <span class="mock__card"><img src="img/8.png" alt="Asphodel language academy website design" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">UI/UX design</span>
               <h3>Asphodel</h3>
               <p>Multi-page website for a Korean language academy.</p>
-              <a href="https://www.figma.com/design/eRbjD8x75o7I7DecJsZlEB/ASPHODEL?m=auto&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View in Figma →</a>
+              <div class="project__links"><a href="https://www.figma.com/design/eRbjD8x75o7I7DecJsZlEB/ASPHODEL?m=auto&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View in Figma →</a></div>
             </div>
           </article>
 
           <article class="project is-extra" data-cat="design">
-            <button class="project__img" data-full="img/11.png"><img src="img/11.png" alt="FOC Inc wallet app design" loading="lazy"></button>
+            <button class="project__img mock mock--canvas" data-full="img/11.png" style="--b1:#064e3b;--b2:#34d399">
+              <span class="mock__card"><img src="img/11.png" alt="FOC Inc wallet app design" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">UI/UX design</span>
               <h3>FOC Inc. Wallet</h3>
               <p>Mobile wallet app: onboarding, sign-up and portfolio screens.</p>
-              <a href="https://www.figma.com/design/aRDc6xG0dO5vXfOcQvw0yE/FOC-INC?m=auto&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View in Figma →</a>
+              <div class="project__links"><a href="https://www.figma.com/design/aRDc6xG0dO5vXfOcQvw0yE/FOC-INC?m=auto&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View in Figma →</a></div>
             </div>
           </article>
 
           <article class="project is-extra" data-cat="design">
-            <button class="project__img" data-full="img/7.png"><img src="img/7.png" alt="Student portal dashboard design" loading="lazy"></button>
+            <button class="project__img mock mock--canvas" data-full="img/7.png" style="--b1:#1e40af;--b2:#a78bfa">
+              <span class="mock__card"><img src="img/7.png" alt="Student portal dashboard design" loading="lazy"></span>
+            </button>
             <div class="project__body">
               <span class="tag">UI/UX design</span>
               <h3>Student Portal</h3>
               <p>School dashboard with grades, calendar, counseling and notes.</p>
+            </div>
+          </article>
+
+          <article class="project is-extra" data-cat="design">
+            <button class="project__img mock mock--canvas" data-full="img/10.png" style="--b1:#334155;--b2:#facc15">
+              <span class="mock__card"><img src="img/10.png" alt="Create account screen design" loading="lazy"></span>
+            </button>
+            <div class="project__body">
+              <span class="tag">UI/UX design</span>
+              <h3>Sign-up Flow</h3>
+              <p>Account creation screen with social sign-in.</p>
+              <div class="project__links"><a href="https://www.figma.com/proto/OigQOxmWFI19nYK4iRGDXE?node-id=0-1&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View prototype →</a></div>
             </div>
           </article>
         </div>
@@ -282,9 +337,92 @@
           <button type="button" class="btn btn--ghost" id="show-more">Show more projects</button>
         </div>
 
+      </div>
+    </section>
+
+    <!-- Case studies -->
+    <section class="section section--alt" id="case-studies">
+      <div class="wrap">
+        <p class="kicker">Case studies</p>
+        <h2>How I solved real problems for clients</h2>
+        <p class="lead cases__lead">A closer look at three recent builds: what the client needed, what I built, and what happened next.</p>
+
+        <article class="case" id="case-yesfreewifi">
+          <div class="case__media">
+            <div class="project__img mock" style="--b1:#1e1b4b;--b2:#ea580c">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i></span><img src="img/yesfreewifi-dashboard.jpg" alt="YES! Free WiFi ads dashboard" loading="lazy"></span>
+            </div>
+            <div class="case__phones" style="--b1:#4c1d95;--b2:#f97316">
+              <img src="img/yfw-1.jpg" alt="YES FREE WIFI app home screen" loading="lazy">
+              <img src="img/yfw-2.jpg" alt="YES FREE WIFI daily roulette" loading="lazy">
+            </div>
+          </div>
+          <div class="case__body">
+            <span class="tag">Flutter app + web dashboard · Artbi Global Philippines</span>
+            <h3>YES! Free WiFi: turning free public Wi-Fi into an ad network</h3>
+            <dl class="case__steps">
+              <div><dt>Challenge</dt><dd>Artbi Global runs free public Wi-Fi hotspots and needed a way to earn from them. They wanted to show advertisers' ads on the Wi-Fi login page, keep users coming back, and track how every campaign performs.</dd></div>
+              <div><dt>What I built</dt><dd>A Flutter app on Google Play where users log in, earn reward points and spin a daily roulette. A web dashboard for the team to manage access points, ad campaigns, locations and reports, with a live preview of every ad.</dd></div>
+            </dl>
+            <ul class="case__stats" aria-label="Results, November 1–15, 2026">
+              <li><b>10,127</b><span>ad impressions</span></li>
+              <li><b>8,045</b><span>connected users</span></li>
+              <li><b>79.4%</b><span>connect rate</span></li>
+              <li><b>10</b><span>campaigns at 4 locations</span></li>
+            </ul>
+            <p class="case__note">Dashboard figures for Nov 1–15, 2026. 100+ downloads on Google Play.</p>
+            <div class="case__stack"><span>Flutter</span><span>Google Play</span><span>Web dashboard</span><span>Ad analytics</span></div>
+            <div class="project__links">
+              <a href="https://play.google.com/store/apps/details?id=com.yesfreewifi" target="_blank" rel="noopener" class="link">See it on Google Play →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="case case--flip" id="case-ariv">
+          <div class="case__media">
+            <div class="project__img mock" style="--b1:#0f1d36;--b2:#b7791f">
+              <span class="mock__browser"><span class="mock__bar"><i></i><i></i><i></i><em>arivcarrental.com</em></span><img src="img/ariv.jpg" alt="Ariv Car Rental homepage" loading="lazy"></span>
+            </div>
+          </div>
+          <div class="case__body">
+            <span class="tag">Website · Next.js</span>
+            <h3>Ariv Car Rental: a booking site customers can use on any phone</h3>
+            <dl class="case__steps">
+              <div><dt>Challenge</dt><dd>Ariv needed a professional online home where customers could browse vehicles, see driver options and book without calling back and forth.</dd></div>
+              <div><dt>What I built</dt><dd>A fast Next.js website with vehicle and driver pages, FAQs and a clear "Book Now" button on every screen. It works well on mobile, which is where most rental customers search.</dd></div>
+              <div><dt>Outcome</dt><dd>The site is live at arivcarrental.com and gives Ariv a direct booking channel it owns.</dd></div>
+            </dl>
+            <div class="case__stack"><span>Next.js</span><span>React</span><span>Responsive design</span><span>SEO</span></div>
+            <div class="project__links">
+              <a href="https://arivcarrental.com/" target="_blank" rel="noopener" class="link">Visit live site →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="case" id="case-doorads">
+          <div class="case__media">
+            <div class="project__img mock mock--phone" style="--b1:#312e81;--b2:#8b5cf6">
+              <span class="mock__phone"><img src="img/doorads.jpg" alt="DoorAds admin home screen" loading="lazy"></span>
+            </div>
+          </div>
+          <div class="case__body">
+            <span class="tag">Web app · Next.js</span>
+            <h3>DoorAds: tracking door hanger ad campaigns in real time</h3>
+            <dl class="case__steps">
+              <div><dt>Challenge</dt><dd>A door hanger advertising team was tracking staff, files and daily drop-offs by hand, so managers couldn't see what was done on any given day.</dd></div>
+              <div><dt>What I built</dt><dd>A mobile-friendly Next.js web app with an admin home showing total staff, files created and door hangers dropped off today. Admins can create staff accounts and drill into each number.</dd></div>
+              <div><dt>Outcome</dt><dd>One place to see the team's daily progress, from any phone.</dd></div>
+            </dl>
+            <div class="case__stack"><span>Next.js</span><span>React</span><span>Admin dashboard</span><span>User roles</span></div>
+            <div class="project__links">
+              <a href="https://youtu.be/w-XXgbsyz84" target="_blank" rel="noopener" class="link">Watch the demo →</a>
+            </div>
+          </div>
+        </article>
+
         <div class="cta-band">
           <div>
-            <h3>Want a site like these for your business?</h3>
+            <h3>Have a project like these?</h3>
             <p>Tell me what you need and get a fixed quote within 24 hours. No commitment.</p>
           </div>
           <a href="#contact" class="btn btn--lg">Get my free quote <span aria-hidden="true">→</span></a>
@@ -293,7 +431,7 @@
     </section>
 
     <!-- Services -->
-    <section class="section section--alt" id="services">
+    <section class="section" id="services">
       <div class="wrap">
         <p class="kicker">Services</p>
         <h2>Everything you need to get online and grow</h2>
@@ -327,7 +465,7 @@
     </section>
 
     <!-- Why -->
-    <section class="section" id="about">
+    <section class="section section--alt" id="about">
       <div class="wrap why">
         <div class="why__intro">
           <p class="kicker">Why work with me</p>
@@ -346,7 +484,7 @@
     </section>
 
     <!-- Process -->
-    <section class="section section--alt" id="process">
+    <section class="section" id="process">
       <div class="wrap">
         <p class="kicker">How it works</p>
         <h2>From first message to live site</h2>
@@ -360,7 +498,7 @@
     </section>
 
     <!-- Pricing -->
-    <section class="section" id="pricing">
+    <section class="section section--alt" id="pricing">
       <div class="wrap">
         <div class="pricing__head">
           <p class="kicker">Pricing</p>
@@ -454,7 +592,7 @@
     </section>
 
     <!-- Experience -->
-    <section class="section section--alt" id="experience">
+    <section class="section" id="experience">
       <div class="wrap exp">
         <div>
           <p class="kicker">Skills</p>
@@ -479,7 +617,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section" id="faq">
+    <section class="section section--alt" id="faq">
       <div class="wrap faq">
         <div>
           <p class="kicker">FAQ</p>
@@ -516,7 +654,7 @@
     </section>
 
     <!-- Contact -->
-    <section class="section section--alt contact" id="contact">
+    <section class="section contact" id="contact">
       <div class="wrap contact__box">
         <div class="contact__intro">
           <p class="kicker">Free quote</p>
@@ -633,6 +771,6 @@
     <img src="" alt="">
   </dialog>
 
-  <script src="js/main.js?v=5" defer></script>
+  <script src="js/main.js?v=6" defer></script>
 </body>
 </html>
