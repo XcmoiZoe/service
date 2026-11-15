@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -23,6 +23,7 @@
         <a href="#services">Services</a>
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
+        <a href="#pricing">Pricing</a>
         <a href="https://m.me/168737504976524" class="btn btn--sm">Let's talk</a>
       </nav>
     </div>
@@ -284,8 +285,99 @@
       </div>
     </section>
 
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+      <div class="wrap">
+        <div class="pricing__head">
+          <p class="kicker">Pricing</p>
+          <h2>Affordable, honest pricing</h2>
+          <p class="lead">Fixed-price packages so you know what you're paying upfront. Every project includes mobile-friendly design, basic SEO setup and support after launch.</p>
+        </div>
+
+        <div class="plans">
+          <article class="plan">
+            <h3>Starter</h3>
+            <p class="plan__desc">For freelancers and small businesses that need to get online fast.</p>
+            <p class="plan__price"><span class="plan__from">from</span> ₱4,999 <small>≈ $90</small></p>
+            <ul class="plan__list">
+              <li>1-page landing or portfolio site</li>
+              <li>Mobile-friendly design</li>
+              <li>Contact form + Messenger link</li>
+              <li>Basic on-page SEO</li>
+              <li>Delivered in about 5 days</li>
+            </ul>
+            <a href="#contact" class="btn btn--ghost plan__cta" data-plan="Starter" data-service="Website (WordPress / custom)" data-budget="Under ₱10,000 / $200">Get started</a>
+          </article>
+
+          <article class="plan plan--featured">
+            <span class="plan__badge">Most popular</span>
+            <h3>Business</h3>
+            <p class="plan__desc">A complete website for growing businesses that want leads.</p>
+            <p class="plan__price"><span class="plan__from">from</span> ₱12,999 <small>≈ $230</small></p>
+            <ul class="plan__list">
+              <li>Up to 6 pages (WordPress / Elementor)</li>
+              <li>Custom design to match your brand</li>
+              <li>You can edit content yourself</li>
+              <li>SEO setup + Google Analytics</li>
+              <li>Speed optimization</li>
+              <li>30 days of free support</li>
+            </ul>
+            <a href="#contact" class="btn plan__cta" data-plan="Business" data-service="Website (WordPress / custom)" data-budget="₱10,000–30,000 / $200–500">Get started</a>
+          </article>
+
+          <article class="plan">
+            <h3>Online Store</h3>
+            <p class="plan__desc">Sell online with a Shopify store that's set up to convert.</p>
+            <p class="plan__price"><span class="plan__from">from</span> ₱19,999 <small>≈ $350</small></p>
+            <ul class="plan__list">
+              <li>Shopify store setup &amp; theme design</li>
+              <li>Up to 20 products uploaded</li>
+              <li>Payments, shipping &amp; apps set up</li>
+              <li>Product &amp; collection SEO</li>
+              <li>Training video on running your store</li>
+            </ul>
+            <a href="#contact" class="btn btn--ghost plan__cta" data-plan="Online Store" data-service="Shopify store" data-budget="₱10,000–30,000 / $200–500">Get started</a>
+          </article>
+
+          <article class="plan">
+            <h3>Custom</h3>
+            <p class="plan__desc">Web apps, dashboards, booking systems and bigger builds.</p>
+            <p class="plan__price"><span class="plan__from">from</span> ₱35,000 <small>≈ $600</small></p>
+            <ul class="plan__list">
+              <li>Custom web app or portal</li>
+              <li>UI/UX design in Figma</li>
+              <li>Integrations &amp; N8N automation</li>
+              <li>Scalable, maintainable code</li>
+              <li>Ongoing support available</li>
+            </ul>
+            <a href="#contact" class="btn btn--ghost plan__cta" data-plan="Custom" data-service="Website (WordPress / custom)" data-budget="₱30,000–60,000 / $500–1,000">Get a quote</a>
+          </article>
+        </div>
+
+        <div class="addons">
+          <p class="kicker">Add-ons &amp; monthly</p>
+          <div class="addons__grid">
+            <a href="#contact" class="addon" data-plan="Monthly SEO" data-service="SEO">
+              <div><h3>Monthly SEO</h3><p>Keywords, content and reports to keep climbing on Google.</p></div>
+              <span>from ₱4,000<small>/mo</small></span>
+            </a>
+            <a href="#contact" class="addon" data-plan="Website care" data-service="Fix / update existing site">
+              <div><h3>Website care</h3><p>Updates, backups, security and small edits each month.</p></div>
+              <span>from ₱1,500<small>/mo</small></span>
+            </a>
+            <a href="#contact" class="addon" data-plan="Fix / update" data-service="Fix / update existing site">
+              <div><h3>Fixes &amp; updates</h3><p>Bug fixes, CSS tweaks or redesigning a few pages.</p></div>
+              <span>from ₱800</span>
+            </a>
+          </div>
+        </div>
+
+        <p class="pricing__note">Prices are starting points. Every project is different, so you'll get a fixed quote before any work starts. 50% downpayment, 50% on launch. Flexible payment via GCash, bank transfer or PayPal.</p>
+      </div>
+    </section>
+
     <!-- Contact -->
-    <section class="section contact" id="contact">
+    <section class="section section--alt contact" id="contact">
       <div class="wrap contact__box">
         <div class="contact__intro">
           <p class="kicker">Contact</p>
@@ -392,6 +484,6 @@
     <img src="" alt="">
   </dialog>
 
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

@@ -46,7 +46,7 @@
   });
 
   // Reveal on scroll
-  var items = document.querySelectorAll('.section h2, .card, .project, .about__photos, .timeline li, .contact__box');
+  var items = document.querySelectorAll('.section h2, .card, .plan, .addon, .project, .about__photos, .timeline li, .contact__box');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -141,6 +141,21 @@
         var box = form.querySelector('input[name="service"][value="' + map[i] + '"]');
         if (box) box.checked = true;
         document.getElementById('contact').scrollIntoView();
+      });
+    });
+
+    // Pricing buttons pre-fill the form with the chosen plan
+    document.querySelectorAll('[data-plan]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        form.querySelectorAll('input[name="service"]').forEach(function (b) {
+          b.checked = b.value === btn.dataset.service;
+        });
+        if (btn.dataset.budget) form.elements.budget.value = btn.dataset.budget;
+        var details = form.elements.details;
+        var line = "I'm interested in the " + btn.dataset.plan + ' package.';
+        details.value = details.value.replace(/^I'm interested in the .* package\.\n*/, '');
+        details.value = line + '\n\n' + details.value;
+        setTimeout(function () { form.elements.name.focus({ preventScroll: true }); }, 600);
       });
     });
   }
