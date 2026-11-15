@@ -46,7 +46,7 @@
   });
 
   // Reveal on scroll
-  var items = document.querySelectorAll('.section h2, .card, .plan, .addon, .project, .about__photos, .timeline li, .contact__box');
+  var items = document.querySelectorAll('.section h2, .card, .plan, .addon, .project, .why__item, .process li, .faq details, .cta-band, .timeline li, .contact__box');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -103,7 +103,7 @@
       errBox.hidden = true;
 
       var lines = [
-        'Hi Zoe! New project inquiry from your website:',
+        'Hi Emman! New project inquiry from your website:',
         '',
         'Name: ' + name
       ];
@@ -133,31 +133,55 @@
       });
     });
 
-    // Clicking a service card pre-selects it in the form
-    var map = ['Website (WordPress / custom)', 'UI/UX design', 'SEO', 'Social media / video'];
-    document.querySelectorAll('.card').forEach(function (card, i) {
-      card.style.cursor = 'pointer';
-      card.addEventListener('click', function () {
-        var box = form.querySelector('input[name="service"][value="' + map[i] + '"]');
-        if (box) box.checked = true;
-        document.getElementById('contact').scrollIntoView();
-      });
-    });
-
-    // Pricing buttons pre-fill the form with the chosen plan
-    document.querySelectorAll('[data-plan]').forEach(function (btn) {
+    // Service cards, pricing buttons and add-ons pre-fill the form
+    document.querySelectorAll('[data-service]').forEach(function (btn) {
       btn.addEventListener('click', function () {
+        var plan = btn.dataset.plan;
         form.querySelectorAll('input[name="service"]').forEach(function (b) {
-          b.checked = b.value === btn.dataset.service;
+          if (plan) b.checked = b.value === btn.dataset.service;
+          else if (b.value === btn.dataset.service) b.checked = true;
         });
         if (btn.dataset.budget) form.elements.budget.value = btn.dataset.budget;
-        var details = form.elements.details;
-        var line = "I'm interested in the " + btn.dataset.plan + ' package.';
-        details.value = details.value.replace(/^I'm interested in the .* package\.\n*/, '');
-        details.value = line + '\n\n' + details.value;
+        if (plan) {
+          var details = form.elements.details;
+          var line = "I'm interested in the " + plan + ' package.';
+          details.value = details.value.replace(/^I'm interested in the .* package\.\n*/, '');
+          details.value = line + '\n\n' + details.value;
+        }
         setTimeout(function () { form.elements.name.focus({ preventScroll: true }); }, 600);
       });
     });
+  }
+
+  // Show more projects
+  var more = document.getElementById('show-more');
+  var grid = document.querySelector('.grid');
+  if (more && grid) {
+    more.addEventListener('click', function () {
+      grid.classList.add('is-expanded');
+      more.parentNode.hidden = true;
+    });
+    // Filtering reveals everything in that category
+    filters.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        grid.classList.add('is-expanded');
+        more.parentNode.hidden = true;
+      });
+    });
+  }
+
+  // Sticky mobile CTA: show after hero, hide near the form
+  var sticky = document.getElementById('sticky-cta');
+  var contact = document.getElementById('contact');
+  if (sticky && contact) {
+    var updateSticky = function () {
+      var past = window.scrollY > window.innerHeight * 0.6;
+      var r = contact.getBoundingClientRect();
+      var atForm = r.top < window.innerHeight && r.bottom > 0;
+      sticky.classList.toggle('is-visible', past && !atForm);
+    };
+    window.addEventListener('scroll', updateSticky, { passive: true });
+    updateSticky();
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();

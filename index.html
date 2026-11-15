@@ -3,12 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Stackclever — Dev Zoe, Full Stack Developer &amp; SEO</title>
-  <meta name="description" content="Dev Zoe (Stackclever) — Full stack developer, WordPress & Shopify builder, UI/UX designer and SEO marketer based in Manila, Philippines.">
+  <title>Emman — Website, Shopify &amp; SEO Developer | Stackclever</title>
+  <meta name="description" content="Emman (Stackclever) builds fast, mobile-friendly websites and Shopify stores that rank on Google and turn visitors into customers. Fixed prices from ₱4,999. Free quote within 24 hours.">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Emman — Websites &amp; Shopify stores that bring you customers">
+  <meta property="og:description" content="Full stack developer, UI/UX designer and SEO specialist. Fixed-price packages, 50% paid on launch. Get a free quote.">
+  <meta property="og:image" content="img/4.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="preload" as="image" href="img/4.png">
+  <link rel="stylesheet" href="css/style.css?v=5">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Stackclever",
+    "founder": { "@type": "Person", "name": "Emman", "jobTitle": "Full Stack Developer & SEO Specialist" },
+    "description": "Website design and development, Shopify stores, UI/UX design and SEO.",
+    "areaServed": "Worldwide",
+    "address": { "@type": "PostalAddress", "addressLocality": "Manila", "addressCountry": "PH" },
+    "priceRange": "₱4,999+",
+    "sameAs": ["https://www.upwork.com/freelancers/emmanu2"]
+  }
+  </script>
 </head>
 <body>
 
@@ -19,12 +39,12 @@
         <span></span><span></span>
       </button>
       <nav class="nav__links">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
         <a href="#work">Work</a>
-        <a href="#experience">Experience</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
         <a href="#pricing">Pricing</a>
-        <a href="https://m.me/168737504976524" class="btn btn--sm">Let's talk</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn btn--sm">Get a free quote</a>
       </nav>
     </div>
   </header>
@@ -34,73 +54,52 @@
     <section class="hero">
       <div class="wrap hero__grid">
         <div class="hero__text">
-          <p class="eyebrow"><span class="dot"></span>Available for new projects</p>
-          <h1>Hi, I'm Zoe.<br>I build websites that <em>work</em> for your business.</h1>
-          <p class="lead">Full stack developer, UI/UX designer and SEO marketer. From WordPress and Shopify stores to custom web apps and dashboards — designed, built and launched.</p>
+          <p class="eyebrow"><span class="dot"></span>Taking new projects · replies within 24 hours</p>
+          <h1>Websites &amp; Shopify stores that turn visitors into <em>customers</em>.</h1>
+          <p class="lead">I'm Emman, a full stack developer, designer and SEO specialist. I build fast, mobile-friendly sites that show up on Google and get your phone ringing. You get a fixed price up front, and you pay the second half only when the site is live.</p>
           <div class="hero__cta">
-            <a href="https://m.me/168737504976524" class="btn">Message me</a>
-            <a href="#work" class="btn btn--ghost">See my work</a>
+            <a href="#contact" class="btn btn--lg">Get my free quote <span aria-hidden="true">→</span></a>
+            <a href="#work" class="btn btn--ghost btn--lg">See recent work</a>
           </div>
+          <ul class="assure">
+            <li>Fixed price, no surprises</li>
+            <li>50% paid on launch</li>
+            <li>Free support after launch</li>
+          </ul>
           <dl class="stats">
-            <div><dt>4+</dt><dd>Years experience</dd></div>
-            <div><dt>50+</dt><dd>Happy clients</dd></div>
             <div><dt>100+</dt><dd>Projects delivered</dd></div>
+            <div><dt>50+</dt><dd>Happy clients</dd></div>
+            <div><dt>4+</dt><dd>Years experience</dd></div>
           </dl>
         </div>
-        <div class="hero__img">
-          <img src="img/profile.png" alt="Portrait of Dev Zoe" width="1703" height="2000">
+
+        <div class="hero__visual" aria-hidden="true">
+          <div class="browser">
+            <div class="browser__bar"><i></i><i></i><i></i><span>mvsantiagomedical.com</span></div>
+            <img src="img/4.png" alt="" width="1200" height="900">
+          </div>
+          <div class="browser browser--back">
+            <div class="browser__bar"><i></i><i></i><i></i></div>
+            <img src="img/12.png" alt="" loading="lazy">
+          </div>
+          <div class="float float--a"><b>✓</b> Online booking live</div>
+          <div class="float float--b"><b>↑</b> Ranking on Google</div>
         </div>
       </div>
     </section>
 
-    <!-- About -->
-    <section class="section" id="about">
-      <div class="wrap about">
-        <div class="about__photos">
-          <img src="img/1.png" alt="Zoe working at a multi-monitor desk setup" loading="lazy">
-          <img src="img/about-2.jpg" alt="Zoe managing cloud infrastructure on a large display" loading="lazy">
-        </div>
-        <div>
-          <p class="kicker">About</p>
-          <h2>Developer, tech lead, and the person who gets it shipped.</h2>
-          <p>With 4 years as a Full Stack Developer and Tech Lead, I've led and contributed to high-impact projects, delivering scalable and efficient solutions. My work spans front-end and back-end development, architecture design and team leadership.</p>
-          <p>I thrive in fast-paced environments and care about the details that make a site fast, findable and easy to use.</p>
-          <ul class="checks">
-            <li>Affordable pricing</li>
-            <li>High-quality, maintainable code</li>
-            <li>On-time delivery</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section class="section section--alt" id="services">
-      <div class="wrap">
-        <p class="kicker">Services</p>
-        <h2>What I can do for you</h2>
-        <div class="cards">
-          <article class="card">
-            <span class="card__num">01</span>
-            <h3>Web Design &amp; Development</h3>
-            <p>Custom, responsive websites and web apps — WordPress, Elementor, Shopify or fully custom builds.</p>
-          </article>
-          <article class="card">
-            <span class="card__num">02</span>
-            <h3>UI/UX Design</h3>
-            <p>Clean, user-friendly interfaces for web and mobile, designed and prototyped in Figma.</p>
-          </article>
-          <article class="card">
-            <span class="card__num">03</span>
-            <h3>SEO Optimization</h3>
-            <p>Better search rankings through technical SEO, keyword strategy and analytics-driven improvements.</p>
-          </article>
-          <article class="card">
-            <span class="card__num">04</span>
-            <h3>Social Media &amp; Automation</h3>
-            <p>Social media marketing, video editing for campaigns, and N8N workflow automation to save you time.</p>
-          </article>
-        </div>
+    <!-- Trust strip -->
+    <section class="trust" aria-label="Clients">
+      <div class="wrap trust__inner">
+        <p>Trusted by businesses like</p>
+        <ul>
+          <li>Plenty Real Brews</li>
+          <li>The Swell Score</li>
+          <li>MV Santiago Medical</li>
+          <li>Meka Modular</li>
+          <li>Pat Plumbing</li>
+          <li>Ruskin Consulting</li>
+        </ul>
       </div>
     </section>
 
@@ -110,12 +109,12 @@
         <div class="work__head">
           <div>
             <p class="kicker">Selected work</p>
-            <h2>Recent projects</h2>
+            <h2>Real projects for real businesses</h2>
           </div>
           <div class="filters" role="tablist">
             <button class="filter is-active" data-filter="all">All</button>
             <button class="filter" data-filter="shopify">Shopify</button>
-            <button class="filter" data-filter="web">Web development</button>
+            <button class="filter" data-filter="web">Websites</button>
             <button class="filter" data-filter="design">UI/UX design</button>
           </div>
         </div>
@@ -128,7 +127,7 @@
             <div class="project__body">
               <span class="tag">Shopify</span>
               <h3>Plenty Real Brews</h3>
-              <p>Hard kombucha store — design updates, CSS bug fixes and SEO.</p>
+              <p>Hard kombucha store. Design updates, CSS bug fixes and SEO.</p>
               <a href="https://plentyrealbrews.com/" target="_blank" rel="noopener" class="link">Visit live site →</a>
             </div>
           </article>
@@ -140,7 +139,7 @@
             <div class="project__body">
               <span class="tag">Shopify</span>
               <h3>The Swell Score</h3>
-              <p>Wellness &amp; beauty store — redesign, CSS updates and SEO.</p>
+              <p>Wellness &amp; beauty store. Redesign, CSS updates and SEO.</p>
               <a href="https://theswellscore.com/" target="_blank" rel="noopener" class="link">Visit live site →</a>
             </div>
           </article>
@@ -148,7 +147,7 @@
           <article class="project" data-cat="web">
             <button class="project__img" data-full="img/4.png"><img src="img/4.png" alt="MV Santiago Medical Center website" loading="lazy"></button>
             <div class="project__body">
-              <span class="tag">Web development</span>
+              <span class="tag">Website</span>
               <h3>MV Santiago Medical Center</h3>
               <p>Hospital website with online appointment booking.</p>
               <a href="https://drive.google.com/file/d/1vnJQThaOUmRZvaTdO-5tz89unf8gMTom/view?usp=sharing" target="_blank" rel="noopener" class="link">Watch demo →</a>
@@ -160,7 +159,7 @@
             <div class="project__body">
               <span class="tag">UI/UX design</span>
               <h3>EyeCenter</h3>
-              <p>Optical health management app — vision tests, schedules and stats.</p>
+              <p>Optical health app with vision tests, schedules and stats.</p>
               <a href="https://www.figma.com/design/5bYnmYxXP16HL3QsRPipEW/Optical-Management?node-id=0-1&p=f&t=qf8nymWtF7m3hqcH-0" target="_blank" rel="noopener" class="link">View in Figma →</a>
             </div>
           </article>
@@ -168,7 +167,7 @@
           <article class="project" data-cat="web">
             <button class="project__img" data-full="img/about-1.jpg"><img src="img/about-1.jpg" alt="Meka Modular website" loading="lazy"></button>
             <div class="project__body">
-              <span class="tag">Web development</span>
+              <span class="tag">Website</span>
               <h3>Meka Modular</h3>
               <p>WordPress site for a modular home builder.</p>
             </div>
@@ -187,7 +186,7 @@
           <article class="project" data-cat="web">
             <button class="project__img" data-full="img/6.png"><img src="img/6.png" alt="SECAP SWDA website" loading="lazy"></button>
             <div class="project__body">
-              <span class="tag">Web development</span>
+              <span class="tag">Website</span>
               <h3>SECAP – SWDA</h3>
               <p>Website for a social welfare and elderly care organization.</p>
             </div>
@@ -203,7 +202,16 @@
             </div>
           </article>
 
-          <article class="project" data-cat="design">
+          <article class="project" data-cat="web">
+            <button class="project__img" data-full="img/13.png"><img src="img/13.png" alt="Pat Plumbing, Heating and Air website" loading="lazy"></button>
+            <div class="project__body">
+              <span class="tag">Website</span>
+              <h3>Pat Plumbing, Heating &amp; Air</h3>
+              <p>Service business website with scheduling and service areas.</p>
+            </div>
+          </article>
+
+          <article class="project is-extra" data-cat="design">
             <button class="project__img" data-full="img/8.png"><img src="img/8.png" alt="Asphodel language academy website design" loading="lazy"></button>
             <div class="project__body">
               <span class="tag">UI/UX design</span>
@@ -213,26 +221,17 @@
             </div>
           </article>
 
-          <article class="project" data-cat="design">
+          <article class="project is-extra" data-cat="design">
             <button class="project__img" data-full="img/11.png"><img src="img/11.png" alt="FOC Inc wallet app design" loading="lazy"></button>
             <div class="project__body">
               <span class="tag">UI/UX design</span>
               <h3>FOC Inc. Wallet</h3>
-              <p>Mobile wallet app — onboarding, sign-up and portfolio screens.</p>
+              <p>Mobile wallet app: onboarding, sign-up and portfolio screens.</p>
               <a href="https://www.figma.com/design/aRDc6xG0dO5vXfOcQvw0yE/FOC-INC?m=auto&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View in Figma →</a>
             </div>
           </article>
 
-          <article class="project" data-cat="web">
-            <button class="project__img" data-full="img/13.png"><img src="img/13.png" alt="Pat Plumbing, Heating and Air website" loading="lazy"></button>
-            <div class="project__body">
-              <span class="tag">Web development</span>
-              <h3>Pat Plumbing, Heating &amp; Air</h3>
-              <p>Service business website with scheduling and service areas.</p>
-            </div>
-          </article>
-
-          <article class="project" data-cat="design">
+          <article class="project is-extra" data-cat="design">
             <button class="project__img" data-full="img/7.png"><img src="img/7.png" alt="Student portal dashboard design" loading="lazy"></button>
             <div class="project__body">
               <span class="tag">UI/UX design</span>
@@ -240,16 +239,179 @@
               <p>School dashboard with grades, calendar, counseling and notes.</p>
             </div>
           </article>
+        </div>
 
-          <article class="project" data-cat="design">
-            <button class="project__img" data-full="img/10.png"><img src="img/10.png" alt="Create account screen design" loading="lazy"></button>
-            <div class="project__body">
-              <span class="tag">UI/UX design</span>
-              <h3>Sign-up Flow</h3>
-              <p>Account creation screen with social sign-in.</p>
-              <a href="https://www.figma.com/proto/OigQOxmWFI19nYK4iRGDXE?node-id=0-1&t=c8NKMM9dDw4x8No2-6" target="_blank" rel="noopener" class="link">View prototype →</a>
-            </div>
+        <div class="work__more">
+          <button type="button" class="btn btn--ghost" id="show-more">Show more projects</button>
+        </div>
+
+        <div class="cta-band">
+          <div>
+            <h3>Want a site like these for your business?</h3>
+            <p>Tell me what you need and get a fixed quote within 24 hours. No commitment.</p>
+          </div>
+          <a href="#contact" class="btn btn--lg">Get my free quote <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section section--alt" id="services">
+      <div class="wrap">
+        <p class="kicker">Services</p>
+        <h2>Everything you need to get online and grow</h2>
+        <div class="cards">
+          <a href="#contact" class="card" data-service="Website (WordPress / custom)">
+            <span class="card__num">01</span>
+            <h3>Websites that get leads</h3>
+            <p>Custom, mobile-first websites on WordPress, Elementor or fully custom code, built to turn visitors into inquiries.</p>
+            <span class="card__go">Get a quote →</span>
+          </a>
+          <a href="#contact" class="card" data-service="Shopify store">
+            <span class="card__num">02</span>
+            <h3>Shopify stores that sell</h3>
+            <p>Store setup, theme design, product pages and checkout flow that make buying easy.</p>
+            <span class="card__go">Get a quote →</span>
+          </a>
+          <a href="#contact" class="card" data-service="SEO">
+            <span class="card__num">03</span>
+            <h3>SEO that brings traffic</h3>
+            <p>Technical SEO, keyword strategy and content so customers find you on Google instead of competitors.</p>
+            <span class="card__go">Get a quote →</span>
+          </a>
+          <a href="#contact" class="card" data-service="UI/UX design">
+            <span class="card__num">04</span>
+            <h3>UI/UX &amp; automation</h3>
+            <p>Figma designs for web and mobile apps, plus N8N automations that save you hours every week.</p>
+            <span class="card__go">Get a quote →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="section" id="about">
+      <div class="wrap why">
+        <div class="why__intro">
+          <p class="kicker">Why work with me</p>
+          <h2>One person who designs, builds and ships it.</h2>
+          <p>I'm Emman. I've spent 4+ years as a full stack developer, tech lead and IT manager, so I handle the whole job: design, code, hosting and SEO. You won't be passed around an agency. You talk to the person building your site.</p>
+          <p>I care about the details that make a site fast, easy to find and easy to use, because those are what bring in customers.</p>
+          <a href="#contact" class="btn">Start your project</a>
+        </div>
+        <div class="why__grid">
+          <div class="why__item"><span>⚡</span><h3>Fast &amp; mobile-first</h3><p>Built for phones first and tuned for speed, so visitors don't bounce.</p></div>
+          <div class="why__item"><span>🔍</span><h3>SEO built in</h3><p>Every site launches with on-page SEO and Google Analytics set up.</p></div>
+          <div class="why__item"><span>💬</span><h3>Direct communication</h3><p>Message me any time on Messenger. I reply within a day.</p></div>
+          <div class="why__item"><span>🛡️</span><h3>Low-risk payment</h3><p>Fixed quote first. 50% down, 50% only when you're happy and it's live.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section section--alt" id="process">
+      <div class="wrap">
+        <p class="kicker">How it works</p>
+        <h2>From first message to live site</h2>
+        <ol class="process">
+          <li><b>1</b><h3>Free consultation</h3><p>Tell me about your business and goals. I'll suggest the best approach.</p></li>
+          <li><b>2</b><h3>Fixed quote</h3><p>You get a clear price and timeline before any work starts.</p></li>
+          <li><b>3</b><h3>Design &amp; build</h3><p>You see progress along the way and can request changes.</p></li>
+          <li><b>4</b><h3>Launch &amp; support</h3><p>We go live, I train you to update it, and I'm here after launch.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+      <div class="wrap">
+        <div class="pricing__head">
+          <p class="kicker">Pricing</p>
+          <h2>Simple, fixed-price packages</h2>
+          <p class="lead">Know what you're paying up front. Every package includes mobile-friendly design, basic SEO setup and support after launch.</p>
+        </div>
+
+        <div class="plans">
+          <article class="plan">
+            <h3>Starter</h3>
+            <p class="plan__desc">For freelancers and small businesses that need to get online fast.</p>
+            <p class="plan__price"><span class="plan__from">from</span> ₱4,999 <small>≈ $90</small></p>
+            <ul class="plan__list">
+              <li>1-page landing or portfolio site</li>
+              <li>Mobile-friendly design</li>
+              <li>Contact form + Messenger link</li>
+              <li>Basic on-page SEO</li>
+              <li>Delivered in about 5 days</li>
+            </ul>
+            <a href="#contact" class="btn btn--ghost plan__cta" data-plan="Starter" data-service="Website (WordPress / custom)" data-budget="Under ₱10,000 / $200">Choose Starter</a>
           </article>
+
+          <article class="plan plan--featured">
+            <span class="plan__badge">Most popular</span>
+            <h3>Business</h3>
+            <p class="plan__desc">A complete website for growing businesses that want leads.</p>
+            <p class="plan__price"><span class="plan__from">from</span> ₱12,999 <small>≈ $230</small></p>
+            <ul class="plan__list">
+              <li>Up to 6 pages (WordPress / Elementor)</li>
+              <li>Custom design to match your brand</li>
+              <li>You can edit content yourself</li>
+              <li>SEO setup + Google Analytics</li>
+              <li>Speed optimization</li>
+              <li>30 days of free support</li>
+            </ul>
+            <a href="#contact" class="btn plan__cta" data-plan="Business" data-service="Website (WordPress / custom)" data-budget="₱10,000–30,000 / $200–500">Choose Business</a>
+          </article>
+
+          <article class="plan">
+            <h3>Online Store</h3>
+            <p class="plan__desc">Sell online with a Shopify store that's set up to convert.</p>
+            <p class="plan__price"><span class="plan__from">from</span> ₱19,999 <small>≈ $350</small></p>
+            <ul class="plan__list">
+              <li>Shopify store setup &amp; theme design</li>
+              <li>Up to 20 products uploaded</li>
+              <li>Payments, shipping &amp; apps set up</li>
+              <li>Product &amp; collection SEO</li>
+              <li>Training video on running your store</li>
+            </ul>
+            <a href="#contact" class="btn btn--ghost plan__cta" data-plan="Online Store" data-service="Shopify store" data-budget="₱10,000–30,000 / $200–500">Choose Online Store</a>
+          </article>
+
+          <article class="plan">
+            <h3>Custom</h3>
+            <p class="plan__desc">Web apps, dashboards, booking systems and bigger builds.</p>
+            <p class="plan__price"><span class="plan__from">from</span> ₱35,000 <small>≈ $600</small></p>
+            <ul class="plan__list">
+              <li>Custom web app or portal</li>
+              <li>UI/UX design in Figma</li>
+              <li>Integrations &amp; N8N automation</li>
+              <li>Scalable, maintainable code</li>
+              <li>Ongoing support available</li>
+            </ul>
+            <a href="#contact" class="btn btn--ghost plan__cta" data-plan="Custom" data-service="Website (WordPress / custom)" data-budget="₱30,000–60,000 / $500–1,000">Get a custom quote</a>
+          </article>
+        </div>
+
+        <div class="addons">
+          <p class="kicker">Add-ons &amp; monthly</p>
+          <div class="addons__grid">
+            <a href="#contact" class="addon" data-plan="Monthly SEO" data-service="SEO">
+              <div><h3>Monthly SEO</h3><p>Keywords, content and reports to keep climbing on Google.</p></div>
+              <span>from ₱4,000<small>/mo</small></span>
+            </a>
+            <a href="#contact" class="addon" data-plan="Website care" data-service="Fix / update existing site">
+              <div><h3>Website care</h3><p>Updates, backups, security and small edits each month.</p></div>
+              <span>from ₱1,500<small>/mo</small></span>
+            </a>
+            <a href="#contact" class="addon" data-plan="Fix / update" data-service="Fix / update existing site">
+              <div><h3>Fixes &amp; updates</h3><p>Bug fixes, CSS tweaks or redesigning a few pages.</p></div>
+              <span>from ₱800</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="guarantee">
+          <span class="guarantee__icon">🛡️</span>
+          <p><strong>Pay half now, half on launch.</strong> You get a fixed quote before any work starts, and you only pay the rest when your site is live and you're happy with it. GCash, bank transfer or PayPal.</p>
         </div>
       </div>
     </section>
@@ -273,106 +435,46 @@
             <li><span class="when">2022 – 2023</span><h3>Web Developer / SEO</h3><p>Wixworxx</p></li>
             <li><span class="when">2022 – 2023</span><h3>Developer, Graphic Designer, Video Editor &amp; SEO</h3><p>Ecommerce102</p></li>
             <li><span class="when">2021</span><h3>Web Developer</h3><p>RemoteCoach</p></li>
-          </ol>
-          <p class="kicker kicker--spaced">Education</p>
-          <ol class="timeline">
-            <li><span class="when">2021</span><h3>Figma Design</h3><p>Udemy</p></li>
-            <li><span class="when">2020</span><h3>Full Stack Development Course</h3><p>Udemy</p></li>
-            <li><span class="when">2019</span><h3>React Native Training</h3><p>Raya Solutions</p></li>
             <li><span class="when">2018</span><h3>BS Computer Science</h3><p>Cavite State University – Main</p></li>
           </ol>
         </div>
       </div>
     </section>
 
-    <!-- Pricing -->
-    <section class="section" id="pricing">
-      <div class="wrap">
-        <div class="pricing__head">
-          <p class="kicker">Pricing</p>
-          <h2>Affordable, honest pricing</h2>
-          <p class="lead">Fixed-price packages so you know what you're paying upfront. Every project includes mobile-friendly design, basic SEO setup and support after launch.</p>
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="wrap faq">
+        <div>
+          <p class="kicker">FAQ</p>
+          <h2>Questions before you start</h2>
+          <p class="lead">Don't see your question? <a href="https://m.me/168737504976524" target="_blank" rel="noopener" class="link">Ask me on Messenger →</a></p>
         </div>
-
-        <div class="plans">
-          <article class="plan">
-            <h3>Starter</h3>
-            <p class="plan__desc">For freelancers and small businesses that need to get online fast.</p>
-            <p class="plan__price"><span class="plan__from">from</span> ₱4,999 <small>≈ $90</small></p>
-            <ul class="plan__list">
-              <li>1-page landing or portfolio site</li>
-              <li>Mobile-friendly design</li>
-              <li>Contact form + Messenger link</li>
-              <li>Basic on-page SEO</li>
-              <li>Delivered in about 5 days</li>
-            </ul>
-            <a href="#contact" class="btn btn--ghost plan__cta" data-plan="Starter" data-service="Website (WordPress / custom)" data-budget="Under ₱10,000 / $200">Get started</a>
-          </article>
-
-          <article class="plan plan--featured">
-            <span class="plan__badge">Most popular</span>
-            <h3>Business</h3>
-            <p class="plan__desc">A complete website for growing businesses that want leads.</p>
-            <p class="plan__price"><span class="plan__from">from</span> ₱12,999 <small>≈ $230</small></p>
-            <ul class="plan__list">
-              <li>Up to 6 pages (WordPress / Elementor)</li>
-              <li>Custom design to match your brand</li>
-              <li>You can edit content yourself</li>
-              <li>SEO setup + Google Analytics</li>
-              <li>Speed optimization</li>
-              <li>30 days of free support</li>
-            </ul>
-            <a href="#contact" class="btn plan__cta" data-plan="Business" data-service="Website (WordPress / custom)" data-budget="₱10,000–30,000 / $200–500">Get started</a>
-          </article>
-
-          <article class="plan">
-            <h3>Online Store</h3>
-            <p class="plan__desc">Sell online with a Shopify store that's set up to convert.</p>
-            <p class="plan__price"><span class="plan__from">from</span> ₱19,999 <small>≈ $350</small></p>
-            <ul class="plan__list">
-              <li>Shopify store setup &amp; theme design</li>
-              <li>Up to 20 products uploaded</li>
-              <li>Payments, shipping &amp; apps set up</li>
-              <li>Product &amp; collection SEO</li>
-              <li>Training video on running your store</li>
-            </ul>
-            <a href="#contact" class="btn btn--ghost plan__cta" data-plan="Online Store" data-service="Shopify store" data-budget="₱10,000–30,000 / $200–500">Get started</a>
-          </article>
-
-          <article class="plan">
-            <h3>Custom</h3>
-            <p class="plan__desc">Web apps, dashboards, booking systems and bigger builds.</p>
-            <p class="plan__price"><span class="plan__from">from</span> ₱35,000 <small>≈ $600</small></p>
-            <ul class="plan__list">
-              <li>Custom web app or portal</li>
-              <li>UI/UX design in Figma</li>
-              <li>Integrations &amp; N8N automation</li>
-              <li>Scalable, maintainable code</li>
-              <li>Ongoing support available</li>
-            </ul>
-            <a href="#contact" class="btn btn--ghost plan__cta" data-plan="Custom" data-service="Website (WordPress / custom)" data-budget="₱30,000–60,000 / $500–1,000">Get a quote</a>
-          </article>
+        <div class="faq__list">
+          <details open>
+            <summary>How long does a website take?</summary>
+            <p>A one-page Starter site takes about 5 days. A Business site usually takes 2–3 weeks, and Shopify stores 2–4 weeks depending on products. You'll get an exact timeline with your quote.</p>
+          </details>
+          <details>
+            <summary>How do payments work?</summary>
+            <p>50% downpayment to start, 50% when the site is live. I accept GCash, bank transfer and PayPal. The price is fixed in your quote, so there are no surprise fees.</p>
+          </details>
+          <details>
+            <summary>Can I update the website myself?</summary>
+            <p>Yes. Business and Online Store packages are built so you can edit text, images and products yourself, and I'll show you how.</p>
+          </details>
+          <details>
+            <summary>Do you work with clients outside the Philippines?</summary>
+            <p>Yes. I work remotely with clients worldwide and can also be hired through <a href="https://www.upwork.com/freelancers/emmanu2" target="_blank" rel="noopener" class="link">Upwork</a> if you prefer.</p>
+          </details>
+          <details>
+            <summary>I already have a website. Can you fix or improve it?</summary>
+            <p>Yes. I do bug fixes, redesigns, speed improvements and SEO on existing WordPress, Shopify and custom sites. Small fixes start at ₱800.</p>
+          </details>
+          <details>
+            <summary>What happens after launch?</summary>
+            <p>Every package includes support after launch. For ongoing help, Website care starts at ₱1,500/month and covers updates, backups and small edits.</p>
+          </details>
         </div>
-
-        <div class="addons">
-          <p class="kicker">Add-ons &amp; monthly</p>
-          <div class="addons__grid">
-            <a href="#contact" class="addon" data-plan="Monthly SEO" data-service="SEO">
-              <div><h3>Monthly SEO</h3><p>Keywords, content and reports to keep climbing on Google.</p></div>
-              <span>from ₱4,000<small>/mo</small></span>
-            </a>
-            <a href="#contact" class="addon" data-plan="Website care" data-service="Fix / update existing site">
-              <div><h3>Website care</h3><p>Updates, backups, security and small edits each month.</p></div>
-              <span>from ₱1,500<small>/mo</small></span>
-            </a>
-            <a href="#contact" class="addon" data-plan="Fix / update" data-service="Fix / update existing site">
-              <div><h3>Fixes &amp; updates</h3><p>Bug fixes, CSS tweaks or redesigning a few pages.</p></div>
-              <span>from ₱800</span>
-            </a>
-          </div>
-        </div>
-
-        <p class="pricing__note">Prices are starting points. Every project is different, so you'll get a fixed quote before any work starts. 50% downpayment, 50% on launch. Flexible payment via GCash, bank transfer or PayPal.</p>
       </div>
     </section>
 
@@ -380,13 +482,13 @@
     <section class="section section--alt contact" id="contact">
       <div class="wrap contact__box">
         <div class="contact__intro">
-          <p class="kicker">Contact</p>
-          <h2>Have a project in mind?</h2>
-          <p class="lead">Tell me what you need — a new website, a redesign, or help getting found on Google. I usually reply within a day.</p>
+          <p class="kicker">Free quote</p>
+          <h2>Let's build something that brings you customers.</h2>
+          <p class="lead">Tell me what you need. You'll get ideas and a fixed quote within 24 hours, free and with no commitment.</p>
           <ol class="steps">
             <li><b>1</b><div><h3>Fill in the form</h3><p>Takes about a minute.</p></div></li>
             <li><b>2</b><div><h3>Messenger opens</h3><p>Your message is written and copied for you.</p></div></li>
-            <li><b>3</b><div><h3>Hit send</h3><p>I'll get back to you with ideas and a quote.</p></div></li>
+            <li><b>3</b><div><h3>Hit send</h3><p>I'll reply with ideas and a fixed quote.</p></div></li>
           </ol>
           <div class="contact__alt">
             <span>Prefer another way?</span>
@@ -449,16 +551,16 @@
 
           <label class="field">
             <span>Project details *</span>
-            <textarea name="details" rows="4" required placeholder="What are you building, who is it for, and anything I should know…"></textarea>
+            <textarea name="details" rows="4" required placeholder="What does your business do, and what should the website help you achieve?"></textarea>
           </label>
 
           <p class="inquiry__error" id="inquiry-error" role="alert" hidden></p>
 
           <button type="submit" class="btn inquiry__submit">
             <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.98-.87c.17-.08.36-.09.53-.04.91.25 1.88.38 2.91.38 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg>
-            Send via Messenger
+            Get my free quote
           </button>
-          <p class="inquiry__note">Opens Messenger in a new tab. Nothing is sent until you press send there.</p>
+          <p class="inquiry__note">🔒 Opens Messenger with your message ready. Nothing is sent until you press send.</p>
 
           <div class="inquiry__done" id="inquiry-done" hidden>
             <p><strong>Your message is copied.</strong> Messenger opened in a new tab. If the text isn't already there, paste it (Ctrl+V or long-press → Paste) and hit send.</p>
@@ -474,16 +576,26 @@
 
   <footer class="footer">
     <div class="wrap footer__inner">
-      <span>&copy; <span id="year"></span> Stackclever</span>
-      <a href="#top">Back to top ↑</a>
+      <span>&copy; <span id="year"></span> Stackclever · Emman</span>
+      <span class="footer__links">
+        <a href="https://m.me/168737504976524" target="_blank" rel="noopener">Messenger</a>
+        <a href="https://www.upwork.com/freelancers/emmanu2" target="_blank" rel="noopener">Upwork</a>
+        <a href="#top">Back to top ↑</a>
+      </span>
     </div>
   </footer>
+
+  <!-- Sticky mobile CTA -->
+  <div class="sticky-cta" id="sticky-cta">
+    <a href="https://m.me/168737504976524" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">Chat</a>
+    <a href="#contact" class="btn btn--sm">Get my free quote →</a>
+  </div>
 
   <dialog class="lightbox" id="lightbox">
     <button class="lightbox__close" aria-label="Close">&times;</button>
     <img src="" alt="">
   </dialog>
 
-  <script src="js/main.js?v=4"></script>
+  <script src="js/main.js?v=5" defer></script>
 </body>
 </html>
