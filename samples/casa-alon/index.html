@@ -1,549 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Casa Alon Private Pool (sample site by Stackclever)</title>
-  <meta name="description" content="Sample private pool &amp; staycation website by Stackclever. Casa Alon Private Pool is a fictional business.">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#0369a1">
-  <meta property="og:title" content="Sample private pool &amp; staycation website · Stackclever">
-  <meta property="og:description" content="Price list, online booking, FAQs and Messenger. Get a site like this for your business.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-/* Shared styles for Stackclever sample sites. Each page sets its own theme vars on <body>. */
-:root {
-  --brand: #0f766e;
-  --brand-ink: #ffffff;
-  --brand-soft: #e6f4f2;
-  --ink: #16181d;
-  --muted: #5b616e;
-  --line: #e4e6eb;
-  --bg: #ffffff;
-  --bg-alt: #f6f7f9;
-  --radius: 14px;
-  --head: "Inter", system-ui, sans-serif;
-  --body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Alon Private Pool · Sample private pool and staycation website by Stackclever</title>
+<meta name="description" content="Sample private pool and staycation website by Stackclever. Casa Alon Private Pool is a fictional business.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b2f3c">
+<meta property="og:title" content="Sample private pool and staycation website · Stackclever">
+<meta property="og:description" content="Price list, online booking, FAQs and Messenger in one mobile-friendly site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Base shared by all samples. Each page defines: --brand --brand-ink --soft --ink --muted --line --bg --surface --r */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0 0 1em}
+h1,h2,h3,h4{margin:0 0 .5em}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.ico{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.sample-bar{background:#0b0b0c;color:#e9e9ea;font:13px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.sample-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:6px 16px;flex-wrap:wrap;padding:8px 0}
+.sample-bar p{margin:0}
+.sample-bar b{color:#ffd54a;font-weight:600}
+.sample-bar a{color:#ffd54a;font-weight:600;text-decoration:none;white-space:nowrap}
+.sample-bar a:hover{text-decoration:underline}
+
+/* Booking engine pieces */
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.slot{font:inherit;font-size:.88rem;padding:.65em .4em;border-radius:calc(var(--r) * .6);border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.slot:hover:not(:disabled){border-color:var(--brand)}
+.slot[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.slot:disabled{opacity:.45;text-decoration:line-through;cursor:not-allowed}
+.slots__empty{grid-column:1/-1;margin:0;color:var(--muted);font-size:.9rem}
+.form__error{color:#b42318;font-size:.9rem;font-weight:500}
+.done{text-align:center;padding:8px 0}
+.done__icon{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--soft);color:var(--brand);margin:0 auto 14px}
+.done__icon .ico{width:28px;height:28px;stroke-width:2.2}
+.done h3{margin-bottom:.3em}
+.done>p{color:var(--muted)}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;text-align:left;margin:18px 0;padding:16px 18px;border-radius:var(--r);background:var(--soft);font-size:.94rem}
+.done dt{color:var(--muted)}
+.done dd{margin:0;font-weight:600}
+.done__demo{font-size:.84rem;color:#6b5a12;background:#fff8d6;border:1px solid #f1e2a0;border-radius:10px;padding:10px 12px;text-align:left}
+.done .again{font:inherit;font-weight:600;background:none;border:1px solid var(--line);color:var(--ink);padding:.6em 1.2em;border-radius:999px;cursor:pointer}
+
+.chat{position:fixed;right:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:8px;padding:.8em 1.15em;border:0;border-radius:999px;background:#0866ff;color:#fff;font:600 15px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;cursor:pointer;box-shadow:0 14px 30px -12px rgba(8,102,255,.7)}
+.chat svg{width:20px;height:20px}
+.toast{position:fixed;left:50%;bottom:86px;z-index:70;transform:translate(-50%,16px);opacity:0;pointer-events:none;background:#111;color:#fff;padding:12px 18px;border-radius:12px;font:14px/1.45 system-ui,sans-serif;max-width:min(420px,100% - 32px);text-align:center;transition:.25s}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+.credit{font-size:.85rem;color:var(--muted)}
+.credit a{color:var(--brand);font-weight:600;text-decoration:none}
+@media (max-width:540px){.chat span{display:none}.wrap{width:min(1180px,100% - 32px)}}
+[hidden]{display:none!important}
+
+
+body{--brand:#0e5f78;--brand-ink:#fff;--soft:#e4f1f4;--ink:#13303b;--muted:#5d7079;--line:#e4ddd2;--bg:#fbf8f3;--surface:#fff;--r:16px;--coral:#ef7756;--sand:#f3ece1;--deep:#0b2f3c;font:16px/1.65 "DM Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.05;letter-spacing:-.01em}
+h2{font-size:clamp(2.2rem,4.4vw,3.4rem)}
+.kick{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:999px;background:var(--coral);color:#fff;border:0;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px -12px rgba(239,119,86,.7)}
+.btn .ico{width:18px;height:18px}
+.hero{position:relative;min-height:min(92vh,820px);color:#fff;display:flex;flex-direction:column;overflow:hidden}
+.hero__scene{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,36,48,.72) 0%,rgba(9,36,48,.25) 55%,rgba(9,36,48,0) 100%)}
+.hd{position:relative;z-index:2}
+.hd .wrap{display:flex;align-items:center;gap:30px;height:84px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"DM Serif Display",serif;font-size:1.6rem}
+.logo .ico{width:30px;height:30px}
+.hd nav{display:flex;gap:28px;margin-left:auto}
+.hd nav a{text-decoration:none;font-weight:500;opacity:.9}
+.hd nav a:hover{opacity:1}
+.hd .btn{padding:11px 20px}
+.hero__in{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:40px 0 70px}
+.hero h1{font-size:clamp(3rem,7vw,5.8rem);max-width:11em;margin-bottom:20px;text-shadow:0 4px 30px rgba(0,0,0,.25)}
+.hero p{font-size:1.15rem;max-width:30em;opacity:.92}
+.finder{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr) auto;background:#fff;color:var(--ink);border-radius:20px;padding:8px;max-width:760px;box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+.finder div{padding:10px 18px}
+.finder div+div{border-left:1px solid var(--line)}
+.finder small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.finder b{font-weight:600}
+.finder .btn{border-radius:14px}
+.amen{background:var(--deep);color:#cfe1e6}
+.amen .wrap{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.amen div{display:flex;flex-direction:column;align-items:center;gap:8px;padding:26px 6px;text-align:center;font-size:.9rem;font-weight:500}
+.amen .ico{width:28px;height:28px;color:#7fd3e4}
+.sec{padding:110px 0}
+.sec--sand{background:var(--sand)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:46px}
+.head p{color:var(--muted);max-width:30em;margin:0}
+.bento{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:240px 240px;gap:16px}
+.tile{position:relative;border-radius:24px;overflow:hidden;color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:flex-end}
+.tile svg.bg{position:absolute;inset:0;width:100%;height:100%}
+.tile>*:not(.bg):not(i){position:relative}
+.tile h3{font-size:1.6rem;margin:0 0 2px}
+.tile p{margin:0;font-size:.92rem;opacity:.88}
+.tile--big{grid-row:span 2}
+.t1{background:linear-gradient(170deg,#56c7dd,#0e5f78)}
+.t2{background:linear-gradient(160deg,#f4b183,#c8603f)}
+.t3{background:linear-gradient(160deg,#2c4c58,#0b2f3c)}
+.t4{background:linear-gradient(160deg,#9fc98f,#3f7a4f)}
+.t5{background:linear-gradient(160deg,#e9c46a,#b9852b)}
+.tile i{position:absolute;top:22px;right:22px;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.2);backdrop-filter:blur(6px)}
+.tile i .ico{width:24px;height:24px}
+.ratehead{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.toggle{display:inline-flex;background:#fff;border-radius:999px;padding:5px;box-shadow:0 0 0 1px var(--line)}
+.toggle button{font:inherit;font-weight:700;font-size:.92rem;border:0;background:none;padding:10px 22px;border-radius:999px;color:var(--muted);cursor:pointer}
+.toggle button[aria-selected="true"]{background:var(--deep);color:#fff}
+.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rate{background:#fff;border-radius:24px;padding:30px;display:flex;flex-direction:column;box-shadow:0 1px 0 var(--line)}
+.rate.hl{background:var(--deep);color:#d4e4e9}
+.rate.hl h3,.rate.hl .amt{color:#fff}
+.rate .ico{width:30px;height:30px;color:var(--coral);margin-bottom:18px}
+.rate h3{font-size:1.8rem;margin-bottom:6px}
+.rate ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:6px;font-size:.94rem;color:var(--muted)}
+.rate.hl ul{color:#a9c3cb}
+.rate .amt{font-family:"DM Serif Display",serif;font-size:2.6rem;margin-top:auto;line-height:1}
+.rate small{color:var(--muted);font-size:.84rem}
+.rate.hl small{color:#a9c3cb}
+.incl{margin-top:26px;color:var(--muted);font-size:.94rem;display:flex;gap:10px;align-items:flex-start}
+.incl .ico{color:var(--brand);flex:none}
+.reserve{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.cal,.bform{background:#fff;border-radius:24px;padding:28px;box-shadow:0 30px 60px -40px rgba(11,47,60,.5)}
+.cal__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal__top h3{font-size:1.6rem;margin:0}
+.cal__top button{font:inherit;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);font-size:1.1rem}
+.cal__top button:disabled{opacity:.35;cursor:not-allowed}
+.cal__grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center}
+.cal__grid .dow{font-size:.74rem;font-weight:700;color:var(--muted);text-transform:uppercase;padding:6px 0}
+.day{font:inherit;font-weight:600;aspect-ratio:1;border-radius:12px;border:0;background:var(--soft);color:var(--ink);cursor:pointer;position:relative;font-size:.95rem}
+.day:hover:not(:disabled){outline:2px solid var(--brand)}
+.day.part::after{content:"";position:absolute;left:50%;bottom:6px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--coral)}
+.day.full{background:#f3e9e6;color:#c3a49b;text-decoration:line-through;cursor:not-allowed}
+.day.past{background:none;color:#c7cfd3;cursor:not-allowed}
+.day[aria-pressed="true"]{background:var(--deep);color:#fff}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:.82rem;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:4px;display:inline-block}
+.picked{margin:18px 0 0;padding:12px 16px;border-radius:12px;background:var(--sand);font-weight:600;font-size:.95rem}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:flex;flex-direction:column;gap:6px;margin:0 0 16px;border:0;padding:0;min-width:0}
+.f label,.f legend{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0}
+.f legend{margin-bottom:8px}
+.f input,.f select,.f textarea{font:inherit;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fdfbf8;color:var(--ink);width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--brand);background:#fff}
+.opt{text-transform:none;letter-spacing:0;font-weight:400}
+.slot{border-radius:12px;font-weight:600}
+.bform .btn{width:100%}
+.f-note{font-size:.82rem;color:var(--muted);text-align:center;margin:12px 0 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.rules{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.rules li{display:flex;gap:14px;padding:16px 18px;background:#fff;border-radius:16px}
+.rules .ico{color:var(--coral)}
+.qa details{border-bottom:1px solid #ddd3c5;padding:4px 0}
+.qa summary{cursor:pointer;list-style:none;font-family:"DM Serif Display",serif;font-size:1.35rem;padding:14px 30px 14px 0;position:relative}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";position:absolute;right:0;top:12px;font-family:"DM Sans",sans-serif;font-size:1.5rem;color:var(--coral);transition:transform .2s}
+.qa details[open] summary::after{transform:rotate(45deg)}
+.qa p{color:var(--muted)}
+.ft{background:var(--deep);color:#a9c3cb;padding:80px 0 30px}
+.ft .wrap>div:first-child{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+.ft .logo{color:#fff}
+.ft h4{color:#fff;font-family:"DM Serif Display",serif;font-weight:400;font-size:1.3rem;margin-bottom:12px}
+.ft p{margin:0 0 8px}
+.ft .credit{margin-top:56px;padding-top:24px;border-top:1px solid #1d4756;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.86rem;color:#7fa0aa}
+.ft .credit a{color:#7fd3e4}
+@media (max-width:980px){
+ .hd nav{display:none}
+ .hd .btn{margin-left:auto}
+ .finder{grid-template-columns:1fr 1fr}
+ .finder div:nth-child(3){border-left:0}
+ .finder .btn{grid-column:1/-1}
+ .amen .wrap{grid-template-columns:repeat(3,1fr)}
+ .bento{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:200px}
+ .tile--big{grid-column:span 2;grid-row:auto}
+ .rates,.reserve,.two{grid-template-columns:1fr}
+ .ft .wrap>div:first-child{grid-template-columns:1fr}
 }
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; display: block; }
-a { color: inherit; }
-h1, h2, h3 { font-family: var(--head); line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.015em; }
-h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
-h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
-h3 { font-size: 1.1rem; }
-p { margin: 0 0 1em; }
-.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
-.muted { color: var(--muted); }
-
-/* Sample banner */
-.sample-bar { background: #111; color: #f2f2f2; font-size: .85rem; }
-.sample-bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; padding: 8px 0; }
-.sample-bar p { margin: 0; }
-.sample-bar b { color: #ffd54a; font-weight: 600; }
-.sample-bar a { color: #ffd54a; font-weight: 600; text-decoration: none; white-space: nowrap; }
-.sample-bar a:hover { text-decoration: underline; }
-
-/* Header */
-.top { position: sticky; top: 0; z-index: 40; background: rgba(255, 255, 255, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--head); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
-.brand__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--brand); color: var(--brand-ink); font-size: 1rem; }
-.top nav { display: flex; align-items: center; gap: 24px; }
-.top nav a:not(.btn) { color: var(--muted); text-decoration: none; font-size: .95rem; }
-.top nav a:not(.btn):hover { color: var(--ink); }
-
-/* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .85em 1.5em; border-radius: 999px; background: var(--brand); color: var(--brand-ink); border: 1px solid var(--brand); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform .15s, filter .15s; }
-.btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn--ghost:hover { border-color: var(--brand); color: var(--brand); }
-.btn--sm { padding: .55em 1.1em; font-size: .9rem; }
-.btn--block { width: 100%; }
-
-/* Hero */
-.hero { padding: 64px 0 56px; background: linear-gradient(180deg, var(--brand-soft), var(--bg)); }
-.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
-.kicker { display: inline-block; color: var(--brand); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .8em; }
-.lead { font-size: 1.12rem; color: var(--muted); max-width: 34em; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
-.ticks { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .92rem; color: var(--muted); }
-.ticks li::before { content: "\2713"; color: var(--brand); font-weight: 700; margin-right: 6px; }
-
-.hero__card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; box-shadow: 0 30px 60px -30px rgba(20, 30, 50, .35); }
-.hero__art { aspect-ratio: 16/10; border-radius: 14px; margin-bottom: 18px; background: var(--art); position: relative; overflow: hidden; display: grid; place-items: center; font-size: 4rem; }
-.hero__art span { filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .2)); }
-.next { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--bg-alt); }
-.next small { display: block; color: var(--muted); font-size: .8rem; }
-.next strong { font-family: var(--head); }
-.live { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; color: #15803d; font-weight: 600; }
-.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, .18); }
-
-/* Sections */
-.section { padding: 80px 0; }
-.section--alt { background: var(--bg-alt); }
-.section__head { max-width: 640px; margin-bottom: 36px; }
-
-.perks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.perk { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-.perk__icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--brand-soft); font-size: 1.3rem; margin-bottom: 14px; }
-.perk p { color: var(--muted); font-size: .93rem; margin: 0; }
-
-/* Price list */
-.prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.price-group { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 24px 12px; }
-.price-group h3 { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-.price-group ul { list-style: none; margin: 0; padding: 0; }
-.price-group li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
-.price-group li:last-child { border-bottom: 0; }
-.price-group li span small { display: block; color: var(--muted); font-size: .84rem; }
-.price-group li b { font-family: var(--head); white-space: nowrap; color: var(--brand); }
-.note { font-size: .88rem; color: var(--muted); margin-top: 18px; }
-
-/* Booking */
-.book { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; align-items: start; }
-.book__info ul { padding-left: 1.1em; color: var(--muted); }
-.book__info li { margin-bottom: .4em; }
-.form { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 20px 50px -35px rgba(20, 30, 50, .4); }
-.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-.field label, .field legend { font-weight: 600; font-size: .9rem; }
-.field input, .field select, .field textarea { font: inherit; padding: .7em .85em; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); width: 100%; }
-.field textarea { resize: vertical; min-height: 80px; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
-fieldset.field { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; }
-.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 4px; }
-.slot { font: inherit; font-size: .88rem; padding: .6em .4em; border-radius: 10px; border: 1px solid var(--line); background: #fff; cursor: pointer; color: var(--ink); }
-.slot:hover:not(:disabled) { border-color: var(--brand); }
-.slot[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
-.slot:disabled { color: #b3b7c0; text-decoration: line-through; cursor: not-allowed; background: var(--bg-alt); }
-.slots__empty { grid-column: 1 / -1; color: var(--muted); font-size: .9rem; margin: 0; }
-.form__error { color: #b91c1c; font-size: .9rem; font-weight: 500; }
-.form__small { font-size: .82rem; color: var(--muted); margin: 12px 0 0; text-align: center; }
-.done { text-align: center; padding: 12px 4px; }
-.done__icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-size: 1.6rem; margin: 0 auto 14px; }
-.done dl { text-align: left; background: var(--bg-alt); border-radius: 12px; padding: 14px 18px; margin: 16px 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: .93rem; }
-.done dt { color: var(--muted); }
-.done dd { margin: 0; font-weight: 600; }
-.done__demo { font-size: .85rem; color: var(--muted); background: #fff8db; border: 1px solid #f3e3a1; border-radius: 10px; padding: 10px 12px; }
-
-/* FAQ */
-.faq { max-width: 780px; }
-.faq details { border-bottom: 1px solid var(--line); padding: 4px 0; }
-.faq summary { cursor: pointer; list-style: none; font-weight: 600; padding: 14px 32px 14px 0; position: relative; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; position: absolute; right: 4px; top: 10px; font-size: 1.4rem; color: var(--brand); transition: transform .2s; }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq details p { color: var(--muted); margin: 0 0 16px; }
-
-/* Visit */
-.visit { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
-.hours { width: 100%; border-collapse: collapse; font-size: .95rem; }
-.hours td { padding: 10px 0; border-bottom: 1px solid var(--line); }
-.hours td:last-child { text-align: right; font-weight: 600; }
-.hours tr.is-today td { color: var(--brand); }
-.map { border-radius: var(--radius); border: 1px solid var(--line); min-height: 260px; background:
-  linear-gradient(90deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  linear-gradient(0deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  var(--brand-soft);
-  display: grid; place-items: center; text-align: center; padding: 24px; }
-.map__pin { font-size: 2.4rem; }
-.map p { margin: 6px 0 0; font-weight: 600; }
-.map small { color: var(--muted); }
-.contact-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
-.contact-list li { color: var(--muted); }
-.contact-list b { color: var(--ink); }
-
-/* CTA band */
-.band { background: var(--brand); color: var(--brand-ink); border-radius: 22px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.band h2 { margin: 0 0 .2em; }
-.band p { margin: 0; opacity: .85; }
-.band .btn { background: #fff; color: var(--ink); border-color: #fff; }
-
-/* Footer */
-.foot { border-top: 1px solid var(--line); padding: 28px 0 100px; font-size: .88rem; color: var(--muted); }
-.foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.foot a { color: var(--brand); font-weight: 600; text-decoration: none; }
-
-/* Floating chat + toast */
-.chat { position: fixed; right: 18px; bottom: 18px; z-index: 50; display: inline-flex; align-items: center; gap: 8px; padding: .8em 1.2em; border-radius: 999px; border: 0; background: #0866ff; color: #fff; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 14px 30px -10px rgba(8, 102, 255, .6); }
-.chat svg { width: 20px; height: 20px; }
-.toast { position: fixed; left: 50%; bottom: 84px; z-index: 60; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #111; color: #fff; padding: 12px 18px; border-radius: 12px; font-size: .9rem; max-width: min(420px, 100% - 32px); text-align: center; transition: opacity .25s, transform .25s; }
-.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
-
-@media (max-width: 900px) {
-  .hero .wrap, .book, .visit { grid-template-columns: 1fr; }
-  .perks { grid-template-columns: repeat(2, 1fr); }
-  .prices { grid-template-columns: 1fr; }
-  .top nav a:not(.btn) { display: none; }
+@media (max-width:600px){
+ .hero h1{font-size:2.8rem}
+ .finder{grid-template-columns:1fr}
+ .finder div+div{border-left:0;border-top:1px solid var(--line)}
+ .amen .wrap{grid-template-columns:repeat(2,1fr)}
+ .bento{grid-template-columns:1fr}
+ .tile--big{grid-column:auto}
+ .sec{padding:72px 0}
+ .cal,.bform{padding:20px}
+ .f-row{grid-template-columns:1fr}
 }
-@media (max-width: 540px) {
-  .perks, .form__row { grid-template-columns: 1fr; }
-  .section { padding: 60px 0; }
-  .hero { padding: 40px 0; }
-  .form { padding: 20px; }
-  .band { padding: 28px; }
-  .chat span { display: none; }
-}
-
-body { --brand: #0369a1; --brand-soft: #e0f1fb; --head: "Fraunces", Georgia, serif; --art: linear-gradient(160deg,#7dd3fc 0%,#38bdf8 45%,#0369a1 100%); }
-  </style>
+</style>
 </head>
-<body>
-  <div class="sample-bar" role="note">
-    <div class="wrap">
-      <p><b>Sample site.</b> Casa Alon Private Pool is a fictional business, made by Stackclever to show what your private pool &amp; staycation website could look like.</p>
-      <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+<body class="">
+<div class="sample-bar" role="note"><div class="wrap">
+  <p><b>Sample site.</b> Casa Alon Private Pool is a fictional business, made by Stackclever to show what a private pool and staycation website could look like.</p>
+  <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+</div></div>
+
+<section class="hero">
+  <svg class="hero__scene" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f5f7a"/><stop offset=".45" stop-color="#e99a74"/><stop offset=".62" stop-color="#f6c38e"/></linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fd0e3"/><stop offset="1" stop-color="#0d6c86"/></linearGradient>
+    <radialGradient id="sunG" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3d6"/><stop offset=".5" stop-color="#ffd59a" stop-opacity=".6"/><stop offset="1" stop-color="#ffd59a" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1440" height="820" fill="url(#sky)"/>
+  <circle cx="1060" cy="380" r="230" fill="url(#sunG)"/><circle cx="1060" cy="380" r="62" fill="#fff1d2"/>
+  <path d="M0 470 C180 400 300 430 460 390 S780 360 920 410 1200 380 1440 420 V820 H0Z" fill="#6f7f8c" opacity=".55"/>
+  <path d="M0 520 C200 470 380 500 560 460 S900 450 1080 490 1300 470 1440 490 V820 H0Z" fill="#33505c"/>
+  <path d="M0 560 C240 530 520 560 760 540 S1200 540 1440 555 V820 H0Z" fill="#1f3a43"/>
+  <rect x="0" y="600" width="1440" height="40" fill="#e8d8c2"/>
+  <rect x="0" y="636" width="1440" height="184" fill="url(#water)"/>
+  <g fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2" stroke-linecap="round">
+    <path d="M80 680c30-8 60 8 90 0s60-8 90 0"/><path d="M420 720c30-8 60 8 90 0s60-8 90 0"/><path d="M820 690c30-8 60 8 90 0s60-8 90 0"/><path d="M1180 740c30-8 60 8 90 0s60-8 90 0"/><path d="M260 780c30-8 60 8 90 0s60-8 90 0"/><path d="M980 790c30-8 60 8 90 0"/>
+  </g>
+  <path d="M1000 660 h120 M1030 676 h80" stroke="#fff1d2" stroke-opacity=".7" stroke-width="3" stroke-linecap="round"/>
+  <g fill="#10262d">
+    <path d="M1265 604c-6-90-4-170 14-250l8 2c-16 80-17 160-12 248z"/>
+    <path d="M1282 356c-40-30-96-30-130 0 40-6 80 0 130 0zM1282 356c20-44 70-66 114-56-38 10-76 30-114 56zM1282 356c-6-46 18-88 58-100-24 32-40 64-58 100zM1282 356c-52-8-92 16-112 54 34-26 72-42 112-54zM1282 356c42-6 86 14 104 52-30-24-66-40-104-52z"/>
+    <path d="M1360 604c-2-60 6-120 26-170l7 3c-18 50-26 108-24 167z"/>
+    <path d="M1386 434c-30-22-70-22-96 0 30-4 60 0 96 0zM1386 434c16-32 52-48 84-40-28 8-56 22-84 40zM1386 434c30-4 62 10 76 38-22-18-48-30-76-38z"/>
+    <path d="M150 606c4-70 0-130-16-190l-7 2c14 60 18 120 14 188z"/>
+    <path d="M128 416c32-24 76-24 104 0-32-4-66 0-104 0zM128 416c-16-36-56-52-90-44 30 8 60 24 90 44zM128 416c-34-4-68 12-84 42 24-20 52-34 84-42z"/>
+  </g>
+  <g transform="translate(420 560)"><rect x="0" y="0" width="190" height="44" fill="#f3ece1"/><path d="M-14 0 L95 -46 L204 0Z" fill="#c8603f"/><rect x="20" y="12" width="34" height="32" fill="#2b4a55"/><rect x="78" y="12" width="34" height="22" fill="#ffd59a"/><rect x="136" y="12" width="34" height="22" fill="#ffd59a"/></g>
+</svg>
+  <header class="hd"><div class="wrap">
+    <a href="#" class="logo"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 16c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/></svg> Casa Alon</a>
+    <nav aria-label="Main"><a href="#place">The place</a><a href="#rates">Rates</a><a href="#reserve">Availability</a><a href="#faq">FAQ</a></nav>
+    <a href="#reserve" class="btn">Reserve</a>
+  </div></header>
+  <div class="hero__in"><div class="wrap">
+    <span class="kick" style="color:#ffd59a">Private pool resort · Antipolo, Rizal</span>
+    <h1>Your own private pool in the hills.</h1>
+    <p>A heated pool, videoke, full kitchen and two aircon rooms, all exclusive to your group of up to 25 guests.</p>
+    <div class="finder">
+      <div><small>Packages</small><b>Day · Night · 22 hrs</b></div>
+      <div><small>Guests</small><b>Up to 25</b></div>
+      <div><small>Rates from</small><b>₱8,000</b></div>
+      <a href="#reserve" class="btn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18"/><path d="M8 2.5v4"/><path d="M16 2.5v4"/></svg> Check dates</a>
     </div>
+  </div></div>
+</section>
+<div class="amen"><div class="wrap">
+  <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5c-3.9 0-6.5-2.7-6.5-6.2 0-3.7 2.9-5.6 3.8-9.8 2.1 1.4 3.3 3.4 3.3 5.3 1-.6 1.7-1.7 1.9-3 2.1 1.7 3.3 4.2 3.3 7.2 0 3.7-2.6 6.5-5.8 6.5z"/></svg>Heated pool</div><div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5v3.5"/></svg>Videoke</div><div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v18"/><path d="M4.5 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M17.5 21V3c-2.2 1-3.5 3.6-3.5 7.5h3.5"/></svg>Full kitchen</div><div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19.5V5.5"/><path d="M3 13.5h18v6"/><path d="M21 13.5a3 3 0 0 0-3-3h-7v3"/><circle cx="7" cy="10.5" r="2"/></svg>2 aircon rooms</div><div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>Smart TV &amp; Wi-Fi</div><div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5h15"/><path d="M6 16.5l1.6-5.5h8.8l1.6 5.5"/><path d="M4.5 16.5v3h2.5v-1.5"/><path d="M17 18v1.5h2.5v-3"/></svg>Parking for 5</div>
+</div></div>
+<main>
+<section class="sec" id="place"><div class="wrap">
+  <div class="head"><div><span class="kick">The place</span><h2>Everything for a great day together</h2></div><p>Made for birthdays, reunions and barkada outings. Bring your food, music and people; we take care of the rest.</p></div>
+  <div class="bento">
+    <div class="tile tile--big t1"><svg class="bg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="2"><path d="M0 200c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><path d="M0 240c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><circle cx="320" cy="70" r="40"/><circle cx="320" cy="70" r="70"/></g></svg><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 16c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/></svg></i><h3>Heated pool</h3><p>4 ft and 5 ft areas, plus a separate kiddie pool. Warm enough for night swims.</p></div>
+    <div class="tile t2"><svg class="bg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="2"><path d="M0 200c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><path d="M0 240c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><circle cx="320" cy="70" r="40"/><circle cx="320" cy="70" r="70"/></g></svg><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5v3.5"/></svg></i><h3>Videoke &amp; billiards</h3><p>Unlimited during your stay</p></div>
+    <div class="tile t3"><svg class="bg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="2"><path d="M0 200c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><path d="M0 240c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><circle cx="320" cy="70" r="40"/><circle cx="320" cy="70" r="70"/></g></svg><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19.5V5.5"/><path d="M3 13.5h18v6"/><path d="M21 13.5a3 3 0 0 0-3-3h-7v3"/><circle cx="7" cy="10.5" r="2"/></svg></i><h3>Two aircon rooms</h3><p>Sofa beds and extra mattresses</p></div>
+    <div class="tile t4"><svg class="bg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="2"><path d="M0 200c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><path d="M0 240c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><circle cx="320" cy="70" r="40"/><circle cx="320" cy="70" r="70"/></g></svg><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v18"/><path d="M4.5 3v5a2.5 2.5 0 0 0 5 0V3"/><path d="M17.5 21V3c-2.2 1-3.5 3.6-3.5 7.5h3.5"/></svg></i><h3>Kitchen &amp; grill</h3><p>Ref, rice cooker, cookware</p></div>
+    <div class="tile t5"><svg class="bg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="2"><path d="M0 200c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><path d="M0 240c40-14 80 14 120 0s80-14 120 0 80 14 120 0 40-14 60 0"/><circle cx="320" cy="70" r="40"/><circle cx="320" cy="70" r="70"/></g></svg><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2"/><path d="M12 19.5v2"/><path d="M4.9 4.9l1.4 1.4"/><path d="M17.7 17.7l1.4 1.4"/><path d="M2.5 12h2"/><path d="M19.5 12h2"/><path d="M4.9 19.1l1.4-1.4"/><path d="M17.7 6.3l1.4-1.4"/></svg></i><h3>Garden lounge</h3><p>Long tables for 25 guests</p></div>
   </div>
+</div></section>
 
-  <header class="top">
-    <div class="wrap">
-      <a href="#" class="brand"><span class="brand__mark" aria-hidden="true">C</span>Casa Alon</a>
-      <nav aria-label="Main">
-        <a href="#prices">Prices</a>
-        <a href="#book">Book</a>
-        <a href="#faq">FAQ</a>
-        <a href="#visit">Visit us</a>
-        <a href="#book" class="btn btn--sm">Book now</a>
-      </nav>
+<section class="sec sec--sand" id="rates"><div class="wrap" data-tabs>
+  <div class="ratehead"><div><span class="kick">Rates</span><h2>Simple, all-in rates</h2></div>
+    <div class="toggle" role="tablist"><button role="tab" aria-selected="true" aria-controls="r-wd">Weekdays</button><button role="tab" aria-selected="false" aria-controls="r-we">Weekends &amp; holidays</button></div>
+  </div>
+  <div class="rates" id="r-wd" role="tabpanel"><div class="rate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2"/><path d="M12 19.5v2"/><path d="M4.9 4.9l1.4 1.4"/><path d="M17.7 17.7l1.4 1.4"/><path d="M2.5 12h2"/><path d="M19.5 12h2"/><path d="M4.9 19.1l1.4-1.4"/><path d="M17.7 6.3l1.4-1.4"/></svg><h3>Day swim</h3><ul><li>8:00 AM – 5:00 PM</li><li>Up to 15 guests · ₱250 per extra guest</li></ul><span class="amt">₱8,000</span><small>Monday to Thursday</small></div><div class="rate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 1 1 9.4 4a6.6 6.6 0 0 0 10.6 10.6z"/></svg><h3>Night swim</h3><ul><li>7:00 PM – 6:00 AM</li><li>Up to 15 guests · ₱250 per extra guest</li></ul><span class="amt">₱9,000</span><small>Monday to Thursday</small></div><div class="rate hl"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19.5V5.5"/><path d="M3 13.5h18v6"/><path d="M21 13.5a3 3 0 0 0-3-3h-7v3"/><circle cx="7" cy="10.5" r="2"/></svg><h3>22-hour stay</h3><ul><li>2:00 PM – 12:00 NN</li><li>Up to 20 guests · ₱250 per extra guest</li></ul><span class="amt">₱14,000</span><small>Monday to Thursday</small></div></div>
+  <div class="rates" id="r-we" role="tabpanel" hidden><div class="rate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2"/><path d="M12 19.5v2"/><path d="M4.9 4.9l1.4 1.4"/><path d="M17.7 17.7l1.4 1.4"/><path d="M2.5 12h2"/><path d="M19.5 12h2"/><path d="M4.9 19.1l1.4-1.4"/><path d="M17.7 6.3l1.4-1.4"/></svg><h3>Day swim</h3><ul><li>8:00 AM – 5:00 PM</li><li>Up to 15 guests · ₱300 per extra guest</li></ul><span class="amt">₱10,000</span><small>Friday to Sunday & holidays</small></div><div class="rate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 1 1 9.4 4a6.6 6.6 0 0 0 10.6 10.6z"/></svg><h3>Night swim</h3><ul><li>7:00 PM – 6:00 AM</li><li>Up to 15 guests · ₱300 per extra guest</li></ul><span class="amt">₱11,000</span><small>Friday to Sunday & holidays</small></div><div class="rate hl"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19.5V5.5"/><path d="M3 13.5h18v6"/><path d="M21 13.5a3 3 0 0 0-3-3h-7v3"/><circle cx="7" cy="10.5" r="2"/></svg><h3>22-hour stay</h3><ul><li>2:00 PM – 12:00 NN</li><li>Up to 20 guests · ₱300 per extra guest</li></ul><span class="amt">₱17,000</span><small>Friday to Sunday & holidays</small></div></div>
+  <p class="incl"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.01"/></svg> 50% down payment via GCash or bank transfer locks your date. ₱2,000 security deposit, refunded at check-out.</p>
+</div></section>
+
+<section class="sec" id="reserve"><div class="wrap">
+  <div class="head"><div><span class="kick">Availability</span><h2>Check dates &amp; reserve</h2></div><p>Weekend dates fill up three to four weeks ahead. Pick a date to see which packages are still open.</p></div>
+  <div class="reserve">
+    <div class="cal">
+      <div class="cal__top"><button type="button" data-cal="prev" aria-label="Previous month">‹</button><h3></h3><button type="button" data-cal="next" aria-label="Next month">›</button></div>
+      <div class="cal__grid"></div>
+      <div class="legend"><span><i style="background:var(--soft)"></i>Open</span><span><i style="background:var(--soft);box-shadow:inset 0 -4px 0 var(--coral)"></i>Few left</span><span><i style="background:#f3e9e6"></i>Booked</span></div>
+      <p class="picked">No date selected yet</p>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <div>
-          <span class="kicker">Private pool resort · Antipolo</span>
-          <h1>Your own private pool, just for your group.</h1>
-          <p class="lead">A heated pool, videoke, kitchen and air-conditioned rooms for up to 25 guests. Check open dates, see the rates, and reserve without waiting for a PM reply.</p>
-          <div class="hero__cta">
-            <a href="#book" class="btn">Book online</a>
-            <a href="#prices" class="btn btn--ghost">See prices</a>
-          </div>
-          <ul class="ticks">
-            <li>Exclusive use</li>
-            <li>Heated pool</li>
-            <li>Up to 25 guests</li>
-          </ul>
-        </div>
-        <div class="hero__card" aria-hidden="true">
-          <div class="hero__art"><span>🏝️</span></div>
-          <div class="next">
-            <div><small>Next open date</small><strong>This Thursday (Day swim)</strong></div>
-            <span class="live">Booking open</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="perks">
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🏊</div><h3>Heated pool</h3><p>4 ft and 5 ft areas, plus a kiddie pool.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🎤</div><h3>Videoke &amp; billiards</h3><p>Unlimited use during your stay.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🍳</div><h3>Full kitchen</h3><p>Grill, ref, rice cooker and cooking tools.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🛏️</div><h3>2 aircon rooms</h3><p>With sofa beds and extra mattresses.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="prices">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">Price list</span>
-          <h2>Clear prices, no need to PM</h2>
-          <p class="muted">Rates below are starting prices. Book a slot and we'll confirm the details with you.</p>
-        </div>
-        <div class="prices">
-          <div class="price-group">
-            <h3><span aria-hidden="true">☀️</span> Weekday rates (Mon–Thu)</h3>
-            <ul>
-              <li><span>Day swim<small>8:00 AM – 5:00 PM · 15 pax</small></span><b>₱8,000</b></li>
-              <li><span>Night swim<small>7:00 PM – 6:00 AM · 15 pax</small></span><b>₱9,000</b></li>
-              <li><span>22-hour stay<small>2:00 PM – 12:00 NN · 20 pax</small></span><b>₱14,000</b></li>
-              <li><span>Extra guest<small>Per head</small></span><b>₱250</b></li>
-            </ul>
-          </div>
-          <div class="price-group">
-            <h3><span aria-hidden="true">🌙</span> Weekend &amp; holiday rates</h3>
-            <ul>
-              <li><span>Day swim<small>8:00 AM – 5:00 PM · 15 pax</small></span><b>₱10,000</b></li>
-              <li><span>Night swim<small>7:00 PM – 6:00 AM · 15 pax</small></span><b>₱11,000</b></li>
-              <li><span>22-hour stay<small>2:00 PM – 12:00 NN · 20 pax</small></span><b>₱17,000</b></li>
-              <li><span>Extra guest<small>Per head</small></span><b>₱300</b></li>
-            </ul>
-          </div>
-        </div>
-        <p class="note">50% down payment via GCash or bank transfer locks your date. A ₱2,000 security deposit is refunded on check-out.</p>
-      </div>
-    </section>
-
-    <section class="section" id="book">
-      <div class="wrap book">
-        <div class="book__info">
-          <span class="kicker">Online booking</span>
-          <h2>Check dates &amp; reserve</h2>
-          <p class="muted">Pick your date to see what's still open. Dates go fast on weekends!</p>
-          <ul>
-            <li>50% down payment confirms your booking</li>
-            <li>Free rebooking once, at least 7 days before</li>
-            <li>No loud music after 10:00 PM, per barangay rules</li>
-          </ul>
-        </div>
-        <div>
-          <form class="form" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;Day swim&quot;,&quot;Night swim&quot;,&quot;22-hour stay&quot;],&quot;hours&quot;:[],&quot;busy&quot;:45,&quot;closed&quot;:[],&quot;serviceLabel&quot;:&quot;Package&quot;,&quot;serviceWord&quot;:&quot;a package&quot;,&quot;slotLabel&quot;:&quot;Swim&quot;,&quot;slotWord&quot;:&quot;swim option&quot;,&quot;doneTitle&quot;:&quot;Date on hold!&quot;,&quot;doneText&quot;:&quot;We'll send GCash details for the down payment so you can lock it in.&quot;}">
-            <div class="form__row">
-              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" placeholder="Juan Dela Cruz"></div>
-              <div class="field"><label for="f-mobile">Mobile number</label><input id="f-mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" placeholder="09XX XXX XXXX"></div>
-            </div>
-            <div class="form__row">
-              <div class="field"><label for="f-service">Package</label>
-                <select id="f-service" name="service">
-                  <option value="">Choose package…</option>
-                  <option>Day swim</option>
-                  <option>Night swim</option>
-                  <option>22-hour stay</option>
-                </select>
-              </div>
-              <div class="field"><label for="f-date">Date</label><input id="f-date" name="date" type="date"></div>
-            </div>
-            <div class="field"><label for="f-guests">Number of guests</label><input id="f-guests" name="guests" type="number" min="1" max="40" placeholder="e.g. 18"></div>
-            <fieldset class="field">
-              <legend>Swim</legend>
-              <div class="slots" aria-live="polite"></div>
-            </fieldset>
-            <div class="field"><label for="f-notes">Notes <span class="muted">(optional)</span></label><textarea id="f-notes" name="notes" placeholder="Anything we should know?"></textarea></div>
-            <p class="form__error" role="alert" hidden></p>
-            <button type="submit" class="btn btn--block">Request booking</button>
-            <p class="form__small">We'll confirm by text. Your details are only used for this booking.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="faq">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">FAQ</span>
-          <h2>Questions we get a lot</h2>
-        </div>
-        <div class="faq">
-          <details open><summary>Can we bring our own food and drinks?</summary><p>Yes, there is no corkage fee. You can bring your own food, drinks and even a lechon.</p></details>
-          <details><summary>Is the pool really private?</summary><p>Yes. Your group has exclusive use of the whole place during your booked time.</p></details>
-          <details><summary>How do we get there?</summary><p>We're 15 minutes from Cogeo Gate 2. We'll send a Google Maps pin and landmark photos after booking.</p></details>
-          <details><summary>Is there parking?</summary><p>Yes, inside the property there is space for up to 5 cars.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="visit">
-      <div class="wrap visit">
-        <div>
-          <span class="kicker">Visit us</span>
-          <h2>Reservations open daily</h2>
-          <table class="hours">
-            <tbody>
-              <tr data-day="1"><td>Monday</td><td>Open</td></tr>
-              <tr data-day="2"><td>Tuesday</td><td>Open</td></tr>
-              <tr data-day="3"><td>Wednesday</td><td>Open</td></tr>
-              <tr data-day="4"><td>Thursday</td><td>Open</td></tr>
-              <tr data-day="5"><td>Friday</td><td>Open</td></tr>
-              <tr data-day="6"><td>Saturday</td><td>Open</td></tr>
-              <tr data-day="0"><td>Sunday</td><td>Open</td></tr>
-            </tbody>
-          </table>
-          <ul class="contact-list">
-            <li><b>Address:</b> Sitio Sample, Brgy. San Jose, Antipolo City, Rizal</li>
-            <li><b>Landmark:</b> 15 minutes from Cogeo Gate 2</li>
-            <li><b>Mobile:</b> 0920 000 0000 <span class="muted">(sample number)</span></li>
-          </ul>
-        </div>
-        <div class="map" role="img" aria-label="Map placeholder">
-          <div>
-            <div class="map__pin" aria-hidden="true">📍</div>
-            <p>Casa Alon</p>
-            <small>A real site shows a live Google Map here.</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="wrap">
-        <div class="band">
-          <div>
-            <h2>Planning a birthday or barkada outing?</h2>
-            <p>Weekend dates fill up 3–4 weeks ahead. Reserve yours today.</p>
-          </div>
-          <a href="#book" class="btn">Book now</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="foot">
-    <div class="wrap">
-      <span>Casa Alon Private Pool is a fictional business. All names, numbers and prices are examples.</span>
-      <span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your business →</a></span>
+    <form class="bform" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;Day swim&quot;,&quot;Night swim&quot;,&quot;22-hour stay&quot;],&quot;hours&quot;:[],&quot;busy&quot;:45,&quot;closed&quot;:[],&quot;serviceLabel&quot;:&quot;Package&quot;,&quot;serviceWord&quot;:&quot;a package&quot;,&quot;slotLabel&quot;:&quot;Option&quot;,&quot;slotWord&quot;:&quot;swim option&quot;,&quot;doneTitle&quot;:&quot;Your date is on hold&quot;,&quot;doneText&quot;:&quot;We’ll send GCash details for the 50% down payment to lock it in.&quot;}">
+    
+    <div class="f-row">
+      <div class="f"><label for="b-name">Full name</label><input id="b-name" name="name" autocomplete="name" placeholder="Juan Dela Cruz"></div>
+      <div class="f"><label for="b-mobile">Mobile number</label><input id="b-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="09XX XXX XXXX"></div>
     </div>
-  </footer>
+    <div class="f-row">
+      <div class="f"><label for="b-service">Package</label><select id="b-service" name="service"><option value="">Select…</option><option>Day swim</option><option>Night swim</option><option>22-hour stay</option></select></div>
+      <div class="f"><label for="b-guests">Guests</label><input id="b-guests" name="guests" type="number" min="1" max="30" placeholder="e.g. 18"></div>
+    </div>
+    <input type="hidden" name="date">
+    <fieldset class="f"><legend>Open on your date</legend><div class="slots" aria-live="polite"></div></fieldset>
+    <div class="f"><label for="b-notes">Notes <span class="opt">(optional)</span></label><textarea id="b-notes" name="notes" rows="3" placeholder="Occasion, arrival time, special requests…"></textarea></div>
+    <p class="form__error" role="alert" hidden></p>
+    <button type="submit" class="btn">Hold this date</button>
+    <p class="f-note">We’ll confirm by text. Your details are only used for this booking.</p>
+  </form>
+  </div>
+</div></section>
 
-  <button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
-  <div class="toast" role="status" aria-live="polite"></div>
-
-  <script>
-/* Shared behaviour for Stackclever sample sites: hours highlight, slot picker, demo booking, demo chat. */
+<section class="sec sec--sand" id="faq"><div class="wrap two">
+  <div><span class="kick">House rules</span><h2 style="margin-bottom:28px">Good to know</h2>
+    <ul class="rules"><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg> Check-in and check-out times are strictly followed so we can prepare for the next group.</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5.5l11-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg> Videoke until 10:00 PM, per barangay rules.</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.6-3.2 7.9-7.5 9-4.3-1.1-7.5-4.4-7.5-9V6z"/><path d="M9 12l2 2 4-4"/></svg> Kids must be supervised by an adult in the pool at all times.</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19.5C5 10.5 11 5 20 5c0 9-5 15-14 15"/><path d="M5 19.5l7.5-7.5"/></svg> Please bring your own toiletries and towels.</li></ul>
+  </div>
+  <div class="qa"><span class="kick">FAQ</span><h2 style="margin-bottom:18px">Questions</h2><details open><summary>Can we bring our own food and drinks?</summary><p>Yes, with no corkage fee. Bring your own food, drinks, even a whole lechon.</p></details><details><summary>Is the pool really private?</summary><p>Yes. Your group has exclusive use of the whole property during your booked time.</p></details><details><summary>Is the pool heated?</summary><p>Yes, the main pool is heated for night swims at no extra cost.</p></details><details><summary>How do we get there?</summary><p>We are 15 minutes from Cogeo Gate 2. After booking we send a Google Maps pin and landmark photos.</p></details></div>
+</div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <div>
+    <div><a href="#" class="logo"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 16c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/></svg> Casa Alon</a><p style="margin-top:14px;max-width:24em">A private pool getaway in the hills of Antipolo, 15 minutes from Cogeo Gate 2.</p></div>
+    <div><h4>Find us</h4><p>Sitio Sample, Brgy. San Jose<br>Antipolo City, Rizal</p><p>Google Maps pin sent after booking</p></div>
+    <div><h4>Reservations</h4><p>0920 000 0000 (sample)</p><p>Open for inquiries daily, 8 AM – 9 PM</p></div>
+  </div>
+  <p class="credit"><span>Casa Alon Private Pool is a fictional business. Names, numbers and prices are examples.</span><span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your resort →</a></span></p>
+</div></footer>
+<button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
+<div class="toast" role="status" aria-live="polite"></div>
+<script>
 (function () {
-  var toastEl = document.querySelector('.toast');
-  var toastTimer;
-  function toast(msg) {
-    if (!toastEl) return;
-    toastEl.textContent = msg;
-    toastEl.classList.add('is-on');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
+  var toastEl = document.querySelector('.toast'), tt;
+  function toast(m) {
+    toastEl.textContent = m; toastEl.classList.add('is-on');
+    clearTimeout(tt); tt = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
   }
-
-  // Demo Messenger button
   document.querySelectorAll('[data-demo-chat]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      toast('Sample site: on a real site this opens the business’s Messenger chat.');
+    b.addEventListener('click', function () { toast('Sample site: on a real site this opens the business’s Messenger chat.'); });
+  });
+
+  // Tabs: [data-tabs] > [role=tab][aria-controls]
+  document.querySelectorAll('[data-tabs]').forEach(function (group) {
+    var tabs = group.querySelectorAll('[role="tab"]');
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute('aria-selected', on);
+          document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+        });
+      });
     });
   });
 
-  // Highlight today in the hours table
   var today = new Date().getDay();
-  var row = document.querySelector('.hours tr[data-day="' + today + '"]');
-  if (row) row.classList.add('is-today');
+  document.querySelectorAll('[data-day="' + today + '"]').forEach(function (r) { r.classList.add('is-today'); });
 
   var form = document.getElementById('booking');
   if (!form) return;
-
   var cfg = JSON.parse(form.dataset.config);
-  var dateIn = form.elements.date;
-  var slotBox = form.querySelector('.slots');
-  var picked = '';
-
+  var dateIn = form.elements.date, slotBox = form.querySelector('.slots'), picked = '';
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
   function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-
-  var start = new Date();
-  dateIn.min = iso(start);
-  var max = new Date(); max.setDate(max.getDate() + 60);
-  dateIn.max = iso(max);
-
-  // Deterministic "already booked" slots so the demo looks realistic
-  function taken(dateStr, i) {
-    var h = 0, s = dateStr + ':' + i;
+  function taken(ds, i) {
+    var h = 0, s = ds + ':' + i;
     for (var k = 0; k < s.length; k++) h = (h * 31 + s.charCodeAt(k)) >>> 0;
     return h % 100 < cfg.busy;
   }
+  window.SampleBooking = { taken: taken, cfg: cfg, iso: iso };
+  if (dateIn.type === 'date') {
+    dateIn.min = iso(new Date());
+    var mx = new Date(); mx.setDate(mx.getDate() + 60); dateIn.max = iso(mx);
+  }
 
-  function renderSlots() {
-    slotBox.innerHTML = '';
-    picked = '';
-    if (!dateIn.value) {
-      slotBox.innerHTML = '<p class="slots__empty">Pick a date first to see open ' + cfg.slotWord + 's.</p>';
-      return;
-    }
+  function render() {
+    slotBox.innerHTML = ''; picked = '';
+    if (!dateIn.value) { slotBox.innerHTML = '<p class="slots__empty">Pick a date to see open ' + cfg.slotWord + 's.</p>'; return; }
     var d = new Date(dateIn.value + 'T00:00:00');
-    if (cfg.closed.indexOf(d.getDay()) !== -1) {
-      slotBox.innerHTML = '<p class="slots__empty">We’re closed that day. Please pick another date.</p>';
-      return;
-    }
-    var now = new Date();
-    var isToday = dateIn.value === iso(now);
-    var any = false;
+    if (cfg.closed.indexOf(d.getDay()) !== -1) { slotBox.innerHTML = '<p class="slots__empty">Closed on ' + d.toLocaleDateString('en-PH', { weekday: 'long' }) + 's. Please pick another date.</p>'; return; }
+    var now = new Date(), isToday = dateIn.value === iso(now), any = false;
     cfg.slots.forEach(function (label, i) {
       var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'slot';
-      b.textContent = label;
-      b.setAttribute('aria-pressed', 'false');
-      var past = isToday && cfg.hours && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
-      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; }
-      else any = true;
+      b.type = 'button'; b.className = 'slot'; b.textContent = label; b.setAttribute('aria-pressed', 'false');
+      var past = isToday && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
+      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; } else any = true;
       b.addEventListener('click', function () {
         slotBox.querySelectorAll('.slot').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
-        b.setAttribute('aria-pressed', 'true');
-        picked = label;
+        b.setAttribute('aria-pressed', 'true'); picked = label;
       });
       slotBox.appendChild(b);
     });
-    if (!any) {
-      var p = document.createElement('p');
-      p.className = 'slots__empty';
-      p.textContent = 'Fully booked that day. Try the next date.';
-      slotBox.appendChild(p);
-    }
+    if (!any) { var p = document.createElement('p'); p.className = 'slots__empty'; p.textContent = 'Fully booked that day. Try another date.'; slotBox.appendChild(p); }
   }
-  dateIn.addEventListener('change', renderSlots);
-  renderSlots();
+  dateIn.addEventListener('change', render);
+  render();
 
   var err = form.querySelector('.form__error');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var d = new FormData(form);
-    var missing = [];
-    if (!(d.get('name') || '').trim()) missing.push('your name');
-    if (!(d.get('mobile') || '').trim()) missing.push('a mobile number');
-    if (!d.get('service')) missing.push(cfg.serviceWord);
-    if (!d.get('date')) missing.push('a date');
-    if (!picked) missing.push('a ' + cfg.slotWord);
-    if (missing.length) {
-      err.textContent = 'Please add ' + missing.join(', ') + '.';
-      err.hidden = false;
-      return;
-    }
+    var d = new FormData(form), miss = [];
+    if (!(d.get('name') || '').trim()) miss.push('your name');
+    if (!(d.get('mobile') || '').trim()) miss.push('a mobile number');
+    if (!d.get('service')) miss.push(cfg.serviceWord);
+    if (!d.get('date')) miss.push('a date');
+    if (!picked) miss.push('a ' + cfg.slotWord);
+    if (miss.length) { err.textContent = 'Please add ' + miss.join(', ') + '.'; err.hidden = false; return; }
     err.hidden = true;
-
-    var when = new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric' });
-    var rows = [
-      ['Name', d.get('name')],
-      [cfg.serviceLabel, d.get('service')],
-      ['Date', when],
-      [cfg.slotLabel, picked]
-    ];
+    var rows = [['Name', d.get('name')], [cfg.serviceLabel, d.get('service')],
+      ['Date', new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })],
+      [cfg.slotLabel, picked]];
     if (d.get('guests')) rows.push(['Guests', d.get('guests')]);
-
+    if (d.get('grade')) rows.push(['Grade level', d.get('grade')]);
     var done = document.createElement('div');
-    done.className = 'done';
-    done.setAttribute('role', 'status');
-    done.innerHTML = '<div class="done__icon">✓</div><h3></h3><p class="muted"></p><dl></dl>' +
-      '<p class="done__demo">This is a sample site, so nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
-      '<button type="button" class="btn btn--ghost btn--sm">Book another</button>';
+    done.className = 'done'; done.setAttribute('role', 'status');
+    done.innerHTML = '<div class="done__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3></h3><p></p><dl></dl>' +
+      '<p class="done__demo"><b>Sample site:</b> nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
+      '<button type="button" class="again">Make another booking</button>';
     done.querySelector('h3').textContent = cfg.doneTitle;
-    done.querySelector('p.muted').textContent = cfg.doneText;
+    done.querySelector('h3 + p').textContent = cfg.doneText;
     var dl = done.querySelector('dl');
     rows.forEach(function (r) {
       var dt = document.createElement('dt'); dt.textContent = r[0];
       var dd = document.createElement('dd'); dd.textContent = r[1];
       dl.appendChild(dt); dl.appendChild(dd);
     });
-    done.querySelector('button').addEventListener('click', function () {
-      done.remove();
-      form.reset();
-      form.hidden = false;
-      renderSlots();
+    done.querySelector('.again').addEventListener('click', function () {
+      done.remove(); form.reset(); form.hidden = false; render();
+      form.dispatchEvent(new Event('sample:reset'));
     });
     form.hidden = true;
     form.parentNode.insertBefore(done, form.nextSibling);
     done.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
-  // "Book this" buttons in the price list pre-select the service
   document.querySelectorAll('[data-book]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      form.elements.service.value = a.dataset.book;
-    });
+    a.addEventListener('click', function () { form.elements.service.value = a.dataset.book; });
   });
 })();
 
-  </script>
+
+(function(){
+  var SB=window.SampleBooking,form=document.getElementById('booking'),hid=form.elements.date,grid=document.querySelector('.cal__grid'),title=document.querySelector('.cal__top h3'),prev=document.querySelector('[data-cal=prev]'),next=document.querySelector('[data-cal=next]'),out=document.querySelector('.picked');
+  var now=new Date();now.setHours(0,0,0,0);var view=new Date(now.getFullYear(),now.getMonth(),1);var limit=new Date(now.getFullYear(),now.getMonth()+3,1);
+  function draw(){
+    title.textContent=view.toLocaleDateString('en-PH',{month:'long',year:'numeric'});
+    prev.disabled=view<=new Date(now.getFullYear(),now.getMonth(),1);next.disabled=new Date(view.getFullYear(),view.getMonth()+1,1)>=limit;
+    var html='';['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(d){html+='<span class="dow">'+d+'</span>';});
+    var first=view.getDay(),days=new Date(view.getFullYear(),view.getMonth()+1,0).getDate();
+    for(var i=0;i<first;i++)html+='<span></span>';
+    for(var d=1;d<=days;d++){
+      var dt=new Date(view.getFullYear(),view.getMonth(),d),ds=SB.iso(dt),open=0;
+      for(var s=0;s<SB.cfg.slots.length;s++)if(!SB.taken(ds,s))open++;
+      var cls='day',dis='',lbl=ds;
+      if(dt<now){cls+=' past';dis=' disabled';}
+      else if(open===0){cls+=' full';dis=' disabled';lbl+=' fully booked';}
+      else if(open<SB.cfg.slots.length){cls+=' part';lbl+=' '+open+' options left';}
+      html+='<button type="button" class="'+cls+'" data-date="'+ds+'" aria-label="'+lbl+'" aria-pressed="'+(hid.value===ds)+'"'+dis+'>'+d+'</button>';
+    }
+    grid.innerHTML=html;
+  }
+  grid.addEventListener('click',function(e){
+    var b=e.target.closest('.day');if(!b||b.disabled)return;
+    hid.value=b.dataset.date;hid.dispatchEvent(new Event('change'));
+    grid.querySelectorAll('.day').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    out.textContent='Selected: '+new Date(b.dataset.date+'T00:00:00').toLocaleDateString('en-PH',{weekday:'long',month:'long',day:'numeric'});
+  });
+  prev.addEventListener('click',function(){view.setMonth(view.getMonth()-1);draw();});
+  next.addEventListener('click',function(){view.setMonth(view.getMonth()+1);draw();});
+  form.addEventListener('sample:reset',function(){out.textContent='No date selected yet';draw();});
+  draw();
+})();
+</script>
 </body>
 </html>

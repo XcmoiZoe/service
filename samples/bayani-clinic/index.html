@@ -1,552 +1,454 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bayani Medical &amp; Diagnostic Clinic (sample site by Stackclever)</title>
-  <meta name="description" content="Sample medical clinic &amp; diagnostic lab website by Stackclever. Bayani Medical &amp; Diagnostic Clinic is a fictional business.">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#15803d">
-  <meta property="og:title" content="Sample medical clinic &amp; diagnostic lab website · Stackclever">
-  <meta property="og:description" content="Price list, online booking, FAQs and Messenger. Get a site like this for your business.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-/* Shared styles for Stackclever sample sites. Each page sets its own theme vars on <body>. */
-:root {
-  --brand: #0f766e;
-  --brand-ink: #ffffff;
-  --brand-soft: #e6f4f2;
-  --ink: #16181d;
-  --muted: #5b616e;
-  --line: #e4e6eb;
-  --bg: #ffffff;
-  --bg-alt: #f6f7f9;
-  --radius: 14px;
-  --head: "Inter", system-ui, sans-serif;
-  --body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bayani Medical &amp; Diagnostic Clinic · Sample medical clinic and diagnostic lab website by Stackclever</title>
+<meta name="description" content="Sample medical clinic and diagnostic lab website by Stackclever. Bayani Medical &amp; Diagnostic Clinic is a fictional business.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b2545">
+<meta property="og:title" content="Sample medical clinic and diagnostic lab website · Stackclever">
+<meta property="og:description" content="Price list, online booking, FAQs and Messenger in one mobile-friendly site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Base shared by all samples. Each page defines: --brand --brand-ink --soft --ink --muted --line --bg --surface --r */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0 0 1em}
+h1,h2,h3,h4{margin:0 0 .5em}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.ico{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.sample-bar{background:#0b0b0c;color:#e9e9ea;font:13px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.sample-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:6px 16px;flex-wrap:wrap;padding:8px 0}
+.sample-bar p{margin:0}
+.sample-bar b{color:#ffd54a;font-weight:600}
+.sample-bar a{color:#ffd54a;font-weight:600;text-decoration:none;white-space:nowrap}
+.sample-bar a:hover{text-decoration:underline}
+
+/* Booking engine pieces */
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.slot{font:inherit;font-size:.88rem;padding:.65em .4em;border-radius:calc(var(--r) * .6);border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.slot:hover:not(:disabled){border-color:var(--brand)}
+.slot[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.slot:disabled{opacity:.45;text-decoration:line-through;cursor:not-allowed}
+.slots__empty{grid-column:1/-1;margin:0;color:var(--muted);font-size:.9rem}
+.form__error{color:#b42318;font-size:.9rem;font-weight:500}
+.done{text-align:center;padding:8px 0}
+.done__icon{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--soft);color:var(--brand);margin:0 auto 14px}
+.done__icon .ico{width:28px;height:28px;stroke-width:2.2}
+.done h3{margin-bottom:.3em}
+.done>p{color:var(--muted)}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;text-align:left;margin:18px 0;padding:16px 18px;border-radius:var(--r);background:var(--soft);font-size:.94rem}
+.done dt{color:var(--muted)}
+.done dd{margin:0;font-weight:600}
+.done__demo{font-size:.84rem;color:#6b5a12;background:#fff8d6;border:1px solid #f1e2a0;border-radius:10px;padding:10px 12px;text-align:left}
+.done .again{font:inherit;font-weight:600;background:none;border:1px solid var(--line);color:var(--ink);padding:.6em 1.2em;border-radius:999px;cursor:pointer}
+
+.chat{position:fixed;right:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:8px;padding:.8em 1.15em;border:0;border-radius:999px;background:#0866ff;color:#fff;font:600 15px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;cursor:pointer;box-shadow:0 14px 30px -12px rgba(8,102,255,.7)}
+.chat svg{width:20px;height:20px}
+.toast{position:fixed;left:50%;bottom:86px;z-index:70;transform:translate(-50%,16px);opacity:0;pointer-events:none;background:#111;color:#fff;padding:12px 18px;border-radius:12px;font:14px/1.45 system-ui,sans-serif;max-width:min(420px,100% - 32px);text-align:center;transition:.25s}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+.credit{font-size:.85rem;color:var(--muted)}
+.credit a{color:var(--brand);font-weight:600;text-decoration:none}
+@media (max-width:540px){.chat span{display:none}.wrap{width:min(1180px,100% - 32px)}}
+[hidden]{display:none!important}
+
+
+body{--brand:#0a58ca;--brand-ink:#fff;--soft:#e8f0fc;--ink:#0f1f33;--muted:#56657a;--line:#dde4ee;--bg:#fff;--surface:#fff;--r:8px;--green:#11845b;--navy:#0b2545;font:16px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-weight:600;letter-spacing:-.015em;line-height:1.15}
+h2{font-size:clamp(1.7rem,3vw,2.3rem)}
+.tag{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin-bottom:10px}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:8px;background:var(--brand);color:#fff;border:1px solid var(--brand);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.btn:hover{background:#0848a8}
+.btn .ico{width:18px;height:18px}
+.btn--out{background:#fff;color:var(--brand)}
+.btn--out:hover{background:var(--soft)}
+.util{background:var(--navy);color:#c4d3e6;font-size:.85rem}
+.util .wrap{display:flex;gap:28px;align-items:center;height:40px;overflow:hidden}
+.util span{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.util .ico{width:16px;height:16px;color:#7fb0ff}
+.util .open{color:#7ee2b0;font-weight:600}
+.util .open::before{content:"";width:8px;height:8px;border-radius:50%;background:#34d399;display:inline-block}
+.hd{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40}
+.hd .wrap{display:flex;align-items:center;gap:32px;height:72px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo i{display:grid;place-items:center;width:40px;height:40px;border-radius:8px;background:var(--brand);color:#fff}
+.logo i .ico{width:22px;height:22px;fill:#fff;stroke:none}
+.logo b{display:block;font-size:1.1rem;font-weight:700;line-height:1.1}
+.logo small{font-size:.75rem;color:var(--muted)}
+.hd nav{display:flex;gap:24px;margin-left:auto}
+.hd nav a{text-decoration:none;font-weight:500;color:var(--ink);font-size:.95rem}
+.hd nav a:hover{color:var(--brand)}
+.hd__btns{display:flex;gap:10px}
+.hero{background:linear-gradient(180deg,#f2f6fc,#fff);padding:64px 0 56px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,4.4vw,3.3rem);margin-bottom:18px}
+.hero p{color:var(--muted);font-size:1.12rem;max-width:32em}
+.hero__cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.qa a{display:flex;flex-direction:column;gap:6px;padding:22px;border-radius:10px;background:#fff;border:1px solid var(--line);text-decoration:none;box-shadow:0 1px 2px rgba(15,31,51,.04);transition:border-color .15s,box-shadow .15s}
+.qa a:hover{border-color:var(--brand);box-shadow:0 10px 30px -18px rgba(10,88,202,.5)}
+.qa i{display:grid;place-items:center;width:44px;height:44px;border-radius:8px;background:var(--soft);color:var(--brand);margin-bottom:8px}
+.qa b{font-size:1.02rem}
+.qa span{font-size:.88rem;color:var(--muted)}
+.qa em{font-style:normal;font-size:.85rem;font-weight:600;color:var(--brand);margin-top:6px}
+.strip{border-bottom:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.strip .wrap>div{display:flex;gap:12px;align-items:center;padding:22px 18px}
+.strip .wrap>div+div{border-left:1px solid var(--line)}
+.strip .ico{color:var(--green);width:26px;height:26px}
+.strip b{display:block;font-size:.96rem}
+.strip span{font-size:.84rem;color:var(--muted)}
+.sec{padding:80px 0}
+.sec--grey{background:#f5f8fb;border-block:1px solid var(--line)}
+.sec__head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.sec__head p{margin:0;color:var(--muted);max-width:36em}
+.tools{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.search{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:0 14px;background:#fff;flex:1;min-width:240px;max-width:380px}
+.search .ico{color:var(--muted);width:18px}
+.search input{border:0;font:inherit;padding:11px 0;width:100%;background:none;color:var(--ink)}
+.search input:focus{outline:0}
+.search:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px rgba(10,88,202,.12)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{font:inherit;font-size:.86rem;font-weight:500;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.tbl{border:1px solid var(--line);border-radius:10px;overflow:auto;background:#fff}
+table.lab{width:100%;border-collapse:collapse;font-size:.94rem;min-width:640px}
+.lab th{text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;background:#f5f8fb;padding:12px 16px;border-bottom:1px solid var(--line)}
+.lab td{padding:13px 16px;border-bottom:1px solid var(--line)}
+.lab tr:last-child td{border-bottom:0}
+.lab td:first-child{font-weight:500}
+.lab td small{display:block;color:var(--muted);font-size:.78rem;font-weight:400}
+.lab td.p{text-align:right;font-weight:600;white-space:nowrap}
+.lab th:last-child{text-align:right}
+.fast{display:inline-block;padding:2px 8px;border-radius:4px;background:#fff4e0;color:#9a5b00;font-size:.8rem;font-weight:500}
+.empty{padding:24px;text-align:center;color:var(--muted);margin:0}
+.lab-note{font-size:.86rem;color:var(--muted);margin-top:14px}
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pk div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px;display:flex;flex-direction:column}
+.pk div.hl{border:2px solid var(--brand);position:relative}
+.pk div.hl::before{content:"Most requested";position:absolute;top:-12px;left:24px;background:var(--brand);color:#fff;font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:4px}
+.pk h3{margin-bottom:4px}
+.pk>div>p{color:var(--muted);font-size:.9rem}
+.pk b.amt{font-size:2rem;font-weight:700;letter-spacing:-.02em;margin:6px 0 14px}
+.pk ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:8px;font-size:.92rem}
+.pk li{display:flex;gap:8px}
+.pk li .ico{color:var(--green);width:18px;height:18px;margin-top:2px}
+.pk .btn{margin-top:auto}
+.split{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:start}
+table.sched{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.94rem}
+.sched th{text-align:left;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#f5f8fb;padding:12px 16px;font-weight:600}
+.sched td{padding:14px 16px;border-top:1px solid var(--line)}
+.sched td b{display:block}
+.sched td span{color:var(--muted);font-size:.86rem}
+.prep{display:grid;gap:12px}
+.prep>div{display:flex;gap:14px;padding:18px;border-radius:10px;background:#fff;border:1px solid var(--line)}
+.prep .ico{color:var(--brand);flex:none}
+.prep b{display:block;margin-bottom:2px}
+.prep p{margin:0;font-size:.9rem;color:var(--muted)}
+.booking{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start}
+.bform{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:flex;flex-direction:column;gap:6px;margin:0 0 16px;border:0;padding:0;min-width:0}
+.f label,.f legend{font-size:.88rem;font-weight:600;padding:0}
+.f legend{margin-bottom:8px}
+.f input,.f select,.f textarea{font:inherit;font-size:.95rem;padding:10px 12px;border:1px solid #c9d3e0;border-radius:6px;background:#fff;color:var(--ink);width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--brand);box-shadow:0 0 0 3px rgba(10,88,202,.14)}
+.opt{color:var(--muted);font-weight:400}
+.bform .btn{width:100%;padding:14px}
+.f-note{font-size:.82rem;color:var(--muted);margin:10px 0 0}
+.next{background:var(--navy);color:#c4d3e6;border-radius:12px;padding:30px}
+.next h3{color:#fff}
+.next ol{margin:18px 0 0;padding:0;list-style:none;counter-reset:n;display:grid;gap:18px}
+.next li{display:flex;gap:14px}
+.next li::before{counter-increment:n;content:counter(n);flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#1c3d6b;color:#fff;font-weight:600;font-size:.86rem}
+.next b{color:#fff;display:block}
+.faqg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.faqg details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:0 20px}
+.faqg summary{cursor:pointer;font-weight:600;padding:18px 0;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.faqg summary::-webkit-details-marker{display:none}
+.faqg summary::after{content:"";width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);margin-top:4px;flex:none;transition:transform .2s}
+.faqg details[open] summary::after{transform:rotate(225deg);margin-top:10px}
+.faqg p{color:var(--muted);margin:0 0 18px;font-size:.95rem}
+.loc{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+.loc h3{font-size:1.05rem}
+.loc table{width:100%;border-collapse:collapse;font-size:.92rem}
+.loc td{padding:6px 0;border-bottom:1px solid var(--line)}
+.loc td:last-child{text-align:right}
+.loc tr.is-today td{color:var(--brand);font-weight:600}
+.loc p{color:var(--muted);margin:0 0 8px;font-size:.95rem}
+.map{border-radius:10px;border:1px solid var(--line);min-height:200px;background:linear-gradient(90deg,transparent 48%,#dfe7f2 48% 52%,transparent 52%) 0 0/70px 70px,linear-gradient(0deg,transparent 48%,#dfe7f2 48% 52%,transparent 52%) 0 0/70px 70px,#eef3f9;display:grid;place-items:center;color:var(--brand)}
+.map .ico{width:40px;height:40px;fill:#fff}
+.ft{background:var(--navy);color:#9fb3cc;padding:28px 0;font-size:.88rem}
+.ft .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ft a{color:#7fb0ff;text-decoration:none;font-weight:600}
+@media (max-width:980px){
+ .hero .wrap,.split,.booking,.faqg,.loc{grid-template-columns:1fr}
+ .pk{grid-template-columns:1fr}
+ .strip .wrap{grid-template-columns:1fr 1fr}
+ .strip .wrap>div:nth-child(3){border-left:0}
+ .strip .wrap>div:nth-child(n+3){border-top:1px solid var(--line)}
+ .hd nav,.hd__btns .btn--out{display:none}
+ .hd__btns{margin-left:auto}
+ .util .hide-m{display:none}
 }
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; display: block; }
-a { color: inherit; }
-h1, h2, h3 { font-family: var(--head); line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.015em; }
-h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
-h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
-h3 { font-size: 1.1rem; }
-p { margin: 0 0 1em; }
-.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
-.muted { color: var(--muted); }
-
-/* Sample banner */
-.sample-bar { background: #111; color: #f2f2f2; font-size: .85rem; }
-.sample-bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; padding: 8px 0; }
-.sample-bar p { margin: 0; }
-.sample-bar b { color: #ffd54a; font-weight: 600; }
-.sample-bar a { color: #ffd54a; font-weight: 600; text-decoration: none; white-space: nowrap; }
-.sample-bar a:hover { text-decoration: underline; }
-
-/* Header */
-.top { position: sticky; top: 0; z-index: 40; background: rgba(255, 255, 255, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--head); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
-.brand__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--brand); color: var(--brand-ink); font-size: 1rem; }
-.top nav { display: flex; align-items: center; gap: 24px; }
-.top nav a:not(.btn) { color: var(--muted); text-decoration: none; font-size: .95rem; }
-.top nav a:not(.btn):hover { color: var(--ink); }
-
-/* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .85em 1.5em; border-radius: 999px; background: var(--brand); color: var(--brand-ink); border: 1px solid var(--brand); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform .15s, filter .15s; }
-.btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn--ghost:hover { border-color: var(--brand); color: var(--brand); }
-.btn--sm { padding: .55em 1.1em; font-size: .9rem; }
-.btn--block { width: 100%; }
-
-/* Hero */
-.hero { padding: 64px 0 56px; background: linear-gradient(180deg, var(--brand-soft), var(--bg)); }
-.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
-.kicker { display: inline-block; color: var(--brand); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .8em; }
-.lead { font-size: 1.12rem; color: var(--muted); max-width: 34em; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
-.ticks { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .92rem; color: var(--muted); }
-.ticks li::before { content: "\2713"; color: var(--brand); font-weight: 700; margin-right: 6px; }
-
-.hero__card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; box-shadow: 0 30px 60px -30px rgba(20, 30, 50, .35); }
-.hero__art { aspect-ratio: 16/10; border-radius: 14px; margin-bottom: 18px; background: var(--art); position: relative; overflow: hidden; display: grid; place-items: center; font-size: 4rem; }
-.hero__art span { filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .2)); }
-.next { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--bg-alt); }
-.next small { display: block; color: var(--muted); font-size: .8rem; }
-.next strong { font-family: var(--head); }
-.live { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; color: #15803d; font-weight: 600; }
-.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, .18); }
-
-/* Sections */
-.section { padding: 80px 0; }
-.section--alt { background: var(--bg-alt); }
-.section__head { max-width: 640px; margin-bottom: 36px; }
-
-.perks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.perk { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-.perk__icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--brand-soft); font-size: 1.3rem; margin-bottom: 14px; }
-.perk p { color: var(--muted); font-size: .93rem; margin: 0; }
-
-/* Price list */
-.prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.price-group { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 24px 12px; }
-.price-group h3 { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-.price-group ul { list-style: none; margin: 0; padding: 0; }
-.price-group li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
-.price-group li:last-child { border-bottom: 0; }
-.price-group li span small { display: block; color: var(--muted); font-size: .84rem; }
-.price-group li b { font-family: var(--head); white-space: nowrap; color: var(--brand); }
-.note { font-size: .88rem; color: var(--muted); margin-top: 18px; }
-
-/* Booking */
-.book { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; align-items: start; }
-.book__info ul { padding-left: 1.1em; color: var(--muted); }
-.book__info li { margin-bottom: .4em; }
-.form { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 20px 50px -35px rgba(20, 30, 50, .4); }
-.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-.field label, .field legend { font-weight: 600; font-size: .9rem; }
-.field input, .field select, .field textarea { font: inherit; padding: .7em .85em; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); width: 100%; }
-.field textarea { resize: vertical; min-height: 80px; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
-fieldset.field { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; }
-.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 4px; }
-.slot { font: inherit; font-size: .88rem; padding: .6em .4em; border-radius: 10px; border: 1px solid var(--line); background: #fff; cursor: pointer; color: var(--ink); }
-.slot:hover:not(:disabled) { border-color: var(--brand); }
-.slot[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
-.slot:disabled { color: #b3b7c0; text-decoration: line-through; cursor: not-allowed; background: var(--bg-alt); }
-.slots__empty { grid-column: 1 / -1; color: var(--muted); font-size: .9rem; margin: 0; }
-.form__error { color: #b91c1c; font-size: .9rem; font-weight: 500; }
-.form__small { font-size: .82rem; color: var(--muted); margin: 12px 0 0; text-align: center; }
-.done { text-align: center; padding: 12px 4px; }
-.done__icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-size: 1.6rem; margin: 0 auto 14px; }
-.done dl { text-align: left; background: var(--bg-alt); border-radius: 12px; padding: 14px 18px; margin: 16px 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: .93rem; }
-.done dt { color: var(--muted); }
-.done dd { margin: 0; font-weight: 600; }
-.done__demo { font-size: .85rem; color: var(--muted); background: #fff8db; border: 1px solid #f3e3a1; border-radius: 10px; padding: 10px 12px; }
-
-/* FAQ */
-.faq { max-width: 780px; }
-.faq details { border-bottom: 1px solid var(--line); padding: 4px 0; }
-.faq summary { cursor: pointer; list-style: none; font-weight: 600; padding: 14px 32px 14px 0; position: relative; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; position: absolute; right: 4px; top: 10px; font-size: 1.4rem; color: var(--brand); transition: transform .2s; }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq details p { color: var(--muted); margin: 0 0 16px; }
-
-/* Visit */
-.visit { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
-.hours { width: 100%; border-collapse: collapse; font-size: .95rem; }
-.hours td { padding: 10px 0; border-bottom: 1px solid var(--line); }
-.hours td:last-child { text-align: right; font-weight: 600; }
-.hours tr.is-today td { color: var(--brand); }
-.map { border-radius: var(--radius); border: 1px solid var(--line); min-height: 260px; background:
-  linear-gradient(90deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  linear-gradient(0deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  var(--brand-soft);
-  display: grid; place-items: center; text-align: center; padding: 24px; }
-.map__pin { font-size: 2.4rem; }
-.map p { margin: 6px 0 0; font-weight: 600; }
-.map small { color: var(--muted); }
-.contact-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
-.contact-list li { color: var(--muted); }
-.contact-list b { color: var(--ink); }
-
-/* CTA band */
-.band { background: var(--brand); color: var(--brand-ink); border-radius: 22px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.band h2 { margin: 0 0 .2em; }
-.band p { margin: 0; opacity: .85; }
-.band .btn { background: #fff; color: var(--ink); border-color: #fff; }
-
-/* Footer */
-.foot { border-top: 1px solid var(--line); padding: 28px 0 100px; font-size: .88rem; color: var(--muted); }
-.foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.foot a { color: var(--brand); font-weight: 600; text-decoration: none; }
-
-/* Floating chat + toast */
-.chat { position: fixed; right: 18px; bottom: 18px; z-index: 50; display: inline-flex; align-items: center; gap: 8px; padding: .8em 1.2em; border-radius: 999px; border: 0; background: #0866ff; color: #fff; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 14px 30px -10px rgba(8, 102, 255, .6); }
-.chat svg { width: 20px; height: 20px; }
-.toast { position: fixed; left: 50%; bottom: 84px; z-index: 60; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #111; color: #fff; padding: 12px 18px; border-radius: 12px; font-size: .9rem; max-width: min(420px, 100% - 32px); text-align: center; transition: opacity .25s, transform .25s; }
-.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
-
-@media (max-width: 900px) {
-  .hero .wrap, .book, .visit { grid-template-columns: 1fr; }
-  .perks { grid-template-columns: repeat(2, 1fr); }
-  .prices { grid-template-columns: 1fr; }
-  .top nav a:not(.btn) { display: none; }
+@media (max-width:600px){
+ .qa,.f-row{grid-template-columns:1fr}
+ .logo small{display:none}
+ .hd .btn{padding:10px 14px}
+ .qa{grid-template-columns:1fr 1fr}
+ .qa a{padding:16px}
+ .qa span{display:none}
+ .strip .wrap{grid-template-columns:1fr}
+ .strip .wrap>div+div{border-left:0;border-top:1px solid var(--line)}
+ .sec{padding:60px 0}
+ .bform{padding:22px}
 }
-@media (max-width: 540px) {
-  .perks, .form__row { grid-template-columns: 1fr; }
-  .section { padding: 60px 0; }
-  .hero { padding: 40px 0; }
-  .form { padding: 20px; }
-  .band { padding: 28px; }
-  .chat span { display: none; }
-}
-
-body { --brand: #15803d; --brand-soft: #e7f6ec; --head: "Inter", system-ui, sans-serif; --art: linear-gradient(135deg,#86efac,#15803d); }
-  </style>
+</style>
 </head>
-<body>
-  <div class="sample-bar" role="note">
-    <div class="wrap">
-      <p><b>Sample site.</b> Bayani Medical &amp; Diagnostic Clinic is a fictional business, made by Stackclever to show what your medical clinic &amp; diagnostic lab website could look like.</p>
-      <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+<body class="">
+<div class="sample-bar" role="note"><div class="wrap">
+  <p><b>Sample site.</b> Bayani Medical &amp; Diagnostic Clinic is a fictional business, made by Stackclever to show what a medical clinic and diagnostic lab website could look like.</p>
+  <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+</div></div>
+
+<div class="util"><div class="wrap">
+  <span class="open">Open today</span>
+  <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg> Mon–Fri 7 AM–5 PM · Sat 7 AM–12 NN</span>
+  <span class="hide-m"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5h3.6l1.9 4.8-2.4 1.5a11.4 11.4 0 0 0 5.9 5.9l1.5-2.4 4.8 1.9v3.6a2 2 0 0 1-2.2 2A16.9 16.9 0 0 1 3.2 5.7a2 2 0 0 1 2-2.2z"/></svg> 0919 000 0000</span>
+  <span class="hide-m"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg> Results by email, same day</span>
+</div></div>
+<header class="hd"><div class="wrap">
+  <a href="#" class="logo"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3.5h6v5.5h5.5v6H15v5.5H9V15H3.5V9H9z"/></svg></i><span><b>Bayani Clinic</b><small>Medical &amp; Diagnostic Center</small></span></a>
+  <nav aria-label="Main"><a href="#lab">Lab tests</a><a href="#packages">Packages</a><a href="#doctors">Doctors</a><a href="#faq">FAQ</a><a href="#location">Location</a></nav>
+  <div class="hd__btns"><a href="#lab" class="btn btn--out">Lab prices</a><a href="#book" class="btn">Book a visit</a></div>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="tag">Clinic · Laboratory · X-ray — Caloocan City</span>
+    <h1>Consults, lab tests and x-ray in one visit.</h1>
+    <p>See a doctor, have your blood drawn and get your x-ray in one place. Most results are emailed the same day, so you don’t have to come back for them.</p>
+    <div class="hero__cta"><a href="#book" class="btn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18"/><path d="M8 2.5v4"/><path d="M16 2.5v4"/></svg> Book a visit</a><a href="#lab" class="btn btn--out"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4.5-4.5"/></svg> Check lab prices</a></div>
+  </div>
+  <div class="qa">
+    <a href="#book" data-book="General consultation"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v5.5a4 4 0 0 0 8 0V3.5"/><path d="M10 13v1.5a5 5 0 0 0 10 0V12"/><circle cx="20" cy="10" r="2"/></svg></i><b>See a doctor</b><span>General, pedia, OB-GYN</span><em>Book consult →</em></a>
+    <a href="#lab"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6.2L4.6 18.6A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.4-2.4L14 9.2V3"/><path d="M7.2 15h9.6"/></svg></i><b>Lab tests</b><span>CBC, FBS, lipid, urinalysis</span><em>See prices →</em></a>
+    <a href="#book" data-book="Chest x-ray"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"/><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"/><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M12 7.5v9"/><path d="M9 10h6"/><path d="M9 14h6"/></svg></i><b>X-ray &amp; ECG</b><span>Read by a radiologist</span><em>Book now →</em></a>
+    <a href="#packages"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6"/><path d="M10 17h6"/></svg></i><b>Medical exams</b><span>Pre-employment &amp; annual</span><em>View packages →</em></a>
+  </div>
+</div></section>
+<div class="strip"><div class="wrap">
+  <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><div><b>Results in 4–6 hours</b><span>Emailed as PDF</span></div></div>
+  <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.6-3.2 7.9-7.5 9-4.3-1.1-7.5-4.4-7.5-9V6z"/><path d="M9 12l2 2 4-4"/></svg><div><b>PhilHealth &amp; HMO</b><span>For eligible services</span></div></div>
+  <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20.5a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.3a6.3 6.3 0 0 1 3.5 6.2"/></svg><div><b>Senior &amp; PWD discount</b><span>20% on all services</span></div></div>
+  <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18"/><path d="M8 2.5v4"/><path d="M16 2.5v4"/></svg><div><b>Booked patients first</b><span>Walk-ins welcome</span></div></div>
+</div></div>
+
+<section class="sec" id="lab"><div class="wrap">
+  <div class="sec__head"><div><span class="tag">Laboratory</span><h2>Lab test price list</h2></div><p>Search for a test to see its price, preparation and when results are ready. No doctor’s request needed for most tests.</p></div>
+  <div class="tools">
+    <label class="search"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4.5-4.5"/></svg><span class="sr">Search tests</span><input id="lab-q" type="search" placeholder="Search a test, e.g. sugar, x-ray"></label>
+    <div class="chips"><button type="button" aria-pressed="true">All</button><button type="button" aria-pressed="false">Hematology</button><button type="button" aria-pressed="false">Chemistry</button><button type="button" aria-pressed="false">Clinical microscopy</button><button type="button" aria-pressed="false">Imaging</button><button type="button" aria-pressed="false">Others</button></div>
+  </div>
+  <div class="tbl"><table class="lab"><thead><tr><th>Test</th><th>Preparation</th><th>Results</th><th>Price</th></tr></thead><tbody>
+    <tr data-cat="Hematology"><td>CBC with platelet count<small>Hematology</small></td><td>None</td><td>Same day</td><td class="p">₱250</td></tr><tr data-cat="Hematology"><td>Blood typing (ABO + Rh)<small>Hematology</small></td><td>None</td><td>Same day</td><td class="p">₱150</td></tr><tr data-cat="Chemistry"><td>Fasting blood sugar (FBS)<small>Chemistry</small></td><td><span class="fast">8–10 hrs fasting</span></td><td>Same day</td><td class="p">₱150</td></tr><tr data-cat="Chemistry"><td>HbA1c<small>Chemistry</small></td><td>None</td><td>1 day</td><td class="p">₱800</td></tr><tr data-cat="Chemistry"><td>Lipid profile<small>Chemistry</small></td><td><span class="fast">10–12 hrs fasting</span></td><td>Same day</td><td class="p">₱600</td></tr><tr data-cat="Chemistry"><td>Creatinine<small>Chemistry</small></td><td>None</td><td>Same day</td><td class="p">₱180</td></tr><tr data-cat="Chemistry"><td>SGPT / ALT<small>Chemistry</small></td><td>None</td><td>Same day</td><td class="p">₱200</td></tr><tr data-cat="Chemistry"><td>Uric acid<small>Chemistry</small></td><td>None</td><td>Same day</td><td class="p">₱180</td></tr><tr data-cat="Clinical microscopy"><td>Urinalysis<small>Clinical microscopy</small></td><td>First morning urine</td><td>Same day</td><td class="p">₱100</td></tr><tr data-cat="Clinical microscopy"><td>Fecalysis<small>Clinical microscopy</small></td><td>Fresh sample</td><td>Same day</td><td class="p">₱100</td></tr><tr data-cat="Imaging"><td>Chest x-ray (PA view)<small>Imaging</small></td><td>None</td><td>1 day, with reading</td><td class="p">₱400</td></tr><tr data-cat="Imaging"><td>ECG (12-lead)<small>Imaging</small></td><td>None</td><td>Same day</td><td class="p">₱350</td></tr><tr data-cat="Others"><td>Drug test (2 panel)<small>Others</small></td><td>Valid ID</td><td>Same day</td><td class="p">₱450</td></tr><tr data-cat="Others"><td>Pregnancy test<small>Others</small></td><td>First morning urine</td><td>1 hour</td><td class="p">₱150</td></tr>
+  </tbody></table><p class="empty" hidden>No test matches your search. Message us and we’ll check if we offer it.</p></div>
+  <p class="lab-note">Prices are for walk-in and booked patients. Senior citizen and PWD discounts apply. Corporate rates available.</p>
+</div></section>
+
+<section class="sec sec--grey" id="packages"><div class="wrap">
+  <div class="sec__head"><div><span class="tag">Packages</span><h2>Medical exam packages</h2></div><p>Bundled tests at a lower price than ordering each one separately.</p></div>
+  <div class="pk">
+    <div><h3>Pre-employment</h3><p>Accepted by most employers</p><b class="amt">₱1,200</b><ul><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Physical exam</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> CBC, urinalysis, fecalysis</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Chest x-ray</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Drug test (2 panel)</li></ul><a href="#book" class="btn btn--out" data-book="Pre-employment package">Book this package</a></div>
+    <div class="hl"><h3>Annual check-up</h3><p>A yearly look at your health</p><b class="amt">₱2,500</b><ul><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Doctor’s consultation</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> CBC, FBS, lipid profile</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Creatinine, SGPT, uric acid</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Urinalysis, chest x-ray, ECG</li></ul><a href="#book" class="btn" data-book="Annual check-up package">Book this package</a></div>
+    <div><h3>Diabetes screening</h3><p>For family history or symptoms</p><b class="amt">₱1,350</b><ul><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> FBS and HbA1c</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Lipid profile</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Creatinine</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Doctor’s review of results</li></ul><a href="#book" class="btn btn--out" data-book="Diabetes screening">Book this package</a></div>
+  </div>
+</div></section>
+
+<section class="sec" id="doctors"><div class="wrap split">
+  <div>
+    <span class="tag">Doctors</span><h2 style="margin-bottom:24px">Doctor schedule</h2>
+    <table class="sched"><thead><tr><th>Doctor</th><th>Days</th><th>Time</th></tr></thead><tbody>
+      <tr><td><b>Dr. R. Villanueva</b><span>General medicine</span></td><td>Mon – Sat</td><td>8:00 AM – 12:00 NN</td></tr><tr><td><b>Dr. C. Mendoza</b><span>Pediatrics</span></td><td>Mon, Wed, Fri</td><td>9:00 AM – 12:00 NN</td></tr><tr><td><b>Dr. L. Garcia</b><span>OB-GYN</span></td><td>Tue, Thu</td><td>1:00 PM – 4:00 PM</td></tr><tr><td><b>Dr. P. Aquino</b><span>Internal medicine</span></td><td>Sat</td><td>9:00 AM – 12:00 NN</td></tr>
+    </tbody></table>
+  </div>
+  <div>
+    <span class="tag">Before your test</span><h2 style="margin-bottom:24px">How to prepare</h2>
+    <div class="prep">
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><div><b>Fasting tests</b><p>No food for 8–12 hours. Plain water is OK. Come before 10 AM.</p></div></div>
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s-6 6.6-6 11.1a6 6 0 0 0 12 0C18 9.6 12 3 12 3z"/></svg><div><b>Urine &amp; stool samples</b><p>Use a sterile container from any pharmacy. First morning urine is best.</p></div></div>
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/><path d="M6.5 15h4"/></svg><div><b>What to bring</b><p>A valid ID, your HMO or PhilHealth card, and your doctor’s request if you have one.</p></div></div>
     </div>
   </div>
+</div></section>
 
-  <header class="top">
-    <div class="wrap">
-      <a href="#" class="brand"><span class="brand__mark" aria-hidden="true">B</span>Bayani Clinic</a>
-      <nav aria-label="Main">
-        <a href="#prices">Prices</a>
-        <a href="#book">Book</a>
-        <a href="#faq">FAQ</a>
-        <a href="#visit">Visit us</a>
-        <a href="#book" class="btn btn--sm">Book now</a>
-      </nav>
+<section class="sec sec--grey" id="book"><div class="wrap">
+  <div class="sec__head"><div><span class="tag">Appointments</span><h2>Book a consult or test</h2></div><p>Booked patients are served ahead of walk-ins.</p></div>
+  <div class="booking">
+    <form class="bform" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;7:00 AM&quot;,&quot;8:00 AM&quot;,&quot;9:00 AM&quot;,&quot;10:00 AM&quot;,&quot;11:00 AM&quot;,&quot;12:00 PM&quot;,&quot;1:00 PM&quot;,&quot;2:00 PM&quot;,&quot;3:00 PM&quot;,&quot;4:00 PM&quot;],&quot;hours&quot;:[7,8,9,10,11,12,13,14,15,16],&quot;busy&quot;:30,&quot;closed&quot;:[0],&quot;serviceLabel&quot;:&quot;Service&quot;,&quot;serviceWord&quot;:&quot;a service&quot;,&quot;slotLabel&quot;:&quot;Time&quot;,&quot;slotWord&quot;:&quot;time slot&quot;,&quot;doneTitle&quot;:&quot;You’re booked&quot;,&quot;doneText&quot;:&quot;We’ll text you a confirmation and any preparation reminders.&quot;}">
+    
+    <div class="f-row">
+      <div class="f"><label for="b-name">Full name</label><input id="b-name" name="name" autocomplete="name" placeholder="Juan Dela Cruz"></div>
+      <div class="f"><label for="b-mobile">Mobile number</label><input id="b-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="09XX XXX XXXX"></div>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <div>
-          <span class="kicker">Clinic, laboratory &amp; x-ray · Caloocan City</span>
-          <h1>Check-ups, lab tests and x-ray in one stop.</h1>
-          <p class="lead">See a doctor, get your blood work and x-ray done, and receive results by email, often on the same day. Walk-ins welcome; booked patients go first.</p>
-          <div class="hero__cta">
-            <a href="#book" class="btn">Book online</a>
-            <a href="#prices" class="btn btn--ghost">See prices</a>
-          </div>
-          <ul class="ticks">
-            <li>Same-day results</li>
-            <li>PhilHealth &amp; HMO</li>
-            <li>Pre-employment packages</li>
-          </ul>
-        </div>
-        <div class="hero__card" aria-hidden="true">
-          <div class="hero__art"><span>🩺</span></div>
-          <div class="next">
-            <div><small>Lab results</small><strong>Ready in 4–6 hours</strong></div>
-            <span class="live">Booking open</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="perks">
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🧪</div><h3>Full laboratory</h3><p>CBC, FBS, lipid profile, urinalysis and more.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🩻</div><h3>Digital x-ray</h3><p>Chest x-ray with reading by a radiologist.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">👶</div><h3>Pedia &amp; OB-GYN</h3><p>Specialists on scheduled clinic days.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">📧</div><h3>Results by email</h3><p>No need to come back just to pick up results.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="prices">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">Price list</span>
-          <h2>Clear prices, no need to PM</h2>
-          <p class="muted">Rates below are starting prices. Book a slot and we'll confirm the details with you.</p>
-        </div>
-        <div class="prices">
-          <div class="price-group">
-            <h3><span aria-hidden="true">🧪</span> Laboratory &amp; x-ray</h3>
-            <ul>
-              <li><span>CBC with platelet</span><b>₱250</b></li>
-              <li><span>Fasting blood sugar (FBS)<small>8–10 hours fasting</small></span><b>₱150</b></li>
-              <li><span>Lipid profile<small>10–12 hours fasting</small></span><b>₱600</b></li>
-              <li><span>Chest x-ray (PA)<small>With reading</small></span><b>₱400</b></li>
-            </ul>
-          </div>
-          <div class="price-group">
-            <h3><span aria-hidden="true">🩺</span> Consults &amp; packages</h3>
-            <ul>
-              <li><span>General consultation</span><b>₱400</b></li>
-              <li><span>Pedia / OB-GYN consult<small>By schedule</small></span><b>₱600</b></li>
-              <li><span>Pre-employment package<small>PE, CBC, UA, x-ray, drug test</small></span><b>₱1,200</b></li>
-              <li><span>Annual check-up package<small>With 8 lab tests</small></span><b>₱2,500</b></li>
-            </ul>
-          </div>
-        </div>
-        <p class="note">Senior citizen and PWD discounts apply. Company accounts are welcome; ask us about corporate rates.</p>
-      </div>
-    </section>
-
-    <section class="section" id="book">
-      <div class="wrap book">
-        <div class="book__info">
-          <span class="kicker">Online booking</span>
-          <h2>Book a visit or test</h2>
-          <p class="muted">Booked patients are served ahead of walk-ins.</p>
-          <ul>
-            <li>Fasting tests: no food 8–12 hours before; water is OK</li>
-            <li>Bring a valid ID and your doctor's request if you have one</li>
-            <li>Results are emailed the same day for most tests</li>
-          </ul>
-        </div>
-        <div>
-          <form class="form" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;7:00 AM&quot;,&quot;8:00 AM&quot;,&quot;9:00 AM&quot;,&quot;10:00 AM&quot;,&quot;11:00 AM&quot;,&quot;12:00 PM&quot;,&quot;1:00 PM&quot;,&quot;2:00 PM&quot;,&quot;3:00 PM&quot;,&quot;4:00 PM&quot;],&quot;hours&quot;:[7,8,9,10,11,12,13,14,15,16],&quot;busy&quot;:30,&quot;closed&quot;:[0],&quot;serviceLabel&quot;:&quot;Service&quot;,&quot;serviceWord&quot;:&quot;a service&quot;,&quot;slotLabel&quot;:&quot;Time&quot;,&quot;slotWord&quot;:&quot;time slot&quot;,&quot;doneTitle&quot;:&quot;You're booked!&quot;,&quot;doneText&quot;:&quot;We'll text you a confirmation and any prep reminders.&quot;}">
-            <div class="form__row">
-              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" placeholder="Juan Dela Cruz"></div>
-              <div class="field"><label for="f-mobile">Mobile number</label><input id="f-mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" placeholder="09XX XXX XXXX"></div>
-            </div>
-            <div class="form__row">
-              <div class="field"><label for="f-service">Service</label>
-                <select id="f-service" name="service">
-                  <option value="">Choose service…</option>
-                  <option>General consultation</option>
-                  <option>Pedia consultation</option>
-                  <option>OB-GYN consultation</option>
-                  <option>Laboratory tests</option>
-                  <option>Chest x-ray</option>
-                  <option>Pre-employment package</option>
-                </select>
-              </div>
-              <div class="field"><label for="f-date">Date</label><input id="f-date" name="date" type="date"></div>
-            </div>
-            
-            <fieldset class="field">
-              <legend>Time</legend>
-              <div class="slots" aria-live="polite"></div>
-            </fieldset>
-            <div class="field"><label for="f-notes">Notes <span class="muted">(optional)</span></label><textarea id="f-notes" name="notes" placeholder="Anything we should know?"></textarea></div>
-            <p class="form__error" role="alert" hidden></p>
-            <button type="submit" class="btn btn--block">Request booking</button>
-            <p class="form__small">We'll confirm by text. Your details are only used for this booking.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="faq">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">FAQ</span>
-          <h2>Questions we get a lot</h2>
-        </div>
-        <div class="faq">
-          <details open><summary>Do I need a doctor's request for lab tests?</summary><p>No, you can request most tests yourself. If you have a doctor's request, bring it so we follow it exactly.</p></details>
-          <details><summary>When are the pedia and OB-GYN available?</summary><p>Pedia: Monday, Wednesday and Friday mornings. OB-GYN: Tuesday and Thursday afternoons. Book ahead to secure a slot.</p></details>
-          <details><summary>Do you accept PhilHealth and HMO?</summary><p>Yes, we accept PhilHealth for eligible services and most major HMOs. Bring your card and a valid ID.</p></details>
-          <details><summary>Can you do tests for our company?</summary><p>Yes. We do pre-employment and annual physical exams for companies, on-site or at the clinic.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="visit">
-      <div class="wrap visit">
-        <div>
-          <span class="kicker">Visit us</span>
-          <h2>Clinic hours</h2>
-          <table class="hours">
-            <tbody>
-              <tr data-day="1"><td>Monday</td><td>7:00 AM – 5:00 PM</td></tr>
-              <tr data-day="2"><td>Tuesday</td><td>7:00 AM – 5:00 PM</td></tr>
-              <tr data-day="3"><td>Wednesday</td><td>7:00 AM – 5:00 PM</td></tr>
-              <tr data-day="4"><td>Thursday</td><td>7:00 AM – 5:00 PM</td></tr>
-              <tr data-day="5"><td>Friday</td><td>7:00 AM – 5:00 PM</td></tr>
-              <tr data-day="6"><td>Saturday</td><td>7:00 AM – 12:00 NN</td></tr>
-              <tr data-day="0"><td>Sunday</td><td>Closed</td></tr>
-            </tbody>
-          </table>
-          <ul class="contact-list">
-            <li><b>Address:</b> 123 Sample St., Grace Park, Caloocan City</li>
-            <li><b>Landmark:</b> Across the barangay hall</li>
-            <li><b>Mobile:</b> 0919 000 0000 <span class="muted">(sample number)</span></li>
-          </ul>
-        </div>
-        <div class="map" role="img" aria-label="Map placeholder">
-          <div>
-            <div class="map__pin" aria-hidden="true">📍</div>
-            <p>Bayani Clinic</p>
-            <small>A real site shows a live Google Map here.</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="wrap">
-        <div class="band">
-          <div>
-            <h2>Need a check-up or lab test?</h2>
-            <p>Book now and skip the walk-in line.</p>
-          </div>
-          <a href="#book" class="btn">Book now</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="foot">
-    <div class="wrap">
-      <span>Bayani Medical &amp; Diagnostic Clinic is a fictional business. All names, numbers and prices are examples.</span>
-      <span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your business →</a></span>
+    <div class="f-row">
+      <div class="f"><label for="b-service">Service</label><select id="b-service" name="service"><option value="">Select…</option><option>General consultation</option><option>Pediatric consultation</option><option>OB-GYN consultation</option><option>Laboratory tests</option><option>Chest x-ray</option><option>ECG</option><option>Pre-employment package</option><option>Annual check-up package</option><option>Diabetes screening</option></select></div>
+      <div class="f"><label for="b-date">Preferred date</label><input id="b-date" name="date" type="date"></div>
     </div>
-  </footer>
+    
+    <fieldset class="f"><legend>Available times</legend><div class="slots" aria-live="polite"></div></fieldset>
+    <div class="f"><label for="b-notes">Notes <span class="opt">(optional)</span></label><textarea id="b-notes" name="notes" rows="3" placeholder="Symptoms, tests requested, HMO name…"></textarea></div>
+    <p class="form__error" role="alert" hidden></p>
+    <button type="submit" class="btn">Confirm booking request</button>
+    <p class="f-note">We’ll confirm by text. Your details are only used for this booking.</p>
+  </form>
+    <div class="next"><h3>What happens next</h3><ol>
+      <li><div><b>Text confirmation</b>We confirm your slot within 30 minutes during clinic hours.</div></li>
+      <li><div><b>Arrive and check in</b>Show your confirmation text at the front desk. Booked patients go first.</div></li>
+      <li><div><b>Results by email</b>Most lab results arrive in your inbox as a PDF the same day.</div></li>
+    </ol></div>
+  </div>
+</div></section>
 
-  <button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
-  <div class="toast" role="status" aria-live="polite"></div>
+<section class="sec" id="faq"><div class="wrap">
+  <div class="sec__head"><div><span class="tag">FAQ</span><h2>Frequently asked questions</h2></div></div>
+  <div class="faqg"><details><summary>Do I need a doctor’s request for lab tests?</summary><p>No. You can request most tests yourself. If you have a request from your doctor, bring it so we follow it exactly.</p></details><details><summary>How do I get my results?</summary><p>Most results are emailed as a PDF the same day. You can also pick up a printed copy at the front desk.</p></details><details><summary>Do you accept PhilHealth and HMOs?</summary><p>Yes, for eligible services. Bring your card and a valid ID. Call ahead if you are unsure whether a test is covered.</p></details><details><summary>Do you do company medical exams?</summary><p>Yes. We do pre-employment and annual physical exams at the clinic or on-site for groups of 20 or more.</p></details></div>
+</div></section>
 
-  <script>
-/* Shared behaviour for Stackclever sample sites: hours highlight, slot picker, demo booking, demo chat. */
+<section class="sec sec--grey" id="location"><div class="wrap loc">
+  <div><h3>Clinic hours</h3><table><tbody><tr data-day="1"><td>Monday</td><td>7:00 AM – 5:00 PM</td></tr><tr data-day="2"><td>Tuesday</td><td>7:00 AM – 5:00 PM</td></tr><tr data-day="3"><td>Wednesday</td><td>7:00 AM – 5:00 PM</td></tr><tr data-day="4"><td>Thursday</td><td>7:00 AM – 5:00 PM</td></tr><tr data-day="5"><td>Friday</td><td>7:00 AM – 5:00 PM</td></tr><tr data-day="6"><td>Saturday</td><td>7:00 AM – 12:00 NN</td></tr><tr data-day="0"><td>Sunday</td><td>Closed</td></tr></tbody></table></div>
+  <div><h3>Address</h3><p>123 Sample St., Grace Park, Caloocan City</p><p>Across the barangay hall. Jeepneys to Monumento pass in front.</p><p><b>Mobile:</b> 0919 000 0000 (sample)</p></div>
+  <div class="map" role="img" aria-label="Map placeholder"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5s-7-6.3-7-12.2a7 7 0 0 1 14 0c0 5.9-7 12.2-7 12.2z"/><circle cx="12" cy="9.3" r="2.6"/></svg></div>
+</div></section>
+</main>
+<footer class="ft"><div class="wrap"><span>Bayani Medical &amp; Diagnostic Clinic is a fictional business. Names, numbers and prices are examples.</span><span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your clinic →</a></span></div></footer>
+<button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
+<div class="toast" role="status" aria-live="polite"></div>
+<script>
 (function () {
-  var toastEl = document.querySelector('.toast');
-  var toastTimer;
-  function toast(msg) {
-    if (!toastEl) return;
-    toastEl.textContent = msg;
-    toastEl.classList.add('is-on');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
+  var toastEl = document.querySelector('.toast'), tt;
+  function toast(m) {
+    toastEl.textContent = m; toastEl.classList.add('is-on');
+    clearTimeout(tt); tt = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
   }
-
-  // Demo Messenger button
   document.querySelectorAll('[data-demo-chat]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      toast('Sample site: on a real site this opens the business’s Messenger chat.');
+    b.addEventListener('click', function () { toast('Sample site: on a real site this opens the business’s Messenger chat.'); });
+  });
+
+  // Tabs: [data-tabs] > [role=tab][aria-controls]
+  document.querySelectorAll('[data-tabs]').forEach(function (group) {
+    var tabs = group.querySelectorAll('[role="tab"]');
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute('aria-selected', on);
+          document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+        });
+      });
     });
   });
 
-  // Highlight today in the hours table
   var today = new Date().getDay();
-  var row = document.querySelector('.hours tr[data-day="' + today + '"]');
-  if (row) row.classList.add('is-today');
+  document.querySelectorAll('[data-day="' + today + '"]').forEach(function (r) { r.classList.add('is-today'); });
 
   var form = document.getElementById('booking');
   if (!form) return;
-
   var cfg = JSON.parse(form.dataset.config);
-  var dateIn = form.elements.date;
-  var slotBox = form.querySelector('.slots');
-  var picked = '';
-
+  var dateIn = form.elements.date, slotBox = form.querySelector('.slots'), picked = '';
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
   function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-
-  var start = new Date();
-  dateIn.min = iso(start);
-  var max = new Date(); max.setDate(max.getDate() + 60);
-  dateIn.max = iso(max);
-
-  // Deterministic "already booked" slots so the demo looks realistic
-  function taken(dateStr, i) {
-    var h = 0, s = dateStr + ':' + i;
+  function taken(ds, i) {
+    var h = 0, s = ds + ':' + i;
     for (var k = 0; k < s.length; k++) h = (h * 31 + s.charCodeAt(k)) >>> 0;
     return h % 100 < cfg.busy;
   }
+  window.SampleBooking = { taken: taken, cfg: cfg, iso: iso };
+  if (dateIn.type === 'date') {
+    dateIn.min = iso(new Date());
+    var mx = new Date(); mx.setDate(mx.getDate() + 60); dateIn.max = iso(mx);
+  }
 
-  function renderSlots() {
-    slotBox.innerHTML = '';
-    picked = '';
-    if (!dateIn.value) {
-      slotBox.innerHTML = '<p class="slots__empty">Pick a date first to see open ' + cfg.slotWord + 's.</p>';
-      return;
-    }
+  function render() {
+    slotBox.innerHTML = ''; picked = '';
+    if (!dateIn.value) { slotBox.innerHTML = '<p class="slots__empty">Pick a date to see open ' + cfg.slotWord + 's.</p>'; return; }
     var d = new Date(dateIn.value + 'T00:00:00');
-    if (cfg.closed.indexOf(d.getDay()) !== -1) {
-      slotBox.innerHTML = '<p class="slots__empty">We’re closed that day. Please pick another date.</p>';
-      return;
-    }
-    var now = new Date();
-    var isToday = dateIn.value === iso(now);
-    var any = false;
+    if (cfg.closed.indexOf(d.getDay()) !== -1) { slotBox.innerHTML = '<p class="slots__empty">Closed on ' + d.toLocaleDateString('en-PH', { weekday: 'long' }) + 's. Please pick another date.</p>'; return; }
+    var now = new Date(), isToday = dateIn.value === iso(now), any = false;
     cfg.slots.forEach(function (label, i) {
       var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'slot';
-      b.textContent = label;
-      b.setAttribute('aria-pressed', 'false');
-      var past = isToday && cfg.hours && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
-      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; }
-      else any = true;
+      b.type = 'button'; b.className = 'slot'; b.textContent = label; b.setAttribute('aria-pressed', 'false');
+      var past = isToday && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
+      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; } else any = true;
       b.addEventListener('click', function () {
         slotBox.querySelectorAll('.slot').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
-        b.setAttribute('aria-pressed', 'true');
-        picked = label;
+        b.setAttribute('aria-pressed', 'true'); picked = label;
       });
       slotBox.appendChild(b);
     });
-    if (!any) {
-      var p = document.createElement('p');
-      p.className = 'slots__empty';
-      p.textContent = 'Fully booked that day. Try the next date.';
-      slotBox.appendChild(p);
-    }
+    if (!any) { var p = document.createElement('p'); p.className = 'slots__empty'; p.textContent = 'Fully booked that day. Try another date.'; slotBox.appendChild(p); }
   }
-  dateIn.addEventListener('change', renderSlots);
-  renderSlots();
+  dateIn.addEventListener('change', render);
+  render();
 
   var err = form.querySelector('.form__error');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var d = new FormData(form);
-    var missing = [];
-    if (!(d.get('name') || '').trim()) missing.push('your name');
-    if (!(d.get('mobile') || '').trim()) missing.push('a mobile number');
-    if (!d.get('service')) missing.push(cfg.serviceWord);
-    if (!d.get('date')) missing.push('a date');
-    if (!picked) missing.push('a ' + cfg.slotWord);
-    if (missing.length) {
-      err.textContent = 'Please add ' + missing.join(', ') + '.';
-      err.hidden = false;
-      return;
-    }
+    var d = new FormData(form), miss = [];
+    if (!(d.get('name') || '').trim()) miss.push('your name');
+    if (!(d.get('mobile') || '').trim()) miss.push('a mobile number');
+    if (!d.get('service')) miss.push(cfg.serviceWord);
+    if (!d.get('date')) miss.push('a date');
+    if (!picked) miss.push('a ' + cfg.slotWord);
+    if (miss.length) { err.textContent = 'Please add ' + miss.join(', ') + '.'; err.hidden = false; return; }
     err.hidden = true;
-
-    var when = new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric' });
-    var rows = [
-      ['Name', d.get('name')],
-      [cfg.serviceLabel, d.get('service')],
-      ['Date', when],
-      [cfg.slotLabel, picked]
-    ];
+    var rows = [['Name', d.get('name')], [cfg.serviceLabel, d.get('service')],
+      ['Date', new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })],
+      [cfg.slotLabel, picked]];
     if (d.get('guests')) rows.push(['Guests', d.get('guests')]);
-
+    if (d.get('grade')) rows.push(['Grade level', d.get('grade')]);
     var done = document.createElement('div');
-    done.className = 'done';
-    done.setAttribute('role', 'status');
-    done.innerHTML = '<div class="done__icon">✓</div><h3></h3><p class="muted"></p><dl></dl>' +
-      '<p class="done__demo">This is a sample site, so nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
-      '<button type="button" class="btn btn--ghost btn--sm">Book another</button>';
+    done.className = 'done'; done.setAttribute('role', 'status');
+    done.innerHTML = '<div class="done__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3></h3><p></p><dl></dl>' +
+      '<p class="done__demo"><b>Sample site:</b> nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
+      '<button type="button" class="again">Make another booking</button>';
     done.querySelector('h3').textContent = cfg.doneTitle;
-    done.querySelector('p.muted').textContent = cfg.doneText;
+    done.querySelector('h3 + p').textContent = cfg.doneText;
     var dl = done.querySelector('dl');
     rows.forEach(function (r) {
       var dt = document.createElement('dt'); dt.textContent = r[0];
       var dd = document.createElement('dd'); dd.textContent = r[1];
       dl.appendChild(dt); dl.appendChild(dd);
     });
-    done.querySelector('button').addEventListener('click', function () {
-      done.remove();
-      form.reset();
-      form.hidden = false;
-      renderSlots();
+    done.querySelector('.again').addEventListener('click', function () {
+      done.remove(); form.reset(); form.hidden = false; render();
+      form.dispatchEvent(new Event('sample:reset'));
     });
     form.hidden = true;
     form.parentNode.insertBefore(done, form.nextSibling);
     done.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
-  // "Book this" buttons in the price list pre-select the service
   document.querySelectorAll('[data-book]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      form.elements.service.value = a.dataset.book;
-    });
+    a.addEventListener('click', function () { form.elements.service.value = a.dataset.book; });
   });
 })();
 
-  </script>
+
+(function(){
+  var q=document.getElementById('lab-q'),rows=[].slice.call(document.querySelectorAll('.lab tbody tr')),chips=document.querySelectorAll('.chips button'),empty=document.querySelector('.empty'),cat='All';
+  function run(){var t=q.value.trim().toLowerCase(),n=0;rows.forEach(function(r){var ok=(cat==='All'||r.dataset.cat===cat)&&r.textContent.toLowerCase().indexOf(t)!==-1;r.hidden=!ok;if(ok)n++;});empty.hidden=n>0;}
+  q.addEventListener('input',run);
+  chips.forEach(function(c){c.addEventListener('click',function(){chips.forEach(function(x){x.setAttribute('aria-pressed','false');});c.setAttribute('aria-pressed','true');cat=c.textContent;run();});});
+})();
+</script>
 </body>
 </html>

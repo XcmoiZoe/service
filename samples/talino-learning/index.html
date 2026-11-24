@@ -1,551 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Talino Learning Center (sample site by Stackclever)</title>
-  <meta name="description" content="Sample tutorial &amp; review center website by Stackclever. Talino Learning Center is a fictional business.">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#c2410c">
-  <meta property="og:title" content="Sample tutorial &amp; review center website · Stackclever">
-  <meta property="og:description" content="Price list, online booking, FAQs and Messenger. Get a site like this for your business.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-/* Shared styles for Stackclever sample sites. Each page sets its own theme vars on <body>. */
-:root {
-  --brand: #0f766e;
-  --brand-ink: #ffffff;
-  --brand-soft: #e6f4f2;
-  --ink: #16181d;
-  --muted: #5b616e;
-  --line: #e4e6eb;
-  --bg: #ffffff;
-  --bg-alt: #f6f7f9;
-  --radius: 14px;
-  --head: "Inter", system-ui, sans-serif;
-  --body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talino Learning Center · Sample tutorial and review center website by Stackclever</title>
+<meta name="description" content="Sample tutorial and review center website by Stackclever. Talino Learning Center is a fictional business.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#3d2fd3">
+<meta property="og:title" content="Sample tutorial and review center website · Stackclever">
+<meta property="og:description" content="Price list, online booking, FAQs and Messenger in one mobile-friendly site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Base shared by all samples. Each page defines: --brand --brand-ink --soft --ink --muted --line --bg --surface --r */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0 0 1em}
+h1,h2,h3,h4{margin:0 0 .5em}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.ico{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.sample-bar{background:#0b0b0c;color:#e9e9ea;font:13px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.sample-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:6px 16px;flex-wrap:wrap;padding:8px 0}
+.sample-bar p{margin:0}
+.sample-bar b{color:#ffd54a;font-weight:600}
+.sample-bar a{color:#ffd54a;font-weight:600;text-decoration:none;white-space:nowrap}
+.sample-bar a:hover{text-decoration:underline}
+
+/* Booking engine pieces */
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.slot{font:inherit;font-size:.88rem;padding:.65em .4em;border-radius:calc(var(--r) * .6);border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.slot:hover:not(:disabled){border-color:var(--brand)}
+.slot[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.slot:disabled{opacity:.45;text-decoration:line-through;cursor:not-allowed}
+.slots__empty{grid-column:1/-1;margin:0;color:var(--muted);font-size:.9rem}
+.form__error{color:#b42318;font-size:.9rem;font-weight:500}
+.done{text-align:center;padding:8px 0}
+.done__icon{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--soft);color:var(--brand);margin:0 auto 14px}
+.done__icon .ico{width:28px;height:28px;stroke-width:2.2}
+.done h3{margin-bottom:.3em}
+.done>p{color:var(--muted)}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;text-align:left;margin:18px 0;padding:16px 18px;border-radius:var(--r);background:var(--soft);font-size:.94rem}
+.done dt{color:var(--muted)}
+.done dd{margin:0;font-weight:600}
+.done__demo{font-size:.84rem;color:#6b5a12;background:#fff8d6;border:1px solid #f1e2a0;border-radius:10px;padding:10px 12px;text-align:left}
+.done .again{font:inherit;font-weight:600;background:none;border:1px solid var(--line);color:var(--ink);padding:.6em 1.2em;border-radius:999px;cursor:pointer}
+
+.chat{position:fixed;right:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:8px;padding:.8em 1.15em;border:0;border-radius:999px;background:#0866ff;color:#fff;font:600 15px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;cursor:pointer;box-shadow:0 14px 30px -12px rgba(8,102,255,.7)}
+.chat svg{width:20px;height:20px}
+.toast{position:fixed;left:50%;bottom:86px;z-index:70;transform:translate(-50%,16px);opacity:0;pointer-events:none;background:#111;color:#fff;padding:12px 18px;border-radius:12px;font:14px/1.45 system-ui,sans-serif;max-width:min(420px,100% - 32px);text-align:center;transition:.25s}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+.credit{font-size:.85rem;color:var(--muted)}
+.credit a{color:var(--brand);font-weight:600;text-decoration:none}
+@media (max-width:540px){.chat span{display:none}.wrap{width:min(1180px,100% - 32px)}}
+[hidden]{display:none!important}
+
+
+body{--brand:#3d2fd3;--brand-ink:#fff;--soft:#ecebff;--ink:#1c1a3b;--muted:#5d5a7a;--line:#1c1a3b;--bg:#fffaf0;--surface:#fff;--r:14px;--y:#ffc83d;--g:#2bb673;--c:#ff6b4a;font:16px/1.6 "Inter",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+h2{font-size:clamp(2rem,4vw,3.1rem)}
+.lbl{display:inline-block;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:.9rem;padding:5px 14px;border:2px solid var(--ink);border-radius:999px;background:#fff;margin-bottom:16px}
+.box{background:#fff;border:2px solid var(--ink);border-radius:20px;box-shadow:5px 5px 0 var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:14px;background:var(--brand);color:#fff;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font:inherit;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn .ico{width:18px;height:18px}
+.btn--y{background:var(--y);color:var(--ink)}
+.hd{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:2px solid var(--ink)}
+.hd .wrap{display:flex;align-items:center;gap:30px;height:76px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.45rem;letter-spacing:-.03em}
+.logo i{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--y);border:2px solid var(--ink);transform:rotate(-6deg)}
+.hd nav{display:flex;gap:26px;margin-left:auto;font-weight:600}
+.hd nav a{text-decoration:none}
+.hd nav a:hover{color:var(--brand)}
+.hd .btn{padding:10px 18px}
+.hero{padding:70px 0 90px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,6vw,5rem);margin-bottom:22px}
+.mk{background:linear-gradient(transparent 58%,var(--y) 58% 92%,transparent 92%);padding:0 4px}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:30em}
+.hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0}
+.subj{display:flex;gap:8px;flex-wrap:wrap}
+.subj span{font-weight:600;font-size:.9rem;padding:6px 12px;border-radius:10px;border:2px solid var(--ink)}
+.report{position:relative;padding:28px;transform:rotate(1.5deg)}
+.report__top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.report__top b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.2rem}
+.report__top span{font-size:.8rem;font-weight:700;background:#c9f0dc;border:2px solid var(--ink);padding:3px 10px;border-radius:999px}
+.bar{margin-bottom:14px}
+.bar div{display:flex;justify-content:space-between;font-weight:600;font-size:.9rem;margin-bottom:6px}
+.bar div em{font-style:normal;color:var(--g)}
+.bar i{display:block;height:14px;border-radius:8px;border:2px solid var(--ink);background:#fff;overflow:hidden;position:relative}
+.bar i::before{content:"";position:absolute;inset:0;width:var(--b);background:#e3e1f5}
+.bar i::after{content:"";position:absolute;inset:0;width:var(--a);background:var(--c2);border-right:2px solid var(--ink)}
+.report__note{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:var(--soft);font-size:.9rem}
+.stk{position:absolute;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;border:2px solid var(--ink);border-radius:14px;padding:10px 14px;box-shadow:3px 3px 0 var(--ink);font-size:.95rem;line-height:1.15;text-align:center}
+.stk--1{background:var(--c);color:#fff;top:-26px;left:-22px;transform:rotate(-8deg)}
+.stk--2{background:var(--y);bottom:-24px;right:-12px;transform:rotate(6deg)}
+.blob{position:absolute;border-radius:50%;z-index:-1}
+.sec{padding:100px 0}
+.sec--ink{background:var(--ink);color:#e9e7ff}
+.sec--ink h2{color:#fff}
+.sec--lav{background:var(--soft);border-block:2px solid var(--ink)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.head p{color:var(--muted);max-width:30em;margin:0}
+.progs{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.prog{display:flex;flex-direction:column;padding:24px;transition:transform .15s,box-shadow .15s}
+.prog:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink)}
+.prog__ic{display:grid;place-items:center;width:54px;height:54px;border-radius:14px;border:2px solid var(--ink);margin-bottom:18px}
+.prog__ic .ico{width:26px;height:26px;stroke-width:2}
+.prog small{font-weight:700;color:var(--brand);font-size:.84rem}
+.prog h3{font-size:1.4rem;margin:4px 0 10px}
+.prog p{color:var(--muted);font-size:.93rem}
+.prog__p{margin-top:auto;padding-top:16px;border-top:2px dashed #d6d3ea;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.prog__p b{font-family:"Bricolage Grotesque",sans-serif;font-size:1.7rem;font-weight:800}
+.prog__p span{font-size:.84rem;color:var(--muted)}
+.prog a{margin-top:14px;font-weight:700;color:var(--brand);text-decoration:none}
+.fees{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
+.fees span{font-size:.9rem;font-weight:600;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:8px 12px}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:h}
+.how div{padding:28px;border-radius:20px;border:2px solid #4b4880;background:#25234a}
+.how div::before{counter-increment:h;content:counter(h);display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--y);color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.3rem;margin-bottom:18px;border:2px solid #fff}
+.how h3{color:#fff;font-size:1.25rem}
+.how p{margin:0;color:#bdbae0;font-size:.94rem}
+.tt{overflow:auto;padding:4px 8px 10px 4px}
+table.week{width:100%;border-collapse:separate;border-spacing:8px;min-width:760px}
+.week th{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;text-align:left;font-size:1rem;padding:4px 6px}
+.week td{padding:14px 12px;border:2px solid var(--ink);border-radius:12px;font-weight:600;font-size:.9rem;background:#fff}
+.week td.time{border:0;background:none;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;white-space:nowrap}
+.week td.y{background:#ffe7a3}.week td.g{background:#c9f0dc}.week td.b{background:#d4ecff}.week td.p{background:#d9dcff}.week td.r{background:#ffd6cc}
+.week td.e{background:none;border-style:dashed;color:#a3a0bf;text-align:center}
+.book{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;align-items:start}
+.perks{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}
+.perks li{display:flex;gap:12px;align-items:center;font-weight:600}
+.perks i{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;border:2px solid var(--ink);background:#c9f0dc;flex:none}
+.perks .ico{width:18px;height:18px;stroke-width:2.4}
+.bform{padding:30px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:flex;flex-direction:column;gap:6px;margin:0 0 16px;border:0;padding:0;min-width:0}
+.f label,.f legend{font-weight:700;font-size:.9rem;padding:0}
+.f legend{margin-bottom:8px}
+.f input,.f select,.f textarea{font:inherit;padding:12px 14px;border-radius:12px;border:2px solid var(--ink);background:#fff;color:var(--ink);width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;box-shadow:3px 3px 0 var(--brand)}
+.opt{color:var(--muted);font-weight:400}
+.slot{border:2px solid var(--ink);border-radius:12px;font-weight:700}
+.slot[aria-pressed="true"]{box-shadow:3px 3px 0 var(--ink)}
+.bform .btn{width:100%}
+.f-note{font-size:.84rem;color:var(--muted);text-align:center;margin:14px 0 0}
+.done .again{border:2px solid var(--ink)}
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px}
+.faq details{margin-bottom:12px;padding:0 20px;border-radius:16px;box-shadow:3px 3px 0 var(--ink)}
+.faq summary{cursor:pointer;list-style:none;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.12rem;padding:16px 30px 16px 0;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:12px;font-size:1.5rem;color:var(--brand);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);margin:0 0 16px}
+.visit{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
+.visit>div{padding:26px}
+.visit h3{font-size:1.3rem}
+.visit table{width:100%;border-collapse:collapse;font-size:.93rem}
+.visit td{padding:6px 0;border-bottom:2px dotted #e2dff2}
+.visit td:last-child{text-align:right;font-weight:600}
+.visit tr.is-today td{color:var(--brand);font-weight:700}
+.visit p{color:var(--muted);margin:0 0 8px}
+.ft{background:var(--y);border-top:2px solid var(--ink);padding:30px 0;font-weight:500;font-size:.9rem}
+.ft .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ft a{color:var(--ink);font-weight:800}
+@media (max-width:1020px){.progs{grid-template-columns:1fr 1fr}.how{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){
+ .hd nav{display:none}.hd .btn{margin-left:auto}
+ .hero .wrap,.book,.faq,.visit{grid-template-columns:1fr}
+ .report{max-width:460px;margin:30px auto 0;width:calc(100% - 20px)}
 }
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; display: block; }
-a { color: inherit; }
-h1, h2, h3 { font-family: var(--head); line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.015em; }
-h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
-h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
-h3 { font-size: 1.1rem; }
-p { margin: 0 0 1em; }
-.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
-.muted { color: var(--muted); }
-
-/* Sample banner */
-.sample-bar { background: #111; color: #f2f2f2; font-size: .85rem; }
-.sample-bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; padding: 8px 0; }
-.sample-bar p { margin: 0; }
-.sample-bar b { color: #ffd54a; font-weight: 600; }
-.sample-bar a { color: #ffd54a; font-weight: 600; text-decoration: none; white-space: nowrap; }
-.sample-bar a:hover { text-decoration: underline; }
-
-/* Header */
-.top { position: sticky; top: 0; z-index: 40; background: rgba(255, 255, 255, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--head); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
-.brand__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--brand); color: var(--brand-ink); font-size: 1rem; }
-.top nav { display: flex; align-items: center; gap: 24px; }
-.top nav a:not(.btn) { color: var(--muted); text-decoration: none; font-size: .95rem; }
-.top nav a:not(.btn):hover { color: var(--ink); }
-
-/* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .85em 1.5em; border-radius: 999px; background: var(--brand); color: var(--brand-ink); border: 1px solid var(--brand); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform .15s, filter .15s; }
-.btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn--ghost:hover { border-color: var(--brand); color: var(--brand); }
-.btn--sm { padding: .55em 1.1em; font-size: .9rem; }
-.btn--block { width: 100%; }
-
-/* Hero */
-.hero { padding: 64px 0 56px; background: linear-gradient(180deg, var(--brand-soft), var(--bg)); }
-.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
-.kicker { display: inline-block; color: var(--brand); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .8em; }
-.lead { font-size: 1.12rem; color: var(--muted); max-width: 34em; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
-.ticks { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .92rem; color: var(--muted); }
-.ticks li::before { content: "\2713"; color: var(--brand); font-weight: 700; margin-right: 6px; }
-
-.hero__card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; box-shadow: 0 30px 60px -30px rgba(20, 30, 50, .35); }
-.hero__art { aspect-ratio: 16/10; border-radius: 14px; margin-bottom: 18px; background: var(--art); position: relative; overflow: hidden; display: grid; place-items: center; font-size: 4rem; }
-.hero__art span { filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .2)); }
-.next { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--bg-alt); }
-.next small { display: block; color: var(--muted); font-size: .8rem; }
-.next strong { font-family: var(--head); }
-.live { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; color: #15803d; font-weight: 600; }
-.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, .18); }
-
-/* Sections */
-.section { padding: 80px 0; }
-.section--alt { background: var(--bg-alt); }
-.section__head { max-width: 640px; margin-bottom: 36px; }
-
-.perks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.perk { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-.perk__icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--brand-soft); font-size: 1.3rem; margin-bottom: 14px; }
-.perk p { color: var(--muted); font-size: .93rem; margin: 0; }
-
-/* Price list */
-.prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.price-group { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 24px 12px; }
-.price-group h3 { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-.price-group ul { list-style: none; margin: 0; padding: 0; }
-.price-group li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
-.price-group li:last-child { border-bottom: 0; }
-.price-group li span small { display: block; color: var(--muted); font-size: .84rem; }
-.price-group li b { font-family: var(--head); white-space: nowrap; color: var(--brand); }
-.note { font-size: .88rem; color: var(--muted); margin-top: 18px; }
-
-/* Booking */
-.book { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; align-items: start; }
-.book__info ul { padding-left: 1.1em; color: var(--muted); }
-.book__info li { margin-bottom: .4em; }
-.form { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 20px 50px -35px rgba(20, 30, 50, .4); }
-.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-.field label, .field legend { font-weight: 600; font-size: .9rem; }
-.field input, .field select, .field textarea { font: inherit; padding: .7em .85em; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); width: 100%; }
-.field textarea { resize: vertical; min-height: 80px; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
-fieldset.field { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; }
-.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 4px; }
-.slot { font: inherit; font-size: .88rem; padding: .6em .4em; border-radius: 10px; border: 1px solid var(--line); background: #fff; cursor: pointer; color: var(--ink); }
-.slot:hover:not(:disabled) { border-color: var(--brand); }
-.slot[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
-.slot:disabled { color: #b3b7c0; text-decoration: line-through; cursor: not-allowed; background: var(--bg-alt); }
-.slots__empty { grid-column: 1 / -1; color: var(--muted); font-size: .9rem; margin: 0; }
-.form__error { color: #b91c1c; font-size: .9rem; font-weight: 500; }
-.form__small { font-size: .82rem; color: var(--muted); margin: 12px 0 0; text-align: center; }
-.done { text-align: center; padding: 12px 4px; }
-.done__icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-size: 1.6rem; margin: 0 auto 14px; }
-.done dl { text-align: left; background: var(--bg-alt); border-radius: 12px; padding: 14px 18px; margin: 16px 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: .93rem; }
-.done dt { color: var(--muted); }
-.done dd { margin: 0; font-weight: 600; }
-.done__demo { font-size: .85rem; color: var(--muted); background: #fff8db; border: 1px solid #f3e3a1; border-radius: 10px; padding: 10px 12px; }
-
-/* FAQ */
-.faq { max-width: 780px; }
-.faq details { border-bottom: 1px solid var(--line); padding: 4px 0; }
-.faq summary { cursor: pointer; list-style: none; font-weight: 600; padding: 14px 32px 14px 0; position: relative; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; position: absolute; right: 4px; top: 10px; font-size: 1.4rem; color: var(--brand); transition: transform .2s; }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq details p { color: var(--muted); margin: 0 0 16px; }
-
-/* Visit */
-.visit { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
-.hours { width: 100%; border-collapse: collapse; font-size: .95rem; }
-.hours td { padding: 10px 0; border-bottom: 1px solid var(--line); }
-.hours td:last-child { text-align: right; font-weight: 600; }
-.hours tr.is-today td { color: var(--brand); }
-.map { border-radius: var(--radius); border: 1px solid var(--line); min-height: 260px; background:
-  linear-gradient(90deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  linear-gradient(0deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  var(--brand-soft);
-  display: grid; place-items: center; text-align: center; padding: 24px; }
-.map__pin { font-size: 2.4rem; }
-.map p { margin: 6px 0 0; font-weight: 600; }
-.map small { color: var(--muted); }
-.contact-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
-.contact-list li { color: var(--muted); }
-.contact-list b { color: var(--ink); }
-
-/* CTA band */
-.band { background: var(--brand); color: var(--brand-ink); border-radius: 22px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.band h2 { margin: 0 0 .2em; }
-.band p { margin: 0; opacity: .85; }
-.band .btn { background: #fff; color: var(--ink); border-color: #fff; }
-
-/* Footer */
-.foot { border-top: 1px solid var(--line); padding: 28px 0 100px; font-size: .88rem; color: var(--muted); }
-.foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.foot a { color: var(--brand); font-weight: 600; text-decoration: none; }
-
-/* Floating chat + toast */
-.chat { position: fixed; right: 18px; bottom: 18px; z-index: 50; display: inline-flex; align-items: center; gap: 8px; padding: .8em 1.2em; border-radius: 999px; border: 0; background: #0866ff; color: #fff; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 14px 30px -10px rgba(8, 102, 255, .6); }
-.chat svg { width: 20px; height: 20px; }
-.toast { position: fixed; left: 50%; bottom: 84px; z-index: 60; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #111; color: #fff; padding: 12px 18px; border-radius: 12px; font-size: .9rem; max-width: min(420px, 100% - 32px); text-align: center; transition: opacity .25s, transform .25s; }
-.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
-
-@media (max-width: 900px) {
-  .hero .wrap, .book, .visit { grid-template-columns: 1fr; }
-  .perks { grid-template-columns: repeat(2, 1fr); }
-  .prices { grid-template-columns: 1fr; }
-  .top nav a:not(.btn) { display: none; }
+@media (max-width:600px){
+ .progs,.how,.f-row{grid-template-columns:1fr}
+ .sec{padding:70px 0}
+ .hero{padding:44px 0 70px}
+ .bform{padding:20px}
+ .stk--1{left:-8px}
 }
-@media (max-width: 540px) {
-  .perks, .form__row { grid-template-columns: 1fr; }
-  .section { padding: 60px 0; }
-  .hero { padding: 40px 0; }
-  .form { padding: 20px; }
-  .band { padding: 28px; }
-  .chat span { display: none; }
-}
-
-body { --brand: #c2410c; --brand-soft: #fdf0e6; --head: "Nunito", system-ui, sans-serif; --art: linear-gradient(135deg,#fdba74,#c2410c); }
-  </style>
+</style>
 </head>
-<body>
-  <div class="sample-bar" role="note">
-    <div class="wrap">
-      <p><b>Sample site.</b> Talino Learning Center is a fictional business, made by Stackclever to show what your tutorial &amp; review center website could look like.</p>
-      <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+<body class="tutor">
+<div class="sample-bar" role="note"><div class="wrap">
+  <p><b>Sample site.</b> Talino Learning Center is a fictional business, made by Stackclever to show what a tutorial and review center website could look like.</p>
+  <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+</div></div>
+
+<header class="hd"><div class="wrap">
+  <a href="#" class="logo"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5a2.5 2.5 0 0 1 2.5-2.5h12.5v15H7a2.5 2.5 0 0 0-2.5 2.5z"/><path d="M4.5 20.5A2.5 2.5 0 0 1 7 18h12.5v3H7"/></svg></i>Talino</a>
+  <nav aria-label="Main"><a href="#programs">Programs</a><a href="#how">How it works</a><a href="#schedule">Schedule</a><a href="#faq">FAQ</a></nav>
+  <a href="#book" class="btn btn--y">Free trial class</a>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="lbl">Tutorial &amp; review center · Marikina City</span>
+    <h1>Better grades start with <span class="mk">confidence.</span></h1>
+    <p>Small-group and one-on-one tutoring with licensed teachers for Kinder to Grade 10, plus entrance exam review. Your child’s first class is free.</p>
+    <div class="hero__cta"><a href="#book" class="btn">Book a free trial <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a><a href="#programs" class="btn btn--y">See programs &amp; fees</a></div>
+    <div class="subj"><span style="background:#ffe7a3">Reading</span><span style="background:#c9f0dc">Math</span><span style="background:#d4ecff">Science</span><span style="background:#d9dcff">English</span><span style="background:#ffd6cc">Entrance exams</span></div>
+  </div>
+  <div style="position:relative">
+    <span class="blob" style="width:340px;height:340px;background:#d9dcff;right:-60px;top:-40px"></span>
+    <div class="box report" aria-hidden="true">
+      <div class="report__top"><b>Monthly progress report</b><span>Grade 4</span></div>
+      <div class="bar"><div>Reading comprehension <em>+28%</em></div><i style="--b:52%;--a:80%;--c2:#ffc83d"></i></div>
+      <div class="bar"><div>Math: fractions <em>+35%</em></div><i style="--b:45%;--a:80%;--c2:#2bb673"></i></div>
+      <div class="bar"><div>Science quizzes <em>+20%</em></div><i style="--b:60%;--a:80%;--c2:#7fb8ff"></i></div>
+      <p class="report__note">“More confident answering in class. Keep practicing word problems at home.” — Teacher Mae</p>
+      <span class="stk stk--1">Max 5<br>per class</span>
+      <span class="stk stk--2">Licensed<br>teachers</span>
     </div>
   </div>
+</div></section>
 
-  <header class="top">
-    <div class="wrap">
-      <a href="#" class="brand"><span class="brand__mark" aria-hidden="true">T</span>Talino</a>
-      <nav aria-label="Main">
-        <a href="#prices">Prices</a>
-        <a href="#book">Book</a>
-        <a href="#faq">FAQ</a>
-        <a href="#visit">Visit us</a>
-        <a href="#book" class="btn btn--sm">Book now</a>
-      </nav>
+<section class="sec sec--lav" id="programs"><div class="wrap">
+  <div class="head"><div><span class="lbl">Programs</span><h2>A program for every grade</h2></div><p>All programs follow the DepEd curriculum and are taught by licensed teachers in groups of five or fewer.</p></div>
+  <div class="progs"><div class="box prog"><div class="prog__ic" style="background:#ffe7a3"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5a2.5 2.5 0 0 1 2.5-2.5h12.5v15H7a2.5 2.5 0 0 0-2.5 2.5z"/><path d="M4.5 20.5A2.5 2.5 0 0 1 7 18h12.5v3H7"/></svg></div><small>Kinder – Grade 3</small><h3>Reading Program</h3><p>Phonics, fluency and comprehension for beginning and struggling readers.</p><div class="prog__p"><b>₱4,500</b><span>12 sessions</span></div><a href="#book" data-book="Reading Program">Book a trial →</a></div><div class="box prog"><div class="prog__ic" style="background:#c9f0dc"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 4.5H7l5.5 7.5L7 19.5h10"/></svg></div><small>Grade 1 – 6</small><h3>Math & Science Tutorial</h3><p>Small-group lessons that follow your child’s school curriculum and homework.</p><div class="prog__p"><b>₱2,500</b><span>per month · 2×/week</span></div><a href="#book" data-book="Math &amp; Science Tutorial">Book a trial →</a></div><div class="box prog"><div class="prog__ic" style="background:#d9dcff"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4.2-1L19.5 7.7l-3.2-3.2L5 15.8z"/><path d="M14.3 6.5l3.2 3.2"/></svg></div><small>Grade 7 – 10</small><h3>High School Tutorial</h3><p>Algebra, Science and English support, plus help with projects and quizzes.</p><div class="prog__p"><b>₱3,200</b><span>per month · 2×/week</span></div><a href="#book" data-book="High School Tutorial">Book a trial →</a></div><div class="box prog"><div class="prog__ic" style="background:#ffd6cc"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9.5l10-5 10 5-10 5z"/><path d="M6 11.5v5c3.3 2.2 8.7 2.2 12 0v-5"/><path d="M22 9.5v6"/></svg></div><small>Grade 6 & Grade 12</small><h3>Entrance Exam Review</h3><p>Reviews for Science high schools and college entrance tests, with mock exams.</p><div class="prog__p"><b>₱6,500</b><span>16 sessions</span></div><a href="#book" data-book="Entrance Exam Review">Book a trial →</a></div></div>
+  <div class="fees"><span>One-on-one: ₱4,800 / month</span><span>Homework help: ₱300 / hour</span><span>Registration: ₱500 with free books</span><span>Sibling discount: 10% off</span></div>
+</div></section>
+
+<section class="sec sec--ink" id="how"><div class="wrap">
+  <div class="head"><div><span class="lbl" style="background:var(--y)">How it works</span><h2>From trial class to better grades</h2></div><p style="color:#bdbae0">No long contracts. Pay monthly and stop anytime.</p></div>
+  <div class="how">
+    <div><h3>Free trial class</h3><p>Your child joins a real class. No payment and no commitment.</p></div>
+    <div><h3>Learning check</h3><p>The teacher shares strengths and gaps, and recommends a program.</p></div>
+    <div><h3>Weekly classes</h3><p>Small groups that follow the school lessons, with homework help.</p></div>
+    <div><h3>Monthly report</h3><p>A short progress update for parents, sent by Messenger.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="schedule"><div class="wrap">
+  <div class="head"><div><span class="lbl">Schedule</span><h2>Weekly class schedule</h2></div><p>Saturday classes run in the morning. Online classes follow the same schedule.</p></div>
+  <div class="tt"><table class="week"><thead><tr><th></th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody>
+    <tr><td class="time">3:00 PM</td><td class="g">Math G1–3</td><td class="y">Reading</td><td class="g">Math G1–3</td><td class="y">Reading</td><td class="g">Math G1–3</td><td class="y">Reading</td></tr><tr><td class="time">4:30 PM</td><td class="g">Math G4–6</td><td class="b">Science G4–6</td><td class="g">Math G4–6</td><td class="b">Science G4–6</td><td class="g">Math G4–6</td><td class="r">Entrance review</td></tr><tr><td class="time">6:00 PM</td><td class="p">HS Algebra</td><td class="b">HS Science</td><td class="p">HS Algebra</td><td class="b">HS Science</td><td class="p">HS English</td><td class="e">—</td></tr>
+  </tbody></table></div>
+</div></section>
+
+<section class="sec sec--lav" id="book"><div class="wrap book">
+  <div>
+    <span class="lbl">Free trial class</span>
+    <h2>Book your child’s free class</h2>
+    <p style="color:var(--muted)">Pick a schedule and we’ll confirm by text. After the class, the teacher gives you honest feedback.</p>
+    <ul class="perks">
+      <li><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>1-hour class with a licensed teacher</li>
+      <li><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Bring the latest report card or a sample quiz</li>
+      <li><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>No payment, no commitment</li>
+    </ul>
+  </div>
+  <div class="box bform-wrap"><form class="bform" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;9:00 AM&quot;,&quot;10:30 AM&quot;,&quot;1:00 PM&quot;,&quot;3:00 PM&quot;,&quot;4:30 PM&quot;,&quot;6:00 PM&quot;],&quot;hours&quot;:[9,10,13,15,16,18],&quot;busy&quot;:30,&quot;closed&quot;:[0],&quot;serviceLabel&quot;:&quot;Program&quot;,&quot;serviceWord&quot;:&quot;a program&quot;,&quot;slotLabel&quot;:&quot;Class time&quot;,&quot;slotWord&quot;:&quot;class time&quot;,&quot;doneTitle&quot;:&quot;Trial class booked!&quot;,&quot;doneText&quot;:&quot;We’ll text you a reminder the day before the class.&quot;}">
+    
+    <div class="f-row">
+      <div class="f"><label for="b-name">Full name</label><input id="b-name" name="name" autocomplete="name" placeholder="Parent or guardian name"></div>
+      <div class="f"><label for="b-mobile">Mobile number</label><input id="b-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="09XX XXX XXXX"></div>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <div>
-          <span class="kicker">Tutorial &amp; review center · Marikina City</span>
-          <h1>Better grades, more confident kids.</h1>
-          <p class="lead">Small-group and one-on-one tutoring in Reading, Math and Science for Kinder to Grade 10, plus entrance exam review. Book a free trial class today.</p>
-          <div class="hero__cta">
-            <a href="#book" class="btn">Book online</a>
-            <a href="#prices" class="btn btn--ghost">See prices</a>
-          </div>
-          <ul class="ticks">
-            <li>Licensed teachers</li>
-            <li>Max 5 kids per group</li>
-            <li>Free trial class</li>
-          </ul>
-        </div>
-        <div class="hero__card" aria-hidden="true">
-          <div class="hero__art"><span>📚</span></div>
-          <div class="next">
-            <div><small>Free trial class</small><strong>Saturday, 9:00 AM</strong></div>
-            <span class="live">Booking open</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="perks">
-          <div class="perk"><div class="perk__icon" aria-hidden="true">📖</div><h3>Reading program</h3><p>Phonics and comprehension for beginning readers.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">➗</div><h3>Math made easy</h3><p>Step-by-step lessons that match the school curriculum.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">📝</div><h3>Exam review</h3><p>Science high school and college entrance exam prep.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">📊</div><h3>Progress reports</h3><p>Monthly updates for parents, sent by Messenger.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="prices">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">Price list</span>
-          <h2>Clear prices, no need to PM</h2>
-          <p class="muted">Rates below are starting prices. Book a slot and we'll confirm the details with you.</p>
-        </div>
-        <div class="prices">
-          <div class="price-group">
-            <h3><span aria-hidden="true">👩‍🏫</span> Tutorial (monthly)</h3>
-            <ul>
-              <li><span>Small group · 2×/week<small>Max 5 students, 1.5 hrs</small></span><b>₱2,500</b></li>
-              <li><span>Small group · 3×/week<small>Max 5 students, 1.5 hrs</small></span><b>₱3,500</b></li>
-              <li><span>One-on-one · 2×/week<small>1 hr per session</small></span><b>₱4,800</b></li>
-              <li><span>Homework help (per hour)<small>Walk-in</small></span><b>₱300</b></li>
-            </ul>
-          </div>
-          <div class="price-group">
-            <h3><span aria-hidden="true">🎯</span> Review programs</h3>
-            <ul>
-              <li><span>Reading program<small>12 sessions</small></span><b>₱4,500</b></li>
-              <li><span>Science HS entrance review<small>16 sessions</small></span><b>₱6,500</b></li>
-              <li><span>College entrance review<small>20 sessions + mock exams</small></span><b>₱8,500</b></li>
-              <li><span>Registration fee<small>One-time, with free books</small></span><b>₱500</b></li>
-            </ul>
-          </div>
-        </div>
-        <p class="note">Sibling discount: 10% off for the second child. Online classes are available at the same rates.</p>
-      </div>
-    </section>
-
-    <section class="section" id="book">
-      <div class="wrap book">
-        <div class="book__info">
-          <span class="kicker">Online booking</span>
-          <h2>Book a free trial class</h2>
-          <p class="muted">Your child joins a real class, and you get feedback from the teacher after.</p>
-          <ul>
-            <li>Bring your child's latest report card or a sample quiz</li>
-            <li>Trial classes are 1 hour</li>
-            <li>No commitment, and no payment for the trial</li>
-          </ul>
-        </div>
-        <div>
-          <form class="form" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;9:00 AM&quot;,&quot;10:30 AM&quot;,&quot;1:00 PM&quot;,&quot;3:00 PM&quot;,&quot;4:30 PM&quot;,&quot;6:00 PM&quot;],&quot;hours&quot;:[9,10,13,15,16,18],&quot;busy&quot;:30,&quot;closed&quot;:[0],&quot;serviceLabel&quot;:&quot;Program&quot;,&quot;serviceWord&quot;:&quot;a program&quot;,&quot;slotLabel&quot;:&quot;Class time&quot;,&quot;slotWord&quot;:&quot;class time&quot;,&quot;doneTitle&quot;:&quot;Trial class booked!&quot;,&quot;doneText&quot;:&quot;We'll text you a reminder the day before.&quot;}">
-            <div class="form__row">
-              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" placeholder="Juan Dela Cruz"></div>
-              <div class="field"><label for="f-mobile">Mobile number</label><input id="f-mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" placeholder="09XX XXX XXXX"></div>
-            </div>
-            <div class="form__row">
-              <div class="field"><label for="f-service">Program</label>
-                <select id="f-service" name="service">
-                  <option value="">Choose program…</option>
-                  <option>Free trial class</option>
-                  <option>Small-group tutorial</option>
-                  <option>One-on-one tutorial</option>
-                  <option>Reading program</option>
-                  <option>Entrance exam review</option>
-                </select>
-              </div>
-              <div class="field"><label for="f-date">Date</label><input id="f-date" name="date" type="date"></div>
-            </div>
-            
-            <fieldset class="field">
-              <legend>Class time</legend>
-              <div class="slots" aria-live="polite"></div>
-            </fieldset>
-            <div class="field"><label for="f-notes">Notes <span class="muted">(optional)</span></label><textarea id="f-notes" name="notes" placeholder="Anything we should know?"></textarea></div>
-            <p class="form__error" role="alert" hidden></p>
-            <button type="submit" class="btn btn--block">Request booking</button>
-            <p class="form__small">We'll confirm by text. Your details are only used for this booking.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="faq">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">FAQ</span>
-          <h2>Questions we get a lot</h2>
-        </div>
-        <div class="faq">
-          <details open><summary>What grade levels do you teach?</summary><p>Kinder to Grade 10 for tutorials, plus Grade 6 and Grade 12 students preparing for entrance exams.</p></details>
-          <details><summary>Who are the teachers?</summary><p>Licensed professional teachers (LPTs) with at least 2 years of classroom or tutoring experience.</p></details>
-          <details><summary>Do you offer online classes?</summary><p>Yes, by Zoom or Google Meet, at the same rates as face-to-face classes.</p></details>
-          <details><summary>Can I pay monthly?</summary><p>Yes. Tutorials are paid monthly by cash, GCash or bank transfer.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="visit">
-      <div class="wrap visit">
-        <div>
-          <span class="kicker">Visit us</span>
-          <h2>Clinic hours</h2>
-          <table class="hours">
-            <tbody>
-              <tr data-day="1"><td>Monday</td><td>9:00 AM – 7:30 PM</td></tr>
-              <tr data-day="2"><td>Tuesday</td><td>9:00 AM – 7:30 PM</td></tr>
-              <tr data-day="3"><td>Wednesday</td><td>9:00 AM – 7:30 PM</td></tr>
-              <tr data-day="4"><td>Thursday</td><td>9:00 AM – 7:30 PM</td></tr>
-              <tr data-day="5"><td>Friday</td><td>9:00 AM – 7:30 PM</td></tr>
-              <tr data-day="6"><td>Saturday</td><td>8:00 AM – 5:00 PM</td></tr>
-              <tr data-day="0"><td>Sunday</td><td>Closed</td></tr>
-            </tbody>
-          </table>
-          <ul class="contact-list">
-            <li><b>Address:</b> 45 Sample Ave., Concepcion Uno, Marikina City</li>
-            <li><b>Landmark:</b> Two blocks from the public market</li>
-            <li><b>Mobile:</b> 0921 000 0000 <span class="muted">(sample number)</span></li>
-          </ul>
-        </div>
-        <div class="map" role="img" aria-label="Map placeholder">
-          <div>
-            <div class="map__pin" aria-hidden="true">📍</div>
-            <p>Talino</p>
-            <small>A real site shows a live Google Map here.</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="wrap">
-        <div class="band">
-          <div>
-            <h2>School year off to a rough start?</h2>
-            <p>Book a free trial class this week.</p>
-          </div>
-          <a href="#book" class="btn">Book now</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="foot">
-    <div class="wrap">
-      <span>Talino Learning Center is a fictional business. All names, numbers and prices are examples.</span>
-      <span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your business →</a></span>
+    <div class="f-row">
+      <div class="f"><label for="b-service">Program</label><select id="b-service" name="service"><option value="">Select…</option><option>Reading Program</option><option>Math &amp; Science Tutorial</option><option>High School Tutorial</option><option>Entrance Exam Review</option><option>One-on-one tutorial</option><option>Not sure yet</option></select></div>
+      <div class="f"><label for="b-date">Preferred date</label><input id="b-date" name="date" type="date"></div>
     </div>
-  </footer>
+    <div class="f-row"><div class="f"><label for="b-grade">Grade level</label><select id="b-grade" name="grade"><option value="">Select…</option><option>Kinder</option><option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 12</option></select></div></div>
+    <fieldset class="f"><legend>Class times</legend><div class="slots" aria-live="polite"></div></fieldset>
+    <div class="f"><label for="b-notes">Notes <span class="opt">(optional)</span></label><textarea id="b-notes" name="notes" rows="3" placeholder="Subjects your child finds hard, school, etc."></textarea></div>
+    <p class="form__error" role="alert" hidden></p>
+    <button type="submit" class="btn">Book free trial class</button>
+    <p class="f-note">We’ll confirm by text. Your details are only used for this booking.</p>
+  </form></div>
+</div></section>
 
-  <button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
-  <div class="toast" role="status" aria-live="polite"></div>
+<section class="sec" id="faq"><div class="wrap faq">
+  <div><span class="lbl">FAQ</span><h2>Parents usually ask</h2><p style="color:var(--muted)">Still unsure? Message us. Teacher Mae replies on weekdays.</p></div>
+  <div><details class="box" open><summary>What grade levels do you teach?</summary><p>Kinder to Grade 10 for tutorials, plus Grade 6 and Grade 12 students preparing for entrance exams.</p></details><details class="box"><summary>Who are the teachers?</summary><p>Licensed professional teachers (LPTs) with at least two years of classroom or tutoring experience.</p></details><details class="box"><summary>How many students are in a class?</summary><p>A maximum of five per group, so every child gets attention. One-on-one sessions are also available.</p></details><details class="box"><summary>Do you offer online classes?</summary><p>Yes, by Zoom or Google Meet, at the same rates as face-to-face classes.</p></details><details class="box"><summary>How will I know if my child is improving?</summary><p>You get a short progress report by Messenger every month, and you can request a parent-teacher chat anytime.</p></details></div>
+</div></section>
 
-  <script>
-/* Shared behaviour for Stackclever sample sites: hours highlight, slot picker, demo booking, demo chat. */
+<section class="sec" style="padding-top:0"><div class="wrap visit">
+  <div class="box"><h3>Center hours</h3><table><tbody><tr data-day="1"><td>Monday</td><td>1:00 PM – 7:30 PM</td></tr><tr data-day="2"><td>Tuesday</td><td>1:00 PM – 7:30 PM</td></tr><tr data-day="3"><td>Wednesday</td><td>1:00 PM – 7:30 PM</td></tr><tr data-day="4"><td>Thursday</td><td>1:00 PM – 7:30 PM</td></tr><tr data-day="5"><td>Friday</td><td>1:00 PM – 7:30 PM</td></tr><tr data-day="6"><td>Saturday</td><td>8:00 AM – 5:00 PM</td></tr><tr data-day="0"><td>Sunday</td><td>Closed</td></tr></tbody></table></div>
+  <div class="box"><h3>Visit us</h3><p>45 Sample Ave., Concepcion Uno, Marikina City</p><p>Two blocks from the public market, beside the bakery.</p></div>
+  <div class="box"><h3>Contact</h3><p>0921 000 0000 (sample)</p><p>hello@example.com</p><p>Online classes via Zoom or Google Meet.</p></div>
+</div></section>
+</main>
+<footer class="ft"><div class="wrap"><span>Talino Learning Center is a fictional business. Names, numbers and prices are examples.</span><span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your center →</a></span></div></footer>
+<button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
+<div class="toast" role="status" aria-live="polite"></div>
+<script>
 (function () {
-  var toastEl = document.querySelector('.toast');
-  var toastTimer;
-  function toast(msg) {
-    if (!toastEl) return;
-    toastEl.textContent = msg;
-    toastEl.classList.add('is-on');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
+  var toastEl = document.querySelector('.toast'), tt;
+  function toast(m) {
+    toastEl.textContent = m; toastEl.classList.add('is-on');
+    clearTimeout(tt); tt = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
   }
-
-  // Demo Messenger button
   document.querySelectorAll('[data-demo-chat]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      toast('Sample site: on a real site this opens the business’s Messenger chat.');
+    b.addEventListener('click', function () { toast('Sample site: on a real site this opens the business’s Messenger chat.'); });
+  });
+
+  // Tabs: [data-tabs] > [role=tab][aria-controls]
+  document.querySelectorAll('[data-tabs]').forEach(function (group) {
+    var tabs = group.querySelectorAll('[role="tab"]');
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute('aria-selected', on);
+          document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+        });
+      });
     });
   });
 
-  // Highlight today in the hours table
   var today = new Date().getDay();
-  var row = document.querySelector('.hours tr[data-day="' + today + '"]');
-  if (row) row.classList.add('is-today');
+  document.querySelectorAll('[data-day="' + today + '"]').forEach(function (r) { r.classList.add('is-today'); });
 
   var form = document.getElementById('booking');
   if (!form) return;
-
   var cfg = JSON.parse(form.dataset.config);
-  var dateIn = form.elements.date;
-  var slotBox = form.querySelector('.slots');
-  var picked = '';
-
+  var dateIn = form.elements.date, slotBox = form.querySelector('.slots'), picked = '';
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
   function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-
-  var start = new Date();
-  dateIn.min = iso(start);
-  var max = new Date(); max.setDate(max.getDate() + 60);
-  dateIn.max = iso(max);
-
-  // Deterministic "already booked" slots so the demo looks realistic
-  function taken(dateStr, i) {
-    var h = 0, s = dateStr + ':' + i;
+  function taken(ds, i) {
+    var h = 0, s = ds + ':' + i;
     for (var k = 0; k < s.length; k++) h = (h * 31 + s.charCodeAt(k)) >>> 0;
     return h % 100 < cfg.busy;
   }
+  window.SampleBooking = { taken: taken, cfg: cfg, iso: iso };
+  if (dateIn.type === 'date') {
+    dateIn.min = iso(new Date());
+    var mx = new Date(); mx.setDate(mx.getDate() + 60); dateIn.max = iso(mx);
+  }
 
-  function renderSlots() {
-    slotBox.innerHTML = '';
-    picked = '';
-    if (!dateIn.value) {
-      slotBox.innerHTML = '<p class="slots__empty">Pick a date first to see open ' + cfg.slotWord + 's.</p>';
-      return;
-    }
+  function render() {
+    slotBox.innerHTML = ''; picked = '';
+    if (!dateIn.value) { slotBox.innerHTML = '<p class="slots__empty">Pick a date to see open ' + cfg.slotWord + 's.</p>'; return; }
     var d = new Date(dateIn.value + 'T00:00:00');
-    if (cfg.closed.indexOf(d.getDay()) !== -1) {
-      slotBox.innerHTML = '<p class="slots__empty">We’re closed that day. Please pick another date.</p>';
-      return;
-    }
-    var now = new Date();
-    var isToday = dateIn.value === iso(now);
-    var any = false;
+    if (cfg.closed.indexOf(d.getDay()) !== -1) { slotBox.innerHTML = '<p class="slots__empty">Closed on ' + d.toLocaleDateString('en-PH', { weekday: 'long' }) + 's. Please pick another date.</p>'; return; }
+    var now = new Date(), isToday = dateIn.value === iso(now), any = false;
     cfg.slots.forEach(function (label, i) {
       var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'slot';
-      b.textContent = label;
-      b.setAttribute('aria-pressed', 'false');
-      var past = isToday && cfg.hours && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
-      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; }
-      else any = true;
+      b.type = 'button'; b.className = 'slot'; b.textContent = label; b.setAttribute('aria-pressed', 'false');
+      var past = isToday && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
+      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; } else any = true;
       b.addEventListener('click', function () {
         slotBox.querySelectorAll('.slot').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
-        b.setAttribute('aria-pressed', 'true');
-        picked = label;
+        b.setAttribute('aria-pressed', 'true'); picked = label;
       });
       slotBox.appendChild(b);
     });
-    if (!any) {
-      var p = document.createElement('p');
-      p.className = 'slots__empty';
-      p.textContent = 'Fully booked that day. Try the next date.';
-      slotBox.appendChild(p);
-    }
+    if (!any) { var p = document.createElement('p'); p.className = 'slots__empty'; p.textContent = 'Fully booked that day. Try another date.'; slotBox.appendChild(p); }
   }
-  dateIn.addEventListener('change', renderSlots);
-  renderSlots();
+  dateIn.addEventListener('change', render);
+  render();
 
   var err = form.querySelector('.form__error');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var d = new FormData(form);
-    var missing = [];
-    if (!(d.get('name') || '').trim()) missing.push('your name');
-    if (!(d.get('mobile') || '').trim()) missing.push('a mobile number');
-    if (!d.get('service')) missing.push(cfg.serviceWord);
-    if (!d.get('date')) missing.push('a date');
-    if (!picked) missing.push('a ' + cfg.slotWord);
-    if (missing.length) {
-      err.textContent = 'Please add ' + missing.join(', ') + '.';
-      err.hidden = false;
-      return;
-    }
+    var d = new FormData(form), miss = [];
+    if (!(d.get('name') || '').trim()) miss.push('your name');
+    if (!(d.get('mobile') || '').trim()) miss.push('a mobile number');
+    if (!d.get('service')) miss.push(cfg.serviceWord);
+    if (!d.get('date')) miss.push('a date');
+    if (!picked) miss.push('a ' + cfg.slotWord);
+    if (miss.length) { err.textContent = 'Please add ' + miss.join(', ') + '.'; err.hidden = false; return; }
     err.hidden = true;
-
-    var when = new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric' });
-    var rows = [
-      ['Name', d.get('name')],
-      [cfg.serviceLabel, d.get('service')],
-      ['Date', when],
-      [cfg.slotLabel, picked]
-    ];
+    var rows = [['Name', d.get('name')], [cfg.serviceLabel, d.get('service')],
+      ['Date', new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })],
+      [cfg.slotLabel, picked]];
     if (d.get('guests')) rows.push(['Guests', d.get('guests')]);
-
+    if (d.get('grade')) rows.push(['Grade level', d.get('grade')]);
     var done = document.createElement('div');
-    done.className = 'done';
-    done.setAttribute('role', 'status');
-    done.innerHTML = '<div class="done__icon">✓</div><h3></h3><p class="muted"></p><dl></dl>' +
-      '<p class="done__demo">This is a sample site, so nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
-      '<button type="button" class="btn btn--ghost btn--sm">Book another</button>';
+    done.className = 'done'; done.setAttribute('role', 'status');
+    done.innerHTML = '<div class="done__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3></h3><p></p><dl></dl>' +
+      '<p class="done__demo"><b>Sample site:</b> nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
+      '<button type="button" class="again">Make another booking</button>';
     done.querySelector('h3').textContent = cfg.doneTitle;
-    done.querySelector('p.muted').textContent = cfg.doneText;
+    done.querySelector('h3 + p').textContent = cfg.doneText;
     var dl = done.querySelector('dl');
     rows.forEach(function (r) {
       var dt = document.createElement('dt'); dt.textContent = r[0];
       var dd = document.createElement('dd'); dd.textContent = r[1];
       dl.appendChild(dt); dl.appendChild(dd);
     });
-    done.querySelector('button').addEventListener('click', function () {
-      done.remove();
-      form.reset();
-      form.hidden = false;
-      renderSlots();
+    done.querySelector('.again').addEventListener('click', function () {
+      done.remove(); form.reset(); form.hidden = false; render();
+      form.dispatchEvent(new Event('sample:reset'));
     });
     form.hidden = true;
     form.parentNode.insertBefore(done, form.nextSibling);
     done.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
-  // "Book this" buttons in the price list pre-select the service
   document.querySelectorAll('[data-book]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      form.elements.service.value = a.dataset.book;
-    });
+    a.addEventListener('click', function () { form.elements.service.value = a.dataset.book; });
   });
 })();
 
-  </script>
+
+</script>
 </body>
 </html>

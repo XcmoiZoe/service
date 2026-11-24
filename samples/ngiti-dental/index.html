@@ -1,552 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ngiti Dental Clinic (sample site by Stackclever)</title>
-  <meta name="description" content="Sample dental clinic website by Stackclever. Ngiti Dental Clinic is a fictional business.">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#0e7490">
-  <meta property="og:title" content="Sample dental clinic website · Stackclever">
-  <meta property="og:description" content="Price list, online booking, FAQs and Messenger. Get a site like this for your business.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-/* Shared styles for Stackclever sample sites. Each page sets its own theme vars on <body>. */
-:root {
-  --brand: #0f766e;
-  --brand-ink: #ffffff;
-  --brand-soft: #e6f4f2;
-  --ink: #16181d;
-  --muted: #5b616e;
-  --line: #e4e6eb;
-  --bg: #ffffff;
-  --bg-alt: #f6f7f9;
-  --radius: 14px;
-  --head: "Inter", system-ui, sans-serif;
-  --body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ngiti Dental Clinic · Sample dental clinic website by Stackclever</title>
+<meta name="description" content="Sample dental clinic website by Stackclever. Ngiti Dental Clinic is a fictional business.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b7285">
+<meta property="og:title" content="Sample dental clinic website · Stackclever">
+<meta property="og:description" content="Price list, online booking, FAQs and Messenger in one mobile-friendly site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Base shared by all samples. Each page defines: --brand --brand-ink --soft --ink --muted --line --bg --surface --r */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0 0 1em}
+h1,h2,h3,h4{margin:0 0 .5em}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.ico{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.sample-bar{background:#0b0b0c;color:#e9e9ea;font:13px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.sample-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:6px 16px;flex-wrap:wrap;padding:8px 0}
+.sample-bar p{margin:0}
+.sample-bar b{color:#ffd54a;font-weight:600}
+.sample-bar a{color:#ffd54a;font-weight:600;text-decoration:none;white-space:nowrap}
+.sample-bar a:hover{text-decoration:underline}
+
+/* Booking engine pieces */
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.slot{font:inherit;font-size:.88rem;padding:.65em .4em;border-radius:calc(var(--r) * .6);border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.slot:hover:not(:disabled){border-color:var(--brand)}
+.slot[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.slot:disabled{opacity:.45;text-decoration:line-through;cursor:not-allowed}
+.slots__empty{grid-column:1/-1;margin:0;color:var(--muted);font-size:.9rem}
+.form__error{color:#b42318;font-size:.9rem;font-weight:500}
+.done{text-align:center;padding:8px 0}
+.done__icon{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--soft);color:var(--brand);margin:0 auto 14px}
+.done__icon .ico{width:28px;height:28px;stroke-width:2.2}
+.done h3{margin-bottom:.3em}
+.done>p{color:var(--muted)}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;text-align:left;margin:18px 0;padding:16px 18px;border-radius:var(--r);background:var(--soft);font-size:.94rem}
+.done dt{color:var(--muted)}
+.done dd{margin:0;font-weight:600}
+.done__demo{font-size:.84rem;color:#6b5a12;background:#fff8d6;border:1px solid #f1e2a0;border-radius:10px;padding:10px 12px;text-align:left}
+.done .again{font:inherit;font-weight:600;background:none;border:1px solid var(--line);color:var(--ink);padding:.6em 1.2em;border-radius:999px;cursor:pointer}
+
+.chat{position:fixed;right:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:8px;padding:.8em 1.15em;border:0;border-radius:999px;background:#0866ff;color:#fff;font:600 15px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;cursor:pointer;box-shadow:0 14px 30px -12px rgba(8,102,255,.7)}
+.chat svg{width:20px;height:20px}
+.toast{position:fixed;left:50%;bottom:86px;z-index:70;transform:translate(-50%,16px);opacity:0;pointer-events:none;background:#111;color:#fff;padding:12px 18px;border-radius:12px;font:14px/1.45 system-ui,sans-serif;max-width:min(420px,100% - 32px);text-align:center;transition:.25s}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+.credit{font-size:.85rem;color:var(--muted)}
+.credit a{color:var(--brand);font-weight:600;text-decoration:none}
+@media (max-width:540px){.chat span{display:none}.wrap{width:min(1180px,100% - 32px)}}
+[hidden]{display:none!important}
+
+
+body{--brand:#0b7285;--brand-ink:#fff;--soft:#e6f4f6;--ink:#0d2234;--muted:#5a6b7b;--line:#e3e9ee;--bg:#fff;--surface:#fff;--r:16px;--navy:#0d2234;font:16px/1.65 "Plus Jakarta Sans",system-ui,sans-serif}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.12;font-weight:700}
+h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.eyebrow::before{content:"";width:22px;height:2px;background:currentColor}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:12px;background:var(--brand);color:#fff;border:0;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:#095f70;transform:translateY(-1px)}
+.btn .ico{width:18px;height:18px}
+.btn--line{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn--line:hover{background:#fff;box-shadow:inset 0 0 0 1.5px var(--brand);color:var(--brand)}
+.hd{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:28px;height:74px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+.logo i{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#14a3b8,#0b7285);color:#fff}
+.logo i .ico{width:22px;height:22px}
+.logo small{display:block;font-size:.7rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:-3px}
+.hd nav{display:flex;gap:26px;margin-left:auto}
+.hd nav a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem}
+.hd nav a:hover{color:var(--ink)}
+.hd__tel{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.92rem;text-decoration:none}
+.hd__tel .ico{color:var(--brand);width:18px}
+.hero{padding:72px 0 88px;background:radial-gradient(900px 500px at 85% 20%,#dff3f6,transparent 60%),linear-gradient(#f7fbfc,#fff)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line);font-size:.86rem;font-weight:600;margin-bottom:22px}
+.pill b{white-space:nowrap;background:#e7f7ee;color:#137a45;padding:3px 10px;border-radius:999px;font-size:.76rem}
+.hero h1{font-size:clamp(2.4rem,5vw,3.9rem);font-weight:800;margin-bottom:20px}
+.hero h1 span{color:var(--brand)}
+.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:33em}
+.hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 34px}
+.trust{display:flex;gap:28px;flex-wrap:wrap;padding-top:26px;border-top:1px solid var(--line)}
+.trust div{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:600}
+.trust .ico{color:var(--brand)}
+.visual{position:relative;padding:20px 10px 30px 40px}
+.visual__panel{position:relative;aspect-ratio:1/1.02;border-radius:32px;overflow:hidden;background:linear-gradient(150deg,#16a6bb 0%,#0b7285 55%,#0d2234 100%)}
+.visual__panel svg.art{position:absolute;inset:0;width:100%;height:100%}
+.vcard{position:absolute;background:#fff;border-radius:18px;box-shadow:0 24px 50px -20px rgba(13,34,52,.45);padding:16px 18px}
+.vcard--appt{left:0;bottom:44px;width:270px}
+.vcard--appt small{display:block;color:var(--muted);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.vcard--appt strong{display:block;font-size:1.05rem;margin:2px 0 10px}
+.vcard__row{display:flex;align-items:center;gap:10px;font-size:.86rem;color:var(--muted)}
+.vcard__row .ico{width:16px;color:var(--brand)}
+.av{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#bfe9ef,#7fd0dc);font-weight:700;font-size:.78rem;color:var(--navy)}
+.vcard--hmo{right:-6px;top:56px;display:flex;align-items:center;gap:12px}
+.vcard--hmo i{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#e7f7ee;color:#137a45}
+.vcard--hmo b{display:block;font-size:.95rem}
+.vcard--hmo span{font-size:.8rem;color:var(--muted)}
+.hmo{border-block:1px solid var(--line);padding:22px 0}
+.hmo .wrap{display:flex;align-items:center;gap:14px 40px;flex-wrap:wrap;justify-content:center}
+.hmo p{margin:0;color:var(--muted);font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+.hmo ul{display:flex;gap:12px 36px;flex-wrap:wrap;list-style:none;margin:0;padding:0;font-weight:800;color:#8a99a8;font-size:1.05rem;letter-spacing:-.01em}
+.sec{padding:96px 0}
+.sec--tint{background:#f5f9fa}
+.sec__head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.sec__head p{color:var(--muted);max-width:32em;margin:0}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc a{display:flex;flex-direction:column;padding:28px;border-radius:20px;background:#fff;border:1px solid var(--line);text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .2s}
+.svc a:hover{border-color:transparent;box-shadow:0 24px 50px -28px rgba(13,34,52,.4);transform:translateY(-3px)}
+.svc i{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--soft);color:var(--brand);margin-bottom:22px}
+.svc i .ico{width:26px;height:26px}
+.svc h3{font-size:1.15rem;margin-bottom:8px}
+.svc p{color:var(--muted);font-size:.94rem;margin-bottom:20px}
+.svc span{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px dashed var(--line);font-size:.88rem;color:var(--muted)}
+.svc span b{color:var(--ink);font-size:1rem}
+.pricing{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.pricing__note{margin-top:24px;padding:18px 20px;border-radius:14px;background:#fff;border:1px solid var(--line);display:flex;gap:12px;font-size:.92rem;color:var(--muted)}
+.pricing__note .ico{color:var(--brand)}
+.tabs{display:inline-flex;padding:5px;border-radius:12px;background:#e9f0f3;margin-bottom:18px;gap:4px;flex-wrap:wrap}
+.tabs button{font:inherit;font-weight:600;font-size:.92rem;padding:9px 18px;border:0;border-radius:9px;background:none;color:var(--muted);cursor:pointer}
+.tabs button[aria-selected="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 8px -2px rgba(13,34,52,.2)}
+.ptable{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.ptable div{display:flex;justify-content:space-between;gap:20px;padding:16px 22px;border-bottom:1px solid var(--line)}
+.ptable div:last-child{border-bottom:0}
+.ptable b{white-space:nowrap}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.steps li{list-style:none;padding:30px;border-radius:20px;background:var(--navy);color:#cfdbe4;position:relative;overflow:hidden}
+.steps li::before{counter-increment:s;content:"0" counter(s);display:block;font-size:2.6rem;font-weight:800;color:#2fb7cb;letter-spacing:-.04em;margin-bottom:18px}
+.steps h3{color:#fff}
+.steps p{margin:0;font-size:.94rem}
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.doc{border-radius:20px;border:1px solid var(--line);overflow:hidden;background:#fff}
+.doc__ph{aspect-ratio:4/3;display:grid;place-items:center;background:linear-gradient(160deg,#e6f4f6,#c7e8ee)}
+.doc__ph span{display:grid;place-items:center;width:96px;height:96px;border-radius:50%;background:#fff;color:var(--brand);font-weight:800;font-size:1.6rem;box-shadow:0 14px 30px -14px rgba(11,114,133,.5)}
+.doc__b{padding:20px 22px}
+.doc__b h3{margin-bottom:2px}
+.doc__b p{margin:0;color:var(--muted);font-size:.92rem}
+.doc__b small{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:.82rem;font-weight:600;color:var(--brand)}
+.doc__b small .ico{width:15px}
+.book{display:grid;grid-template-columns:.9fr 1.1fr;border-radius:28px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(13,34,52,.4)}
+.book__side{background:var(--navy);color:#cfdbe4;padding:48px 44px}
+.book__side h2{color:#fff}
+.book__side ul{list-style:none;padding:0;margin:28px 0;display:grid;gap:14px}
+.book__side li{display:flex;gap:12px}
+.book__side li .ico{color:#2fb7cb;margin-top:2px}
+.book__contact{padding-top:24px;border-top:1px solid #23394c;display:grid;gap:10px;font-size:.95rem}
+.book__contact a{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:600}
+.book__contact .ico{color:#2fb7cb;width:18px}
+.book__form{background:#fff;padding:44px}
+.bform .f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f{display:flex;flex-direction:column;gap:7px;margin:0 0 18px;border:0;padding:0;min-width:0}
+.f label,.f legend{font-weight:600;font-size:.88rem;padding:0}
+.f legend{margin-bottom:9px}
+.f input,.f select,.f textarea{font:inherit;font-size:.95rem;padding:12px 14px;border-radius:11px;border:1.5px solid var(--line);background:#fbfdfd;color:var(--ink);width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--brand);background:#fff;box-shadow:0 0 0 4px rgba(11,114,133,.12)}
+.opt{color:var(--muted);font-weight:400}
+.bform .btn{width:100%;padding:16px}
+.f-note{text-align:center;font-size:.82rem;color:var(--muted);margin:12px 0 0}
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:20px 0;font-weight:700;font-size:1.02rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--brand);font-weight:700;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);padding-right:40px}
+.ft{background:var(--navy);color:#9fb2c2;padding:72px 0 28px;font-size:.94rem}
+.ft .wrap>div:first-child{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:48px}
+.ft .logo{color:#fff}
+.ft h4{color:#fff;font-size:1rem;margin-bottom:16px}
+.ft table{width:100%;border-collapse:collapse}
+.ft td{padding:6px 0;border-bottom:1px solid #1f3547}
+.ft td:last-child{text-align:right;color:#dbe6ee}
+.ft tr.is-today td{color:#2fb7cb}
+.ft address{font-style:normal;display:grid;gap:10px}
+.ft address span{display:flex;gap:10px}
+.ft address .ico{color:#2fb7cb;width:18px;margin-top:3px}
+.ft .credit{margin-top:56px;padding-top:24px;border-top:1px solid #1f3547;color:#7f93a4;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ft .credit a{color:#2fb7cb}
+@media (max-width:980px){
+ .hero .wrap,.pricing,.book,.faq{grid-template-columns:1fr}
+ .svc,.team{grid-template-columns:1fr 1fr}
+ .hd nav,.hd__tel{display:none}
+ .hd .btn{margin-left:auto}
+ .visual{max-width:520px;margin:0 auto;width:100%}
+ .ft .wrap>div:first-child{grid-template-columns:1fr}
 }
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; display: block; }
-a { color: inherit; }
-h1, h2, h3 { font-family: var(--head); line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.015em; }
-h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
-h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
-h3 { font-size: 1.1rem; }
-p { margin: 0 0 1em; }
-.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
-.muted { color: var(--muted); }
-
-/* Sample banner */
-.sample-bar { background: #111; color: #f2f2f2; font-size: .85rem; }
-.sample-bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; padding: 8px 0; }
-.sample-bar p { margin: 0; }
-.sample-bar b { color: #ffd54a; font-weight: 600; }
-.sample-bar a { color: #ffd54a; font-weight: 600; text-decoration: none; white-space: nowrap; }
-.sample-bar a:hover { text-decoration: underline; }
-
-/* Header */
-.top { position: sticky; top: 0; z-index: 40; background: rgba(255, 255, 255, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--head); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
-.brand__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--brand); color: var(--brand-ink); font-size: 1rem; }
-.top nav { display: flex; align-items: center; gap: 24px; }
-.top nav a:not(.btn) { color: var(--muted); text-decoration: none; font-size: .95rem; }
-.top nav a:not(.btn):hover { color: var(--ink); }
-
-/* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .85em 1.5em; border-radius: 999px; background: var(--brand); color: var(--brand-ink); border: 1px solid var(--brand); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform .15s, filter .15s; }
-.btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn--ghost:hover { border-color: var(--brand); color: var(--brand); }
-.btn--sm { padding: .55em 1.1em; font-size: .9rem; }
-.btn--block { width: 100%; }
-
-/* Hero */
-.hero { padding: 64px 0 56px; background: linear-gradient(180deg, var(--brand-soft), var(--bg)); }
-.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
-.kicker { display: inline-block; color: var(--brand); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .8em; }
-.lead { font-size: 1.12rem; color: var(--muted); max-width: 34em; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
-.ticks { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .92rem; color: var(--muted); }
-.ticks li::before { content: "\2713"; color: var(--brand); font-weight: 700; margin-right: 6px; }
-
-.hero__card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; box-shadow: 0 30px 60px -30px rgba(20, 30, 50, .35); }
-.hero__art { aspect-ratio: 16/10; border-radius: 14px; margin-bottom: 18px; background: var(--art); position: relative; overflow: hidden; display: grid; place-items: center; font-size: 4rem; }
-.hero__art span { filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .2)); }
-.next { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--bg-alt); }
-.next small { display: block; color: var(--muted); font-size: .8rem; }
-.next strong { font-family: var(--head); }
-.live { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; color: #15803d; font-weight: 600; }
-.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, .18); }
-
-/* Sections */
-.section { padding: 80px 0; }
-.section--alt { background: var(--bg-alt); }
-.section__head { max-width: 640px; margin-bottom: 36px; }
-
-.perks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.perk { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-.perk__icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--brand-soft); font-size: 1.3rem; margin-bottom: 14px; }
-.perk p { color: var(--muted); font-size: .93rem; margin: 0; }
-
-/* Price list */
-.prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.price-group { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 24px 12px; }
-.price-group h3 { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-.price-group ul { list-style: none; margin: 0; padding: 0; }
-.price-group li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
-.price-group li:last-child { border-bottom: 0; }
-.price-group li span small { display: block; color: var(--muted); font-size: .84rem; }
-.price-group li b { font-family: var(--head); white-space: nowrap; color: var(--brand); }
-.note { font-size: .88rem; color: var(--muted); margin-top: 18px; }
-
-/* Booking */
-.book { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; align-items: start; }
-.book__info ul { padding-left: 1.1em; color: var(--muted); }
-.book__info li { margin-bottom: .4em; }
-.form { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 20px 50px -35px rgba(20, 30, 50, .4); }
-.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-.field label, .field legend { font-weight: 600; font-size: .9rem; }
-.field input, .field select, .field textarea { font: inherit; padding: .7em .85em; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); width: 100%; }
-.field textarea { resize: vertical; min-height: 80px; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
-fieldset.field { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; }
-.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 4px; }
-.slot { font: inherit; font-size: .88rem; padding: .6em .4em; border-radius: 10px; border: 1px solid var(--line); background: #fff; cursor: pointer; color: var(--ink); }
-.slot:hover:not(:disabled) { border-color: var(--brand); }
-.slot[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
-.slot:disabled { color: #b3b7c0; text-decoration: line-through; cursor: not-allowed; background: var(--bg-alt); }
-.slots__empty { grid-column: 1 / -1; color: var(--muted); font-size: .9rem; margin: 0; }
-.form__error { color: #b91c1c; font-size: .9rem; font-weight: 500; }
-.form__small { font-size: .82rem; color: var(--muted); margin: 12px 0 0; text-align: center; }
-.done { text-align: center; padding: 12px 4px; }
-.done__icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-size: 1.6rem; margin: 0 auto 14px; }
-.done dl { text-align: left; background: var(--bg-alt); border-radius: 12px; padding: 14px 18px; margin: 16px 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: .93rem; }
-.done dt { color: var(--muted); }
-.done dd { margin: 0; font-weight: 600; }
-.done__demo { font-size: .85rem; color: var(--muted); background: #fff8db; border: 1px solid #f3e3a1; border-radius: 10px; padding: 10px 12px; }
-
-/* FAQ */
-.faq { max-width: 780px; }
-.faq details { border-bottom: 1px solid var(--line); padding: 4px 0; }
-.faq summary { cursor: pointer; list-style: none; font-weight: 600; padding: 14px 32px 14px 0; position: relative; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; position: absolute; right: 4px; top: 10px; font-size: 1.4rem; color: var(--brand); transition: transform .2s; }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq details p { color: var(--muted); margin: 0 0 16px; }
-
-/* Visit */
-.visit { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
-.hours { width: 100%; border-collapse: collapse; font-size: .95rem; }
-.hours td { padding: 10px 0; border-bottom: 1px solid var(--line); }
-.hours td:last-child { text-align: right; font-weight: 600; }
-.hours tr.is-today td { color: var(--brand); }
-.map { border-radius: var(--radius); border: 1px solid var(--line); min-height: 260px; background:
-  linear-gradient(90deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  linear-gradient(0deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  var(--brand-soft);
-  display: grid; place-items: center; text-align: center; padding: 24px; }
-.map__pin { font-size: 2.4rem; }
-.map p { margin: 6px 0 0; font-weight: 600; }
-.map small { color: var(--muted); }
-.contact-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
-.contact-list li { color: var(--muted); }
-.contact-list b { color: var(--ink); }
-
-/* CTA band */
-.band { background: var(--brand); color: var(--brand-ink); border-radius: 22px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.band h2 { margin: 0 0 .2em; }
-.band p { margin: 0; opacity: .85; }
-.band .btn { background: #fff; color: var(--ink); border-color: #fff; }
-
-/* Footer */
-.foot { border-top: 1px solid var(--line); padding: 28px 0 100px; font-size: .88rem; color: var(--muted); }
-.foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.foot a { color: var(--brand); font-weight: 600; text-decoration: none; }
-
-/* Floating chat + toast */
-.chat { position: fixed; right: 18px; bottom: 18px; z-index: 50; display: inline-flex; align-items: center; gap: 8px; padding: .8em 1.2em; border-radius: 999px; border: 0; background: #0866ff; color: #fff; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 14px 30px -10px rgba(8, 102, 255, .6); }
-.chat svg { width: 20px; height: 20px; }
-.toast { position: fixed; left: 50%; bottom: 84px; z-index: 60; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #111; color: #fff; padding: 12px 18px; border-radius: 12px; font-size: .9rem; max-width: min(420px, 100% - 32px); text-align: center; transition: opacity .25s, transform .25s; }
-.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
-
-@media (max-width: 900px) {
-  .hero .wrap, .book, .visit { grid-template-columns: 1fr; }
-  .perks { grid-template-columns: repeat(2, 1fr); }
-  .prices { grid-template-columns: 1fr; }
-  .top nav a:not(.btn) { display: none; }
+@media (max-width:600px){
+ .svc,.team,.steps,.bform .f-row{grid-template-columns:1fr}
+ .sec{padding:68px 0}
+ .hero{padding:44px 0 64px}
+ .book__side,.book__form{padding:30px 22px}
+ .visual{padding:10px 0 30px}
+ .vcard--appt{left:-4px;width:240px}
+ .vcard--hmo{right:-4px;top:20px}
+ .hd .btn{padding:10px 14px;font-size:.88rem}
 }
-@media (max-width: 540px) {
-  .perks, .form__row { grid-template-columns: 1fr; }
-  .section { padding: 60px 0; }
-  .hero { padding: 40px 0; }
-  .form { padding: 20px; }
-  .band { padding: 28px; }
-  .chat span { display: none; }
-}
-
-body { --brand: #0e7490; --brand-soft: #e3f4f8; --head: "Plus Jakarta Sans", system-ui, sans-serif; --art: linear-gradient(135deg,#67e8f9,#0e7490); }
-  </style>
+</style>
 </head>
-<body>
-  <div class="sample-bar" role="note">
-    <div class="wrap">
-      <p><b>Sample site.</b> Ngiti Dental Clinic is a fictional business, made by Stackclever to show what your dental clinic website could look like.</p>
-      <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+<body class="">
+<div class="sample-bar" role="note"><div class="wrap">
+  <p><b>Sample site.</b> Ngiti Dental Clinic is a fictional business, made by Stackclever to show what a dental clinic website could look like.</p>
+  <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+</div></div>
+
+<header class="hd"><div class="wrap">
+  <a href="#" class="logo"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.2C4.6 3.2 3 5.2 3 7.8c0 3 1.5 4.6 2 7.6.4 3 1.1 5.8 2.5 5.8s1.6-3.9 3-5.4c.8-.8 2.2-.8 3 0 1.4 1.5 1.6 5.4 3 5.4s2.1-2.8 2.5-5.8c.5-3 2-4.6 2-7.6 0-2.6-1.6-4.6-4.2-4.6-1.6 0-2.8.9-4.8.9s-3.2-.9-4.8-.9z"/></svg></i><span>Ngiti Dental<small>Family dental clinic</small></span></a>
+  <nav aria-label="Main"><a href="#services">Services</a><a href="#prices">Prices</a><a href="#team">Dentists</a><a href="#faq">FAQ</a></nav>
+  <a class="hd__tel" href="#book"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5h3.6l1.9 4.8-2.4 1.5a11.4 11.4 0 0 0 5.9 5.9l1.5-2.4 4.8 1.9v3.6a2 2 0 0 1-2.2 2A16.9 16.9 0 0 1 3.2 5.7a2 2 0 0 1 2-2.2z"/></svg> 0917 000 0000</a>
+  <a href="#book" class="btn">Book a visit</a>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="pill"><b>Open today</b> Accepting new patients · Quezon City</span>
+    <h1>Gentle dental care for the <span>whole family.</span></h1>
+    <p class="lead">Check-ups, braces and whitening from dentists who take their time. See clear prices and book your slot online in under a minute.</p>
+    <div class="hero__cta"><a href="#book" class="btn">Book an appointment <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a><a href="#prices" class="btn btn--line">View price list</a></div>
+    <div class="trust">
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/><path d="M6.5 15h4"/></svg> HMO accepted</div><div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.6-3.2 7.9-7.5 9-4.3-1.1-7.5-4.4-7.5-9V6z"/><path d="M9 12l2 2 4-4"/></svg> Sterilized tools</div><div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v.01"/><path d="M18 14.5v.01"/></svg> Braces from ₱5,000 down</div>
     </div>
   </div>
-
-  <header class="top">
-    <div class="wrap">
-      <a href="#" class="brand"><span class="brand__mark" aria-hidden="true">N</span>Ngiti Dental</a>
-      <nav aria-label="Main">
-        <a href="#prices">Prices</a>
-        <a href="#book">Book</a>
-        <a href="#faq">FAQ</a>
-        <a href="#visit">Visit us</a>
-        <a href="#book" class="btn btn--sm">Book now</a>
-      </nav>
+  <div class="visual" aria-hidden="true">
+    <div class="visual__panel"><svg class="art" viewBox="0 0 400 410" aria-hidden="true">
+    <defs><radialGradient id="g1" cx="70%" cy="25%" r="60%"><stop offset="0" stop-color="#7fe3ef" stop-opacity=".55"/><stop offset="1" stop-color="#7fe3ef" stop-opacity="0"/></radialGradient></defs>
+    <rect width="400" height="410" fill="url(#g1)"/>
+    <g fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="1"><circle cx="300" cy="110" r="70"/><circle cx="300" cy="110" r="110"/><circle cx="300" cy="110" r="150"/><circle cx="300" cy="110" r="190"/></g>
+    <g transform="translate(205 52) scale(5.4)" fill="#fff" fill-opacity=".95" stroke="none"><path d="M7.2 3.2C4.6 3.2 3 5.2 3 7.8c0 3 1.5 4.6 2 7.6.4 3 1.1 5.8 2.5 5.8s1.6-3.9 3-5.4c.8-.8 2.2-.8 3 0 1.4 1.5 1.6 5.4 3 5.4s2.1-2.8 2.5-5.8c.5-3 2-4.6 2-7.6 0-2.6-1.6-4.6-4.2-4.6-1.6 0-2.8.9-4.8.9s-3.2-.9-4.8-.9z"/></g>
+    <g transform="translate(232 72)" fill="#fff"><path d="M8 0l2.2 5.8L16 8l-5.8 2.2L8 16l-2.2-5.8L0 8l5.8-2.2z" opacity=".9"/></g>
+    <g transform="translate(330 205) scale(.7)" fill="#bff3f9"><path d="M8 0l2.2 5.8L16 8l-5.8 2.2L8 16l-2.2-5.8L0 8l5.8-2.2z"/></g>
+  </svg></div>
+    <div class="vcard vcard--hmo"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><div><b>HMO verified</b><span>Coverage checked in 1 day</span></div></div>
+    <div class="vcard vcard--appt">
+      <small>Next available</small><strong>Tomorrow · 10:00 AM</strong>
+      <div class="vcard__row"><span class="av">AS</span><div><b style="color:var(--ink)">Dr. Andrea Santos</b><br>Check-up &amp; cleaning</div></div>
     </div>
-  </header>
+  </div>
+</div></section>
+<div class="hmo"><div class="wrap"><p>HMO partners</p><ul><li>Maxicare</li><li>Intellicare</li><li>Medicard</li><li>PhilCare</li><li>Avega</li></ul></div></div>
 
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <div>
-          <span class="kicker">Family dental clinic · Quezon City</span>
-          <h1>Gentle dental care, booked in 30 seconds.</h1>
-          <p class="lead">Cleaning, fillings, braces and whitening for the whole family. See our prices up front and pick a time that works for you, with no need to PM for price.</p>
-          <div class="hero__cta">
-            <a href="#book" class="btn">Book online</a>
-            <a href="#prices" class="btn btn--ghost">See prices</a>
-          </div>
-          <ul class="ticks">
-            <li>HMO accepted</li>
-            <li>Same-week braces consult</li>
-            <li>Kid-friendly dentists</li>
-          </ul>
-        </div>
-        <div class="hero__card" aria-hidden="true">
-          <div class="hero__art"><span>🦷</span></div>
-          <div class="next">
-            <div><small>Next open slot</small><strong>Tomorrow, 10:00 AM</strong></div>
-            <span class="live">Booking open</span>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="sec" id="services"><div class="wrap">
+  <div class="sec__head"><div><span class="eyebrow">Services</span><h2>Everything your smile needs</h2></div><p>From your child’s first check-up to a full set of braces, all under one roof with the same friendly team.</p></div>
+  <div class="svc"><a href="#book" data-book="Cleaning"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.2a4.6 4.6 0 0 0 7 0"/><path d="M9 9.6h.01"/><path d="M15 9.6h.01"/></svg></i><h3>Check-up &amp; cleaning</h3><p>Oral exam, scaling and polishing to keep gums healthy.</p><span>Starts at <b>₱1,200</b></span></a><a href="#book" data-book="Fillings"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.2C4.6 3.2 3 5.2 3 7.8c0 3 1.5 4.6 2 7.6.4 3 1.1 5.8 2.5 5.8s1.6-3.9 3-5.4c.8-.8 2.2-.8 3 0 1.4 1.5 1.6 5.4 3 5.4s2.1-2.8 2.5-5.8c.5-3 2-4.6 2-7.6 0-2.6-1.6-4.6-4.2-4.6-1.6 0-2.8.9-4.8.9s-3.2-.9-4.8-.9z"/></svg></i><h3>Fillings</h3><p>Tooth-colored composite fillings that blend in naturally.</p><span>Starts at <b>₱1,500</b></span></a><a href="#book" data-book="Braces consultation"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></i><h3>Braces</h3><p>Metal, ceramic and self-ligating braces with monthly plans.</p><span>Starts at <b>₱45,000</b></span></a><a href="#book" data-book="Teeth whitening"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></i><h3>Teeth whitening</h3><p>In-clinic whitening, up to 8 shades lighter in one visit.</p><span>Starts at <b>₱8,000</b></span></a><a href="#book" data-book="Root canal"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.6-3.2 7.9-7.5 9-4.3-1.1-7.5-4.4-7.5-9V6z"/><path d="M9 12l2 2 4-4"/></svg></i><h3>Root canal</h3><p>Save an infected tooth with modern rotary endodontics.</p><span>Starts at <b>₱8,500</b></span></a><a href="#book" data-book="Kids check-up"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg></i><h3>Kids dentistry</h3><p>Gentle first visits, fluoride and sealants for children.</p><span>Starts at <b>₱800</b></span></a></div>
+</div></section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="perks">
-          <div class="perk"><div class="perk__icon" aria-hidden="true">💳</div><h3>HMO &amp; cards</h3><p>Maxicare, Intellicare, Medicard and more. GCash and card payments too.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">😌</div><h3>Pain-free focus</h3><p>Topical numbing and a calm, unhurried chair-side manner.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🧒</div><h3>Kids welcome</h3><p>Our pedia dentist makes first visits fun, not scary.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🧼</div><h3>Sterilized tools</h3><p>Autoclave-sterilized instruments for every patient.</p></div>
-        </div>
-      </div>
-    </section>
+<section class="sec sec--tint" id="prices"><div class="wrap pricing">
+  <div>
+    <span class="eyebrow">Price list</span><h2>Transparent prices, no surprises</h2>
+    <p style="color:var(--muted)">Know the cost before you sit in the chair. Your dentist confirms the final plan after your check-up.</p>
+    <div class="pricing__note"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.01"/></svg><span>Braces include monthly adjustments for 24 months. Senior citizen and PWD discounts apply.</span></div>
+  </div>
+  <div data-tabs>
+    <div class="tabs" role="tablist"><button role="tab" aria-selected="true" aria-controls="tab-0">General</button><button role="tab" aria-selected="false" aria-controls="tab-1">Orthodontics</button><button role="tab" aria-selected="false" aria-controls="tab-2">Cosmetic</button></div>
+    <div class="ptable" id="tab-0" role="tabpanel"><div><span>Consultation &amp; oral exam</span><b>₱500</b></div><div><span>Oral prophylaxis (cleaning)</span><b>₱1,200</b></div><div><span>Deep scaling, per quadrant</span><b>₱2,000</b></div><div><span>Composite filling, per surface</span><b>₱1,500</b></div><div><span>Simple extraction</span><b>₱1,500</b></div><div><span>Periapical x-ray</span><b>₱400</b></div></div><div class="ptable" id="tab-1" role="tabpanel" hidden><div><span>Braces consultation &amp; records</span><b>₱1,500</b></div><div><span>Metal braces (complete)</span><b>₱45,000</b></div><div><span>Ceramic braces (complete)</span><b>₱65,000</b></div><div><span>Self-ligating braces</span><b>₱80,000</b></div><div><span>Monthly adjustment (after 24 mo.)</span><b>₱1,000</b></div><div><span>Retainer, per arch</span><b>₱4,500</b></div></div><div class="ptable" id="tab-2" role="tabpanel" hidden><div><span>In-clinic whitening</span><b>₱8,000</b></div><div><span>Take-home whitening kit</span><b>₱6,500</b></div><div><span>Direct composite veneer, per tooth</span><b>₱4,000</b></div><div><span>Porcelain crown</span><b>₱15,000</b></div><div><span>Dentures (complete, per arch)</span><b>₱12,000</b></div></div>
+  </div>
+</div></section>
 
-    <section class="section section--alt" id="prices">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">Price list</span>
-          <h2>Clear prices, no need to PM</h2>
-          <p class="muted">Rates below are starting prices. Book a slot and we'll confirm the details with you.</p>
-        </div>
-        <div class="prices">
-          <div class="price-group">
-            <h3><span aria-hidden="true">🪥</span> General dentistry</h3>
-            <ul>
-              <li><span>Consultation</span><b>₱500</b></li>
-              <li><span>Oral prophylaxis (cleaning)<small>Includes polishing</small></span><b>₱1,200</b></li>
-              <li><span>Tooth-colored filling<small>Per surface</small></span><b>₱1,500</b></li>
-              <li><span>Simple extraction<small>Per tooth</small></span><b>₱1,500</b></li>
-            </ul>
-          </div>
-          <div class="price-group">
-            <h3><span aria-hidden="true">😁</span> Braces &amp; cosmetic</h3>
-            <ul>
-              <li><span>Metal braces<small>Down payment from ₱5,000</small></span><b>₱45,000</b></li>
-              <li><span>Ceramic braces<small>Tooth-colored brackets</small></span><b>₱65,000</b></li>
-              <li><span>Teeth whitening<small>In-clinic, 1 session</small></span><b>₱8,000</b></li>
-              <li><span>Retainers<small>Per arch</small></span><b>₱4,500</b></li>
-            </ul>
-          </div>
-        </div>
-        <p class="note">Final cost depends on your check-up. Braces include monthly adjustments for up to 24 months.</p>
-      </div>
-    </section>
+<section class="sec"><div class="wrap">
+  <div class="sec__head"><div><span class="eyebrow">Your first visit</span><h2>Simple from start to smile</h2></div></div>
+  <ol class="steps" style="padding:0;margin:0">
+    <li><h3>Book online</h3><p>Pick a service and time slot. We confirm by text within the hour.</p></li>
+    <li><h3>Check-up &amp; plan</h3><p>Your dentist examines your teeth and explains options and costs before any treatment.</p></li>
+    <li><h3>Treatment &amp; follow-up</h3><p>Relax in a calm, clean clinic. We remind you when your next visit is due.</p></li>
+  </ol>
+</div></section>
 
-    <section class="section" id="book">
-      <div class="wrap book">
-        <div class="book__info">
-          <span class="kicker">Online booking</span>
-          <h2>Book your visit</h2>
-          <p class="muted">Choose a time and we'll confirm by text within the hour.</p>
-          <ul>
-            <li>Arrive 10 minutes early for your first visit</li>
-            <li>Bring your HMO card and a valid ID</li>
-            <li>Free rescheduling up to 24 hours before</li>
-          </ul>
-        </div>
-        <div>
-          <form class="form" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;9:00 AM&quot;,&quot;10:00 AM&quot;,&quot;11:00 AM&quot;,&quot;12:00 PM&quot;,&quot;1:00 PM&quot;,&quot;2:00 PM&quot;,&quot;3:00 PM&quot;,&quot;4:00 PM&quot;,&quot;5:00 PM&quot;],&quot;hours&quot;:[9,10,11,12,13,14,15,16,17],&quot;busy&quot;:35,&quot;closed&quot;:[0],&quot;serviceLabel&quot;:&quot;Service&quot;,&quot;serviceWord&quot;:&quot;a service&quot;,&quot;slotLabel&quot;:&quot;Time&quot;,&quot;slotWord&quot;:&quot;time slot&quot;,&quot;doneTitle&quot;:&quot;Appointment requested!&quot;,&quot;doneText&quot;:&quot;We'll text you to confirm your slot shortly.&quot;}">
-            <div class="form__row">
-              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" placeholder="Juan Dela Cruz"></div>
-              <div class="field"><label for="f-mobile">Mobile number</label><input id="f-mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" placeholder="09XX XXX XXXX"></div>
-            </div>
-            <div class="form__row">
-              <div class="field"><label for="f-service">Service</label>
-                <select id="f-service" name="service">
-                  <option value="">Choose service…</option>
-                  <option>Consultation / check-up</option>
-                  <option>Cleaning</option>
-                  <option>Filling</option>
-                  <option>Extraction</option>
-                  <option>Braces consultation</option>
-                  <option>Teeth whitening</option>
-                </select>
-              </div>
-              <div class="field"><label for="f-date">Date</label><input id="f-date" name="date" type="date"></div>
-            </div>
-            
-            <fieldset class="field">
-              <legend>Time</legend>
-              <div class="slots" aria-live="polite"></div>
-            </fieldset>
-            <div class="field"><label for="f-notes">Notes <span class="muted">(optional)</span></label><textarea id="f-notes" name="notes" placeholder="Anything we should know?"></textarea></div>
-            <p class="form__error" role="alert" hidden></p>
-            <button type="submit" class="btn btn--block">Request booking</button>
-            <p class="form__small">We'll confirm by text. Your details are only used for this booking.</p>
-          </form>
-        </div>
-      </div>
-    </section>
+<section class="sec sec--tint" id="team"><div class="wrap">
+  <div class="sec__head"><div><span class="eyebrow">Our dentists</span><h2>Meet the team</h2></div><p>Licensed dentists with years of experience, and a lot of patience for nervous patients.</p></div>
+  <div class="team"><div class="doc"><div class="doc__ph"><span>AS</span></div><div class="doc__b"><h3>Dr. Andrea Santos</h3><p>General & cosmetic dentistry</p><small><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18"/><path d="M8 2.5v4"/><path d="M16 2.5v4"/></svg> Mon–Sat</small></div></div><div class="doc"><div class="doc__ph"><span>MR</span></div><div class="doc__b"><h3>Dr. Miguel Ramos</h3><p>Orthodontics (braces)</p><small><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18"/><path d="M8 2.5v4"/><path d="M16 2.5v4"/></svg> Tue, Thu, Sat</small></div></div><div class="doc"><div class="doc__ph"><span>JL</span></div><div class="doc__b"><h3>Dr. Joy Lim</h3><p>Pediatric dentistry</p><small><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18"/><path d="M8 2.5v4"/><path d="M16 2.5v4"/></svg> Wed, Sat</small></div></div></div>
+</div></section>
 
-    <section class="section section--alt" id="faq">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">FAQ</span>
-          <h2>Questions we get a lot</h2>
-        </div>
-        <div class="faq">
-          <details open><summary>Do you accept HMO?</summary><p>Yes. We accept most major HMOs for check-ups, cleaning and simple fillings. Message us your HMO name and we'll check your coverage before your visit.</p></details>
-          <details><summary>How much are braces, and can I pay monthly?</summary><p>Metal braces start at ₱45,000 with a ₱5,000 down payment. The balance is paid monthly during your adjustments.</p></details>
-          <details><summary>Do you treat kids?</summary><p>Yes. Our pedia dentist sees kids from age 2, usually on Saturday mornings.</p></details>
-          <details><summary>Is there parking?</summary><p>Yes, free parking is available in front of the building for 4 cars.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="visit">
-      <div class="wrap visit">
-        <div>
-          <span class="kicker">Visit us</span>
-          <h2>Clinic hours</h2>
-          <table class="hours">
-            <tbody>
-              <tr data-day="1"><td>Monday</td><td>9:00 AM – 6:00 PM</td></tr>
-              <tr data-day="2"><td>Tuesday</td><td>9:00 AM – 6:00 PM</td></tr>
-              <tr data-day="3"><td>Wednesday</td><td>9:00 AM – 6:00 PM</td></tr>
-              <tr data-day="4"><td>Thursday</td><td>9:00 AM – 6:00 PM</td></tr>
-              <tr data-day="5"><td>Friday</td><td>9:00 AM – 6:00 PM</td></tr>
-              <tr data-day="6"><td>Saturday</td><td>9:00 AM – 3:00 PM</td></tr>
-              <tr data-day="0"><td>Sunday</td><td>Closed</td></tr>
-            </tbody>
-          </table>
-          <ul class="contact-list">
-            <li><b>Address:</b> 2/F Sample Building, Visayas Ave., Quezon City</li>
-            <li><b>Landmark:</b> Near the corner of Congressional Ave.</li>
-            <li><b>Mobile:</b> 0917 000 0000 <span class="muted">(sample number)</span></li>
-          </ul>
-        </div>
-        <div class="map" role="img" aria-label="Map placeholder">
-          <div>
-            <div class="map__pin" aria-hidden="true">📍</div>
-            <p>Ngiti Dental</p>
-            <small>A real site shows a live Google Map here.</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="wrap">
-        <div class="band">
-          <div>
-            <h2>Time for your 6-month check-up?</h2>
-            <p>Book now and get a free fluoride treatment for kids.</p>
-          </div>
-          <a href="#book" class="btn">Book now</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="foot">
-    <div class="wrap">
-      <span>Ngiti Dental Clinic is a fictional business. All names, numbers and prices are examples.</span>
-      <span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your business →</a></span>
+<section class="sec" id="book"><div class="wrap"><div class="book">
+  <div class="book__side">
+    <span class="eyebrow" style="color:#2fb7cb">Online booking</span>
+    <h2>Book your appointment</h2>
+    <p>Choose a time that works for you. Free rescheduling up to 24 hours before.</p>
+    <ul>
+      <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Arrive 10 minutes early on your first visit</li>
+      <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Bring your HMO card and a valid ID</li>
+      <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Kids under 12 need a parent or guardian</li>
+    </ul>
+    <div class="book__contact"><a href="#book"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5h3.6l1.9 4.8-2.4 1.5a11.4 11.4 0 0 0 5.9 5.9l1.5-2.4 4.8 1.9v3.6a2 2 0 0 1-2.2 2A16.9 16.9 0 0 1 3.2 5.7a2 2 0 0 1 2-2.2z"/></svg> 0917 000 0000</a><a href="#visit"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5s-7-6.3-7-12.2a7 7 0 0 1 14 0c0 5.9-7 12.2-7 12.2z"/><circle cx="12" cy="9.3" r="2.6"/></svg> Visayas Ave., Quezon City</a></div>
+  </div>
+  <div class="book__form"><form class="bform" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;9:00 AM&quot;,&quot;10:00 AM&quot;,&quot;11:00 AM&quot;,&quot;12:00 PM&quot;,&quot;1:00 PM&quot;,&quot;2:00 PM&quot;,&quot;3:00 PM&quot;,&quot;4:00 PM&quot;,&quot;5:00 PM&quot;],&quot;hours&quot;:[9,10,11,12,13,14,15,16,17],&quot;busy&quot;:35,&quot;closed&quot;:[0],&quot;serviceLabel&quot;:&quot;Service&quot;,&quot;serviceWord&quot;:&quot;a service&quot;,&quot;slotLabel&quot;:&quot;Time&quot;,&quot;slotWord&quot;:&quot;time slot&quot;,&quot;doneTitle&quot;:&quot;Appointment requested&quot;,&quot;doneText&quot;:&quot;We’ll text you to confirm your slot within the hour.&quot;}">
+    
+    <div class="f-row">
+      <div class="f"><label for="b-name">Full name</label><input id="b-name" name="name" autocomplete="name" placeholder="Juan Dela Cruz"></div>
+      <div class="f"><label for="b-mobile">Mobile number</label><input id="b-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="09XX XXX XXXX"></div>
     </div>
-  </footer>
+    <div class="f-row">
+      <div class="f"><label for="b-service">Service</label><select id="b-service" name="service"><option value="">Select…</option><option>Consultation / check-up</option><option>Cleaning</option><option>Fillings</option><option>Extraction</option><option>Braces consultation</option><option>Teeth whitening</option><option>Root canal</option><option>Kids check-up</option></select></div>
+      <div class="f"><label for="b-date">Preferred date</label><input id="b-date" name="date" type="date"></div>
+    </div>
+    
+    <fieldset class="f"><legend>Available times</legend><div class="slots" aria-live="polite"></div></fieldset>
+    <div class="f"><label for="b-notes">Notes <span class="opt">(optional)</span></label><textarea id="b-notes" name="notes" rows="3" placeholder="Anything we should know?"></textarea></div>
+    <p class="form__error" role="alert" hidden></p>
+    <button type="submit" class="btn">Request appointment</button>
+    <p class="f-note">We’ll confirm by text. Your details are only used for this booking.</p>
+  </form></div>
+</div></div></section>
 
-  <button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
-  <div class="toast" role="status" aria-live="polite"></div>
-
-  <script>
-/* Shared behaviour for Stackclever sample sites: hours highlight, slot picker, demo booking, demo chat. */
+<section class="sec sec--tint" id="faq"><div class="wrap faq">
+  <div><span class="eyebrow">FAQ</span><h2>Questions patients ask</h2><p style="color:var(--muted)">Can’t find your answer? Message us and we’ll reply within the hour during clinic hours.</p></div>
+  <div><details open><summary>Do you accept HMO?</summary><p>Yes. We accept most major HMOs for consultation, cleaning and simple fillings. Send us your HMO name and card number and we’ll verify your coverage before your visit.</p></details><details><summary>Can I pay for braces in installments?</summary><p>Yes. Metal braces start with a ₱5,000 down payment, and the balance is paid monthly during your adjustments. GCash, cards and cash are accepted.</p></details><details><summary>Does cleaning hurt?</summary><p>Most patients feel only mild pressure. If your gums are sensitive, tell us and we’ll use topical numbing gel.</p></details><details><summary>How early should I arrive?</summary><p>Please come 10 minutes early on your first visit to fill out your dental history form.</p></details><details><summary>Do you treat kids?</summary><p>Yes. Dr. Joy Lim sees children from age 2, on Wednesdays and Saturdays.</p></details><details><summary>Is there parking?</summary><p>Yes, free parking for 4 cars is available in front of the building.</p></details></div>
+</div></section>
+</main>
+<footer class="ft" id="visit"><div class="wrap">
+  <div>
+    <div><a href="#" class="logo"><i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 3.2C4.6 3.2 3 5.2 3 7.8c0 3 1.5 4.6 2 7.6.4 3 1.1 5.8 2.5 5.8s1.6-3.9 3-5.4c.8-.8 2.2-.8 3 0 1.4 1.5 1.6 5.4 3 5.4s2.1-2.8 2.5-5.8c.5-3 2-4.6 2-7.6 0-2.6-1.6-4.6-4.2-4.6-1.6 0-2.8.9-4.8.9s-3.2-.9-4.8-.9z"/></svg></i><span>Ngiti Dental<small style="color:#7f93a4">Family dental clinic</small></span></a><p style="margin-top:18px;max-width:22em">Gentle, honest dental care for families in Quezon City.</p></div>
+    <div><h4>Clinic hours</h4><table><tbody><tr data-day="1"><td>Monday</td><td>9:00 AM – 6:00 PM</td></tr><tr data-day="2"><td>Tuesday</td><td>9:00 AM – 6:00 PM</td></tr><tr data-day="3"><td>Wednesday</td><td>9:00 AM – 6:00 PM</td></tr><tr data-day="4"><td>Thursday</td><td>9:00 AM – 6:00 PM</td></tr><tr data-day="5"><td>Friday</td><td>9:00 AM – 6:00 PM</td></tr><tr data-day="6"><td>Saturday</td><td>9:00 AM – 3:00 PM</td></tr><tr data-day="0"><td>Sunday</td><td>Closed</td></tr></tbody></table></div>
+    <div><h4>Visit us</h4><address><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5s-7-6.3-7-12.2a7 7 0 0 1 14 0c0 5.9-7 12.2-7 12.2z"/><circle cx="12" cy="9.3" r="2.6"/></svg> 2/F Sample Building, Visayas Ave., Quezon City</span><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5h3.6l1.9 4.8-2.4 1.5a11.4 11.4 0 0 0 5.9 5.9l1.5-2.4 4.8 1.9v3.6a2 2 0 0 1-2.2 2A16.9 16.9 0 0 1 3.2 5.7a2 2 0 0 1 2-2.2z"/></svg> 0917 000 0000 (sample)</span><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg> hello@example.com</span><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5h15"/><path d="M6 16.5l1.6-5.5h8.8l1.6 5.5"/><path d="M4.5 16.5v3h2.5v-1.5"/><path d="M17 18v1.5h2.5v-3"/></svg> Free parking in front</span></address></div>
+  </div>
+  <p class="credit"><span>Ngiti Dental Clinic is a fictional business. Names, numbers and prices are examples.</span><span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your clinic →</a></span></p>
+</div></footer>
+<button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
+<div class="toast" role="status" aria-live="polite"></div>
+<script>
 (function () {
-  var toastEl = document.querySelector('.toast');
-  var toastTimer;
-  function toast(msg) {
-    if (!toastEl) return;
-    toastEl.textContent = msg;
-    toastEl.classList.add('is-on');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
+  var toastEl = document.querySelector('.toast'), tt;
+  function toast(m) {
+    toastEl.textContent = m; toastEl.classList.add('is-on');
+    clearTimeout(tt); tt = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
   }
-
-  // Demo Messenger button
   document.querySelectorAll('[data-demo-chat]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      toast('Sample site: on a real site this opens the business’s Messenger chat.');
+    b.addEventListener('click', function () { toast('Sample site: on a real site this opens the business’s Messenger chat.'); });
+  });
+
+  // Tabs: [data-tabs] > [role=tab][aria-controls]
+  document.querySelectorAll('[data-tabs]').forEach(function (group) {
+    var tabs = group.querySelectorAll('[role="tab"]');
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute('aria-selected', on);
+          document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+        });
+      });
     });
   });
 
-  // Highlight today in the hours table
   var today = new Date().getDay();
-  var row = document.querySelector('.hours tr[data-day="' + today + '"]');
-  if (row) row.classList.add('is-today');
+  document.querySelectorAll('[data-day="' + today + '"]').forEach(function (r) { r.classList.add('is-today'); });
 
   var form = document.getElementById('booking');
   if (!form) return;
-
   var cfg = JSON.parse(form.dataset.config);
-  var dateIn = form.elements.date;
-  var slotBox = form.querySelector('.slots');
-  var picked = '';
-
+  var dateIn = form.elements.date, slotBox = form.querySelector('.slots'), picked = '';
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
   function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-
-  var start = new Date();
-  dateIn.min = iso(start);
-  var max = new Date(); max.setDate(max.getDate() + 60);
-  dateIn.max = iso(max);
-
-  // Deterministic "already booked" slots so the demo looks realistic
-  function taken(dateStr, i) {
-    var h = 0, s = dateStr + ':' + i;
+  function taken(ds, i) {
+    var h = 0, s = ds + ':' + i;
     for (var k = 0; k < s.length; k++) h = (h * 31 + s.charCodeAt(k)) >>> 0;
     return h % 100 < cfg.busy;
   }
+  window.SampleBooking = { taken: taken, cfg: cfg, iso: iso };
+  if (dateIn.type === 'date') {
+    dateIn.min = iso(new Date());
+    var mx = new Date(); mx.setDate(mx.getDate() + 60); dateIn.max = iso(mx);
+  }
 
-  function renderSlots() {
-    slotBox.innerHTML = '';
-    picked = '';
-    if (!dateIn.value) {
-      slotBox.innerHTML = '<p class="slots__empty">Pick a date first to see open ' + cfg.slotWord + 's.</p>';
-      return;
-    }
+  function render() {
+    slotBox.innerHTML = ''; picked = '';
+    if (!dateIn.value) { slotBox.innerHTML = '<p class="slots__empty">Pick a date to see open ' + cfg.slotWord + 's.</p>'; return; }
     var d = new Date(dateIn.value + 'T00:00:00');
-    if (cfg.closed.indexOf(d.getDay()) !== -1) {
-      slotBox.innerHTML = '<p class="slots__empty">We’re closed that day. Please pick another date.</p>';
-      return;
-    }
-    var now = new Date();
-    var isToday = dateIn.value === iso(now);
-    var any = false;
+    if (cfg.closed.indexOf(d.getDay()) !== -1) { slotBox.innerHTML = '<p class="slots__empty">Closed on ' + d.toLocaleDateString('en-PH', { weekday: 'long' }) + 's. Please pick another date.</p>'; return; }
+    var now = new Date(), isToday = dateIn.value === iso(now), any = false;
     cfg.slots.forEach(function (label, i) {
       var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'slot';
-      b.textContent = label;
-      b.setAttribute('aria-pressed', 'false');
-      var past = isToday && cfg.hours && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
-      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; }
-      else any = true;
+      b.type = 'button'; b.className = 'slot'; b.textContent = label; b.setAttribute('aria-pressed', 'false');
+      var past = isToday && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
+      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; } else any = true;
       b.addEventListener('click', function () {
         slotBox.querySelectorAll('.slot').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
-        b.setAttribute('aria-pressed', 'true');
-        picked = label;
+        b.setAttribute('aria-pressed', 'true'); picked = label;
       });
       slotBox.appendChild(b);
     });
-    if (!any) {
-      var p = document.createElement('p');
-      p.className = 'slots__empty';
-      p.textContent = 'Fully booked that day. Try the next date.';
-      slotBox.appendChild(p);
-    }
+    if (!any) { var p = document.createElement('p'); p.className = 'slots__empty'; p.textContent = 'Fully booked that day. Try another date.'; slotBox.appendChild(p); }
   }
-  dateIn.addEventListener('change', renderSlots);
-  renderSlots();
+  dateIn.addEventListener('change', render);
+  render();
 
   var err = form.querySelector('.form__error');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var d = new FormData(form);
-    var missing = [];
-    if (!(d.get('name') || '').trim()) missing.push('your name');
-    if (!(d.get('mobile') || '').trim()) missing.push('a mobile number');
-    if (!d.get('service')) missing.push(cfg.serviceWord);
-    if (!d.get('date')) missing.push('a date');
-    if (!picked) missing.push('a ' + cfg.slotWord);
-    if (missing.length) {
-      err.textContent = 'Please add ' + missing.join(', ') + '.';
-      err.hidden = false;
-      return;
-    }
+    var d = new FormData(form), miss = [];
+    if (!(d.get('name') || '').trim()) miss.push('your name');
+    if (!(d.get('mobile') || '').trim()) miss.push('a mobile number');
+    if (!d.get('service')) miss.push(cfg.serviceWord);
+    if (!d.get('date')) miss.push('a date');
+    if (!picked) miss.push('a ' + cfg.slotWord);
+    if (miss.length) { err.textContent = 'Please add ' + miss.join(', ') + '.'; err.hidden = false; return; }
     err.hidden = true;
-
-    var when = new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric' });
-    var rows = [
-      ['Name', d.get('name')],
-      [cfg.serviceLabel, d.get('service')],
-      ['Date', when],
-      [cfg.slotLabel, picked]
-    ];
+    var rows = [['Name', d.get('name')], [cfg.serviceLabel, d.get('service')],
+      ['Date', new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })],
+      [cfg.slotLabel, picked]];
     if (d.get('guests')) rows.push(['Guests', d.get('guests')]);
-
+    if (d.get('grade')) rows.push(['Grade level', d.get('grade')]);
     var done = document.createElement('div');
-    done.className = 'done';
-    done.setAttribute('role', 'status');
-    done.innerHTML = '<div class="done__icon">✓</div><h3></h3><p class="muted"></p><dl></dl>' +
-      '<p class="done__demo">This is a sample site, so nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
-      '<button type="button" class="btn btn--ghost btn--sm">Book another</button>';
+    done.className = 'done'; done.setAttribute('role', 'status');
+    done.innerHTML = '<div class="done__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3></h3><p></p><dl></dl>' +
+      '<p class="done__demo"><b>Sample site:</b> nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
+      '<button type="button" class="again">Make another booking</button>';
     done.querySelector('h3').textContent = cfg.doneTitle;
-    done.querySelector('p.muted').textContent = cfg.doneText;
+    done.querySelector('h3 + p').textContent = cfg.doneText;
     var dl = done.querySelector('dl');
     rows.forEach(function (r) {
       var dt = document.createElement('dt'); dt.textContent = r[0];
       var dd = document.createElement('dd'); dd.textContent = r[1];
       dl.appendChild(dt); dl.appendChild(dd);
     });
-    done.querySelector('button').addEventListener('click', function () {
-      done.remove();
-      form.reset();
-      form.hidden = false;
-      renderSlots();
+    done.querySelector('.again').addEventListener('click', function () {
+      done.remove(); form.reset(); form.hidden = false; render();
+      form.dispatchEvent(new Event('sample:reset'));
     });
     form.hidden = true;
     form.parentNode.insertBefore(done, form.nextSibling);
     done.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
-  // "Book this" buttons in the price list pre-select the service
   document.querySelectorAll('[data-book]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      form.elements.service.value = a.dataset.book;
-    });
+    a.addEventListener('click', function () { form.elements.service.value = a.dataset.book; });
   });
 })();
 
-  </script>
+
+</script>
 </body>
 </html>

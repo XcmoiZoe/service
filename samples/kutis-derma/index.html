@@ -1,552 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kutis Derma &amp; Aesthetics (sample site by Stackclever)</title>
-  <meta name="description" content="Sample derma &amp; aesthetic clinic website by Stackclever. Kutis Derma &amp; Aesthetics is a fictional business.">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#be185d">
-  <meta property="og:title" content="Sample derma &amp; aesthetic clinic website · Stackclever">
-  <meta property="og:description" content="Price list, online booking, FAQs and Messenger. Get a site like this for your business.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-/* Shared styles for Stackclever sample sites. Each page sets its own theme vars on <body>. */
-:root {
-  --brand: #0f766e;
-  --brand-ink: #ffffff;
-  --brand-soft: #e6f4f2;
-  --ink: #16181d;
-  --muted: #5b616e;
-  --line: #e4e6eb;
-  --bg: #ffffff;
-  --bg-alt: #f6f7f9;
-  --radius: 14px;
-  --head: "Inter", system-ui, sans-serif;
-  --body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kutis Derma &amp; Aesthetics · Sample derma and aesthetic clinic website by Stackclever</title>
+<meta name="description" content="Sample derma and aesthetic clinic website by Stackclever. Kutis Derma &amp; Aesthetics is a fictional business.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2a201c">
+<meta property="og:title" content="Sample derma and aesthetic clinic website · Stackclever">
+<meta property="og:description" content="Price list, online booking, FAQs and Messenger in one mobile-friendly site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Base shared by all samples. Each page defines: --brand --brand-ink --soft --ink --muted --line --bg --surface --r */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0 0 1em}
+h1,h2,h3,h4{margin:0 0 .5em}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.ico{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.sample-bar{background:#0b0b0c;color:#e9e9ea;font:13px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.sample-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:6px 16px;flex-wrap:wrap;padding:8px 0}
+.sample-bar p{margin:0}
+.sample-bar b{color:#ffd54a;font-weight:600}
+.sample-bar a{color:#ffd54a;font-weight:600;text-decoration:none;white-space:nowrap}
+.sample-bar a:hover{text-decoration:underline}
+
+/* Booking engine pieces */
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.slot{font:inherit;font-size:.88rem;padding:.65em .4em;border-radius:calc(var(--r) * .6);border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.slot:hover:not(:disabled){border-color:var(--brand)}
+.slot[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.slot:disabled{opacity:.45;text-decoration:line-through;cursor:not-allowed}
+.slots__empty{grid-column:1/-1;margin:0;color:var(--muted);font-size:.9rem}
+.form__error{color:#b42318;font-size:.9rem;font-weight:500}
+.done{text-align:center;padding:8px 0}
+.done__icon{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--soft);color:var(--brand);margin:0 auto 14px}
+.done__icon .ico{width:28px;height:28px;stroke-width:2.2}
+.done h3{margin-bottom:.3em}
+.done>p{color:var(--muted)}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;text-align:left;margin:18px 0;padding:16px 18px;border-radius:var(--r);background:var(--soft);font-size:.94rem}
+.done dt{color:var(--muted)}
+.done dd{margin:0;font-weight:600}
+.done__demo{font-size:.84rem;color:#6b5a12;background:#fff8d6;border:1px solid #f1e2a0;border-radius:10px;padding:10px 12px;text-align:left}
+.done .again{font:inherit;font-weight:600;background:none;border:1px solid var(--line);color:var(--ink);padding:.6em 1.2em;border-radius:999px;cursor:pointer}
+
+.chat{position:fixed;right:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:8px;padding:.8em 1.15em;border:0;border-radius:999px;background:#0866ff;color:#fff;font:600 15px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;cursor:pointer;box-shadow:0 14px 30px -12px rgba(8,102,255,.7)}
+.chat svg{width:20px;height:20px}
+.toast{position:fixed;left:50%;bottom:86px;z-index:70;transform:translate(-50%,16px);opacity:0;pointer-events:none;background:#111;color:#fff;padding:12px 18px;border-radius:12px;font:14px/1.45 system-ui,sans-serif;max-width:min(420px,100% - 32px);text-align:center;transition:.25s}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+.credit{font-size:.85rem;color:var(--muted)}
+.credit a{color:var(--brand);font-weight:600;text-decoration:none}
+@media (max-width:540px){.chat span{display:none}.wrap{width:min(1180px,100% - 32px)}}
+[hidden]{display:none!important}
+
+
+body{--brand:#8a5443;--brand-ink:#fff;--soft:#f1e6dc;--ink:#2a201c;--muted:#7a6a62;--line:#e3d6ca;--bg:#f8f2ec;--surface:#fffaf5;--r:4px;font:300 17px/1.7 "Jost",system-ui,sans-serif}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:-.01em;line-height:1.05}
+h2{font-size:clamp(2.3rem,4.4vw,3.6rem)}
+em{font-style:italic;color:var(--brand)}
+.over{display:block;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;font-weight:500;color:var(--brand);margin-bottom:18px}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 30px;background:var(--ink);color:#f8f2ec;border:1px solid var(--ink);text-decoration:none;font:inherit;font-size:.78rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
+.btn:hover{background:transparent;color:var(--ink)}
+.btn--ghost{background:transparent;color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:#f8f2ec}
+.hd{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:40}
+.hd .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:84px}
+.hd nav{display:flex;gap:30px}
+.hd nav a{text-decoration:none;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400}
+.hd nav a:hover{color:var(--brand)}
+.hd nav:last-child{justify-content:flex-end;align-items:center}
+.mark{text-align:center;text-decoration:none;line-height:1}
+.mark b{display:block;font-family:"Cormorant Garamond",serif;font-weight:600;font-size:2rem;letter-spacing:.32em;margin-right:-.32em}
+.mark small{font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
+.hero{padding:70px 0 0}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:end}
+.hero h1{font-size:clamp(3.2rem,7.6vw,6.6rem);margin-bottom:28px}
+.hero h1 em{font-weight:400}
+.hero p{max-width:30em;color:var(--muted);font-size:1.08rem}
+.hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin:34px 0 70px}
+.arch{position:relative;aspect-ratio:3/4;border-radius:999px 999px 0 0;overflow:hidden;background:linear-gradient(170deg,#ecd3c4 0%,#d6a991 50%,#9c6450 100%)}
+.arch svg{position:absolute;inset:0;width:100%;height:100%}
+.arch__cap{position:absolute;left:22px;right:22px;bottom:22px;background:rgba(248,242,236,.94);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.arch__cap small{display:block;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.arch__cap b{font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-weight:600}
+.arch__cap span{font-family:"Cormorant Garamond",serif;font-size:1.35rem;color:var(--brand)}
+.marq{background:var(--ink);color:#e9dccf;overflow:hidden;padding:18px 0;white-space:nowrap}
+.marq div{display:inline-flex;gap:38px;font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-style:italic;animation:mq 38s linear infinite}
+.marq span::after{content:"✦";font-style:normal;font-size:.8rem;color:#c99a83;margin-left:38px;vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
+.sec{padding:110px 0}
+.sec--line{border-top:1px solid var(--line)}
+.center{text-align:center;max-width:720px;margin:0 auto 64px}
+.center p{color:var(--muted)}
+.ph{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.ph div{padding:40px 36px 0 0}
+.ph div+div{padding-left:36px;border-left:1px solid var(--line)}
+.ph b{font-family:"Cormorant Garamond",serif;font-size:3rem;font-weight:400;color:var(--brand);display:block;line-height:1;margin-bottom:18px}
+.ph h3{font-size:1.7rem}
+.ph p{color:var(--muted);margin:0}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:70px 90px}
+.menu h3{font-size:2rem;font-style:italic;display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.menu h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.menu li{list-style:none;padding:12px 0}
+.menu .row{display:flex;align-items:baseline;gap:10px}
+.menu .row span{font-weight:400}
+.menu .row i{flex:1;border-bottom:1px dotted #bfa999;transform:translateY(-5px)}
+.menu .row b{font-family:"Cormorant Garamond",serif;font-size:1.3rem;font-weight:600}
+.menu small{display:block;color:var(--muted);font-size:.8rem;letter-spacing:.06em}
+.menu ul{margin:0;padding:0}
+.promo{background:var(--ink);color:#d9cabd}
+.promo .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.promo h2{color:#f8f2ec}
+.promo h2 em{color:#d9a68e}
+.promo ul{list-style:none;padding:0;margin:28px 0 36px;display:grid;gap:12px}
+.promo li{display:flex;gap:14px;align-items:center}
+.promo li .ico{color:#d9a68e;width:18px}
+.price-tag{border:1px solid #4a3a33;padding:44px;text-align:center}
+.price-tag small{letter-spacing:.24em;text-transform:uppercase;font-size:.7rem}
+.price-tag b{display:block;font-family:"Cormorant Garamond",serif;font-size:5.4rem;font-weight:400;color:#f8f2ec;line-height:1;margin:16px 0 8px}
+.price-tag s{color:#8f7c70}
+.promo .btn{background:#f8f2ec;color:var(--ink);border-color:#f8f2ec}
+.promo .btn:hover{background:transparent;color:#f8f2ec}
+.bookwrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px}
+.bookwrap ol{padding:0;margin:30px 0 0;list-style:none;counter-reset:n;display:grid;gap:18px}
+.bookwrap ol li{display:flex;gap:16px;color:var(--muted)}
+.bookwrap ol li::before{counter-increment:n;content:counter(n,upper-roman);font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:var(--brand);width:28px;flex:none}
+.bform{background:var(--surface);border:1px solid var(--line);padding:44px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.f{display:flex;flex-direction:column;margin:0 0 26px;border:0;padding:0;min-width:0}
+.f label,.f legend{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--muted);padding:0;margin-bottom:6px}
+.f legend{margin-bottom:12px}
+.f input,.f select,.f textarea{font:inherit;font-weight:400;background:transparent;border:0;border-bottom:1px solid #cdb9a9;padding:10px 0;color:var(--ink);border-radius:0;width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-bottom-color:var(--brand)}
+.opt{text-transform:none;letter-spacing:0}
+.slot{border-radius:0;font-size:.84rem;letter-spacing:.04em}
+.bform .btn{width:100%;justify-content:center}
+.f-note{font-size:.8rem;color:var(--muted);text-align:center;margin:16px 0 0}
+.done .again{border-radius:0}
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:0 80px}
+.qa div{padding:28px 0;border-top:1px solid var(--line)}
+.qa h3{font-size:1.6rem}
+.qa p{color:var(--muted);margin:0}
+.visit{display:grid;grid-template-columns:1fr 1fr 1fr;gap:60px;border-top:1px solid var(--line);padding-top:60px}
+.visit h3{font-size:1.6rem;font-style:italic}
+.visit table{width:100%;border-collapse:collapse;font-size:.95rem}
+.visit td{padding:7px 0;border-bottom:1px solid var(--line)}
+.visit td:last-child{text-align:right}
+.visit tr.is-today td{color:var(--brand);font-weight:500}
+.visit p{color:var(--muted);margin:0 0 10px}
+.ft{background:var(--ink);color:#a8968a;padding:70px 0 32px;text-align:center}
+.ft .mark{color:#f8f2ec;display:inline-block;margin-bottom:22px}
+.ft .credit{margin-top:40px;padding-top:24px;border-top:1px solid #3d302a;color:#8f7c70}
+.ft .credit a{color:#d9a68e}
+@media (max-width:980px){
+ .hd .wrap{grid-template-columns:auto 1fr}
+ .hd nav:first-child{display:none}
+ .hd nav:last-child a:not(.btn){display:none}
+ .mark{text-align:left}
+ .hero .wrap,.promo .wrap,.bookwrap,.menu,.qa,.visit{grid-template-columns:1fr}
+ .arch{max-width:420px;width:100%;margin:0 auto}
+ .ph{grid-template-columns:1fr}
+ .ph div,.ph div+div{padding:30px 0;border-left:0;border-bottom:1px solid var(--line)}
+ .hero__cta{margin-bottom:40px}
+ .menu{gap:50px}
 }
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; display: block; }
-a { color: inherit; }
-h1, h2, h3 { font-family: var(--head); line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.015em; }
-h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
-h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
-h3 { font-size: 1.1rem; }
-p { margin: 0 0 1em; }
-.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
-.muted { color: var(--muted); }
-
-/* Sample banner */
-.sample-bar { background: #111; color: #f2f2f2; font-size: .85rem; }
-.sample-bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; padding: 8px 0; }
-.sample-bar p { margin: 0; }
-.sample-bar b { color: #ffd54a; font-weight: 600; }
-.sample-bar a { color: #ffd54a; font-weight: 600; text-decoration: none; white-space: nowrap; }
-.sample-bar a:hover { text-decoration: underline; }
-
-/* Header */
-.top { position: sticky; top: 0; z-index: 40; background: rgba(255, 255, 255, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--head); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
-.brand__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--brand); color: var(--brand-ink); font-size: 1rem; }
-.top nav { display: flex; align-items: center; gap: 24px; }
-.top nav a:not(.btn) { color: var(--muted); text-decoration: none; font-size: .95rem; }
-.top nav a:not(.btn):hover { color: var(--ink); }
-
-/* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .85em 1.5em; border-radius: 999px; background: var(--brand); color: var(--brand-ink); border: 1px solid var(--brand); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform .15s, filter .15s; }
-.btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn--ghost:hover { border-color: var(--brand); color: var(--brand); }
-.btn--sm { padding: .55em 1.1em; font-size: .9rem; }
-.btn--block { width: 100%; }
-
-/* Hero */
-.hero { padding: 64px 0 56px; background: linear-gradient(180deg, var(--brand-soft), var(--bg)); }
-.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
-.kicker { display: inline-block; color: var(--brand); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .8em; }
-.lead { font-size: 1.12rem; color: var(--muted); max-width: 34em; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
-.ticks { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .92rem; color: var(--muted); }
-.ticks li::before { content: "\2713"; color: var(--brand); font-weight: 700; margin-right: 6px; }
-
-.hero__card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; box-shadow: 0 30px 60px -30px rgba(20, 30, 50, .35); }
-.hero__art { aspect-ratio: 16/10; border-radius: 14px; margin-bottom: 18px; background: var(--art); position: relative; overflow: hidden; display: grid; place-items: center; font-size: 4rem; }
-.hero__art span { filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .2)); }
-.next { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--bg-alt); }
-.next small { display: block; color: var(--muted); font-size: .8rem; }
-.next strong { font-family: var(--head); }
-.live { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; color: #15803d; font-weight: 600; }
-.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, .18); }
-
-/* Sections */
-.section { padding: 80px 0; }
-.section--alt { background: var(--bg-alt); }
-.section__head { max-width: 640px; margin-bottom: 36px; }
-
-.perks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.perk { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-.perk__icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--brand-soft); font-size: 1.3rem; margin-bottom: 14px; }
-.perk p { color: var(--muted); font-size: .93rem; margin: 0; }
-
-/* Price list */
-.prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.price-group { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 24px 12px; }
-.price-group h3 { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-.price-group ul { list-style: none; margin: 0; padding: 0; }
-.price-group li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
-.price-group li:last-child { border-bottom: 0; }
-.price-group li span small { display: block; color: var(--muted); font-size: .84rem; }
-.price-group li b { font-family: var(--head); white-space: nowrap; color: var(--brand); }
-.note { font-size: .88rem; color: var(--muted); margin-top: 18px; }
-
-/* Booking */
-.book { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; align-items: start; }
-.book__info ul { padding-left: 1.1em; color: var(--muted); }
-.book__info li { margin-bottom: .4em; }
-.form { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 20px 50px -35px rgba(20, 30, 50, .4); }
-.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-.field label, .field legend { font-weight: 600; font-size: .9rem; }
-.field input, .field select, .field textarea { font: inherit; padding: .7em .85em; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); width: 100%; }
-.field textarea { resize: vertical; min-height: 80px; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
-fieldset.field { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; }
-.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 4px; }
-.slot { font: inherit; font-size: .88rem; padding: .6em .4em; border-radius: 10px; border: 1px solid var(--line); background: #fff; cursor: pointer; color: var(--ink); }
-.slot:hover:not(:disabled) { border-color: var(--brand); }
-.slot[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
-.slot:disabled { color: #b3b7c0; text-decoration: line-through; cursor: not-allowed; background: var(--bg-alt); }
-.slots__empty { grid-column: 1 / -1; color: var(--muted); font-size: .9rem; margin: 0; }
-.form__error { color: #b91c1c; font-size: .9rem; font-weight: 500; }
-.form__small { font-size: .82rem; color: var(--muted); margin: 12px 0 0; text-align: center; }
-.done { text-align: center; padding: 12px 4px; }
-.done__icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-size: 1.6rem; margin: 0 auto 14px; }
-.done dl { text-align: left; background: var(--bg-alt); border-radius: 12px; padding: 14px 18px; margin: 16px 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: .93rem; }
-.done dt { color: var(--muted); }
-.done dd { margin: 0; font-weight: 600; }
-.done__demo { font-size: .85rem; color: var(--muted); background: #fff8db; border: 1px solid #f3e3a1; border-radius: 10px; padding: 10px 12px; }
-
-/* FAQ */
-.faq { max-width: 780px; }
-.faq details { border-bottom: 1px solid var(--line); padding: 4px 0; }
-.faq summary { cursor: pointer; list-style: none; font-weight: 600; padding: 14px 32px 14px 0; position: relative; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; position: absolute; right: 4px; top: 10px; font-size: 1.4rem; color: var(--brand); transition: transform .2s; }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq details p { color: var(--muted); margin: 0 0 16px; }
-
-/* Visit */
-.visit { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
-.hours { width: 100%; border-collapse: collapse; font-size: .95rem; }
-.hours td { padding: 10px 0; border-bottom: 1px solid var(--line); }
-.hours td:last-child { text-align: right; font-weight: 600; }
-.hours tr.is-today td { color: var(--brand); }
-.map { border-radius: var(--radius); border: 1px solid var(--line); min-height: 260px; background:
-  linear-gradient(90deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  linear-gradient(0deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
-  var(--brand-soft);
-  display: grid; place-items: center; text-align: center; padding: 24px; }
-.map__pin { font-size: 2.4rem; }
-.map p { margin: 6px 0 0; font-weight: 600; }
-.map small { color: var(--muted); }
-.contact-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
-.contact-list li { color: var(--muted); }
-.contact-list b { color: var(--ink); }
-
-/* CTA band */
-.band { background: var(--brand); color: var(--brand-ink); border-radius: 22px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.band h2 { margin: 0 0 .2em; }
-.band p { margin: 0; opacity: .85; }
-.band .btn { background: #fff; color: var(--ink); border-color: #fff; }
-
-/* Footer */
-.foot { border-top: 1px solid var(--line); padding: 28px 0 100px; font-size: .88rem; color: var(--muted); }
-.foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.foot a { color: var(--brand); font-weight: 600; text-decoration: none; }
-
-/* Floating chat + toast */
-.chat { position: fixed; right: 18px; bottom: 18px; z-index: 50; display: inline-flex; align-items: center; gap: 8px; padding: .8em 1.2em; border-radius: 999px; border: 0; background: #0866ff; color: #fff; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 14px 30px -10px rgba(8, 102, 255, .6); }
-.chat svg { width: 20px; height: 20px; }
-.toast { position: fixed; left: 50%; bottom: 84px; z-index: 60; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #111; color: #fff; padding: 12px 18px; border-radius: 12px; font-size: .9rem; max-width: min(420px, 100% - 32px); text-align: center; transition: opacity .25s, transform .25s; }
-.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
-
-@media (max-width: 900px) {
-  .hero .wrap, .book, .visit { grid-template-columns: 1fr; }
-  .perks { grid-template-columns: repeat(2, 1fr); }
-  .prices { grid-template-columns: 1fr; }
-  .top nav a:not(.btn) { display: none; }
+@media (max-width:600px){
+ .sec{padding:76px 0}
+ .bform{padding:26px 20px}
+ .f-row{grid-template-columns:1fr;gap:0}
+ .hd .btn{padding:12px 16px;letter-spacing:.14em}
+ .price-tag{padding:30px 20px}
 }
-@media (max-width: 540px) {
-  .perks, .form__row { grid-template-columns: 1fr; }
-  .section { padding: 60px 0; }
-  .hero { padding: 40px 0; }
-  .form { padding: 20px; }
-  .band { padding: 28px; }
-  .chat span { display: none; }
-}
-
-body { --brand: #be185d; --brand-soft: #fcebf3; --head: "Playfair Display", Georgia, serif; --art: linear-gradient(135deg,#fbcfe8,#be185d); }
-  </style>
+</style>
 </head>
-<body>
-  <div class="sample-bar" role="note">
-    <div class="wrap">
-      <p><b>Sample site.</b> Kutis Derma &amp; Aesthetics is a fictional business, made by Stackclever to show what your derma &amp; aesthetic clinic website could look like.</p>
-      <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
-    </div>
+<body class="">
+<div class="sample-bar" role="note"><div class="wrap">
+  <p><b>Sample site.</b> Kutis Derma &amp; Aesthetics is a fictional business, made by Stackclever to show what a derma and aesthetic clinic website could look like.</p>
+  <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+</div></div>
+
+<header class="hd"><div class="wrap">
+  <nav aria-label="Primary"><a href="#menu">Treatments</a><a href="#ritual">Offers</a><a href="#faq">FAQ</a></nav>
+  <a href="#" class="mark"><b>KUTIS</b><small>Derma &amp; Aesthetics</small></a>
+  <nav aria-label="Secondary"><a href="#visit">Visit</a><a href="#book" class="btn">Reserve</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="over">Skin · Laser · Lash · Nails — Kapitolyo, Pasig</span>
+    <h1>Skin that feels like <em>you</em> again.</h1>
+    <p>Thoughtful facials, laser and beauty treatments by licensed aestheticians, in a calm studio designed for you to slow down.</p>
+    <div class="hero__cta"><a href="#book" class="btn">Reserve a treatment</a><a href="#menu" class="btn btn--ghost">View the menu</a></div>
   </div>
+  <div class="arch"><svg viewBox="0 0 300 400" aria-hidden="true" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1.2" stroke-linecap="round">
+    <path d="M150 400C150 300 140 230 160 150"/>
+    <path d="M155 300c-30-10-58-34-62-70 34 6 56 32 62 70z"/><path d="M152 250c28-12 52-38 54-72-32 8-52 36-54 72z"/>
+    <path d="M157 200c-26-10-46-32-48-62 30 6 46 30 48 62z"/><path d="M159 160c20-14 34-40 32-66-26 12-36 38-32 66z"/>
+    <circle cx="160" cy="140" r="9" stroke-opacity=".9"/>
+    <circle cx="230" cy="80" r="38" stroke-opacity=".35"/><circle cx="230" cy="80" r="56" stroke-opacity=".2"/>
+  </svg><div class="arch__cap"><div><small>Signature treatment</small><b>Hydra Facial</b></div><span>₱2,500</span></div></div>
+</div></section>
+<div class="marq" aria-hidden="true"><div><span>Hydra Facial</span><span>Diode Laser</span><span>Pico Laser</span><span>Diamond Peel</span><span>Lash Lift</span><span>Gel Nails</span><span>Glutathione</span><span>Brow Lamination</span><span>Hydra Facial</span><span>Diode Laser</span><span>Pico Laser</span><span>Diamond Peel</span><span>Lash Lift</span><span>Gel Nails</span><span>Glutathione</span><span>Brow Lamination</span></div></div>
 
-  <header class="top">
-    <div class="wrap">
-      <a href="#" class="brand"><span class="brand__mark" aria-hidden="true">K</span>Kutis Derma</a>
-      <nav aria-label="Main">
-        <a href="#prices">Prices</a>
-        <a href="#book">Book</a>
-        <a href="#faq">FAQ</a>
-        <a href="#visit">Visit us</a>
-        <a href="#book" class="btn btn--sm">Book now</a>
-      </nav>
+<section class="sec"><div class="wrap">
+  <div class="center"><span class="over">Our approach</span><h2>Gentle methods, <em>visible</em> results</h2></div>
+  <div class="ph">
+    <div><b>I.</b><h3>Assess</h3><p>Every first visit begins with a skin consultation, so we recommend only what your skin needs.</p></div>
+    <div><b>II.</b><h3>Treat</h3><p>FDA-registered products and modern equipment, used by licensed aestheticians.</p></div>
+    <div><b>III.</b><h3>Maintain</h3><p>A simple home routine and a session plan that fits your schedule and budget.</p></div>
+  </div>
+</div></section>
+
+<section class="sec sec--line" id="menu"><div class="wrap">
+  <div class="center"><span class="over">Treatment menu</span><h2>The <em>menu</em></h2><p>Prices are per session. Packages of five and ten sessions save you up to 30%.</p></div>
+  <div class="menu"><div><h3>Facials</h3><ul><li><div class="row"><span>Signature Kutis Facial</span><i></i><b>₱999</b></div><small>60 min · cleanse, extract, mask</small></li><li><div class="row"><span>Diamond Peel Glow</span><i></i><b>₱899</b></div><small>45 min · with basic facial</small></li><li><div class="row"><span>Acne Clearing Facial</span><i></i><b>₱1,200</b></div><small>60 min · with blue light</small></li><li><div class="row"><span>Hydra Facial</span><i></i><b>₱2,500</b></div><small>75 min · deep hydration</small></li></ul></div><div><h3>Laser & skin</h3><ul><li><div class="row"><span>Diode laser · underarm</span><i></i><b>₱799</b></div><small>per session</small></li><li><div class="row"><span>Diode laser · full legs</span><i></i><b>₱2,999</b></div><small>per session</small></li><li><div class="row"><span>Pico laser · pigmentation</span><i></i><b>₱3,500</b></div><small>per session</small></li><li><div class="row"><span>Glutathione drip</span><i></i><b>₱1,500</b></div><small>per session</small></li></ul></div><div><h3>Lash & brow</h3><ul><li><div class="row"><span>Classic lash extensions</span><i></i><b>₱799</b></div><small>90 min</small></li><li><div class="row"><span>Volume lash extensions</span><i></i><b>₱1,299</b></div><small>120 min</small></li><li><div class="row"><span>Lash lift &amp; tint</span><i></i><b>₱699</b></div><small>60 min</small></li><li><div class="row"><span>Brow lamination</span><i></i><b>₱899</b></div><small>45 min</small></li></ul></div><div><h3>Nails</h3><ul><li><div class="row"><span>Classic manicure</span><i></i><b>₱200</b></div><small>30 min</small></li><li><div class="row"><span>Gel manicure</span><i></i><b>₱450</b></div><small>45 min</small></li><li><div class="row"><span>Gel pedicure</span><i></i><b>₱550</b></div><small>60 min</small></li><li><div class="row"><span>Soft gel extensions</span><i></i><b>₱1,200</b></div><small>90 min</small></li></ul></div></div>
+</div></section>
+
+<section class="sec promo" id="ritual"><div class="wrap">
+  <div>
+    <span class="over" style="color:#d9a68e">For first-time guests</span>
+    <h2>The <em>First Glow</em> ritual</h2>
+    <p>Our most-loved introduction to Kutis: a skin assessment, Diamond Peel and calming facial, finished with a take-home sample.</p>
+    <ul><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Personal skin consultation</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Diamond Peel + basic facial</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Home-care sample kit</li></ul>
+    <a href="#book" class="btn" data-book="First Glow ritual">Reserve the ritual</a>
+  </div>
+  <div class="price-tag"><small>First visit only</small><b>₱899</b><s>₱1,450</s></div>
+</div></section>
+
+<section class="sec" id="book"><div class="wrap bookwrap">
+  <div>
+    <span class="over">Reservations</span><h2>Reserve your <em>time</em></h2>
+    <p style="color:var(--muted)">Choose your treatment and a time. We’ll send a confirmation by text.</p>
+    <ol><li>Come with clean skin; no makeup needed for facials.</li><li>For laser, shave the area 24 hours before.</li><li>Arriving 15 minutes late may shorten your treatment.</li></ol>
+  </div>
+  <form class="bform" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;10:00 AM&quot;,&quot;11:00 AM&quot;,&quot;12:00 PM&quot;,&quot;1:00 PM&quot;,&quot;2:00 PM&quot;,&quot;3:00 PM&quot;,&quot;4:00 PM&quot;,&quot;5:00 PM&quot;,&quot;6:00 PM&quot;,&quot;7:00 PM&quot;],&quot;hours&quot;:[10,11,12,13,14,15,16,17,18,19],&quot;busy&quot;:40,&quot;closed&quot;:[],&quot;serviceLabel&quot;:&quot;Treatment&quot;,&quot;serviceWord&quot;:&quot;a treatment&quot;,&quot;slotLabel&quot;:&quot;Time&quot;,&quot;slotWord&quot;:&quot;time&quot;,&quot;doneTitle&quot;:&quot;Your time is reserved&quot;,&quot;doneText&quot;:&quot;We look forward to seeing you. A confirmation text is on its way.&quot;}">
+    
+    <div class="f-row">
+      <div class="f"><label for="b-name">Full name</label><input id="b-name" name="name" autocomplete="name" placeholder="Your name"></div>
+      <div class="f"><label for="b-mobile">Mobile number</label><input id="b-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="09XX XXX XXXX"></div>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <div>
-          <span class="kicker">Skin, laser &amp; beauty · Pasig City</span>
-          <h1>Glowing skin starts with the right treatment.</h1>
-          <p class="lead">Facials, diode laser, lash and nails by licensed aestheticians. Clear prices, real results, and booking that takes less than a minute.</p>
-          <div class="hero__cta">
-            <a href="#book" class="btn">Book online</a>
-            <a href="#prices" class="btn btn--ghost">See prices</a>
-          </div>
-          <ul class="ticks">
-            <li>Licensed aestheticians</li>
-            <li>FDA-approved products</li>
-            <li>First-timer promos</li>
-          </ul>
-        </div>
-        <div class="hero__card" aria-hidden="true">
-          <div class="hero__art"><span>✨</span></div>
-          <div class="next">
-            <div><small>Today's promo</small><strong>Diamond Peel + Facial ₱899</strong></div>
-            <span class="live">Booking open</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="perks">
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🧴</div><h3>Skin assessment</h3><p>A quick skin check before every first treatment.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🔬</div><h3>Medical-grade</h3><p>FDA-registered products and modern diode laser machines.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">💅</div><h3>All in one place</h3><p>Facial, lashes and nails in a single visit.</p></div>
-          <div class="perk"><div class="perk__icon" aria-hidden="true">🎁</div><h3>Packages</h3><p>Save up to 30% with 5- and 10-session bundles.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="prices">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">Price list</span>
-          <h2>Clear prices, no need to PM</h2>
-          <p class="muted">Rates below are starting prices. Book a slot and we'll confirm the details with you.</p>
-        </div>
-        <div class="prices">
-          <div class="price-group">
-            <h3><span aria-hidden="true">🌸</span> Facials &amp; skin</h3>
-            <ul>
-              <li><span>Basic facial<small>Cleanse, extract, mask</small></span><b>₱499</b></li>
-              <li><span>Diamond peel<small>With basic facial</small></span><b>₱899</b></li>
-              <li><span>Acne facial<small>With blue light</small></span><b>₱1,200</b></li>
-              <li><span>Glutathione drip<small>Per session</small></span><b>₱1,500</b></li>
-            </ul>
-          </div>
-          <div class="price-group">
-            <h3><span aria-hidden="true">⚡</span> Laser, lash &amp; nails</h3>
-            <ul>
-              <li><span>Diode laser: underarm<small>Per session</small></span><b>₱799</b></li>
-              <li><span>Diode laser: full legs<small>Per session</small></span><b>₱2,999</b></li>
-              <li><span>Classic lash extensions</span><b>₱799</b></li>
-              <li><span>Gel manicure</span><b>₱450</b></li>
-            </ul>
-          </div>
-        </div>
-        <p class="note">First-timer? Show this page at the front desk for 10% off your first treatment.</p>
-      </div>
-    </section>
-
-    <section class="section" id="book">
-      <div class="wrap book">
-        <div class="book__info">
-          <span class="kicker">Online booking</span>
-          <h2>Reserve your treatment</h2>
-          <p class="muted">Pick a treatment and time. We'll send a confirmation by text.</p>
-          <ul>
-            <li>No makeup needed for facials</li>
-            <li>Shave the area 24 hours before laser</li>
-            <li>Late by 15+ minutes? We may need to move your slot</li>
-          </ul>
-        </div>
-        <div>
-          <form class="form" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;10:00 AM&quot;,&quot;11:00 AM&quot;,&quot;12:00 PM&quot;,&quot;1:00 PM&quot;,&quot;2:00 PM&quot;,&quot;3:00 PM&quot;,&quot;4:00 PM&quot;,&quot;5:00 PM&quot;,&quot;6:00 PM&quot;,&quot;7:00 PM&quot;],&quot;hours&quot;:[10,11,12,13,14,15,16,17,18,19],&quot;busy&quot;:40,&quot;closed&quot;:[],&quot;serviceLabel&quot;:&quot;Treatment&quot;,&quot;serviceWord&quot;:&quot;a treatment&quot;,&quot;slotLabel&quot;:&quot;Time&quot;,&quot;slotWord&quot;:&quot;time slot&quot;,&quot;doneTitle&quot;:&quot;Treatment reserved!&quot;,&quot;doneText&quot;:&quot;See you soon. We'll text your confirmation shortly.&quot;}">
-            <div class="form__row">
-              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" placeholder="Juan Dela Cruz"></div>
-              <div class="field"><label for="f-mobile">Mobile number</label><input id="f-mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" placeholder="09XX XXX XXXX"></div>
-            </div>
-            <div class="form__row">
-              <div class="field"><label for="f-service">Treatment</label>
-                <select id="f-service" name="service">
-                  <option value="">Choose treatment…</option>
-                  <option>Basic facial</option>
-                  <option>Diamond peel</option>
-                  <option>Acne facial</option>
-                  <option>Diode laser</option>
-                  <option>Lash extensions</option>
-                  <option>Gel manicure / pedicure</option>
-                </select>
-              </div>
-              <div class="field"><label for="f-date">Date</label><input id="f-date" name="date" type="date"></div>
-            </div>
-            
-            <fieldset class="field">
-              <legend>Time</legend>
-              <div class="slots" aria-live="polite"></div>
-            </fieldset>
-            <div class="field"><label for="f-notes">Notes <span class="muted">(optional)</span></label><textarea id="f-notes" name="notes" placeholder="Anything we should know?"></textarea></div>
-            <p class="form__error" role="alert" hidden></p>
-            <button type="submit" class="btn btn--block">Request booking</button>
-            <p class="form__small">We'll confirm by text. Your details are only used for this booking.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="faq">
-      <div class="wrap">
-        <div class="section__head">
-          <span class="kicker">FAQ</span>
-          <h2>Questions we get a lot</h2>
-        </div>
-        <div class="faq">
-          <details open><summary>Is diode laser painful?</summary><p>Most clients feel a quick warm snap. Our machine has a cooling tip, so it's much gentler than older lasers.</p></details>
-          <details><summary>How many laser sessions do I need?</summary><p>Usually 6 to 8 sessions, 4 to 6 weeks apart, for long-lasting results.</p></details>
-          <details><summary>Can I book for a group?</summary><p>Yes. Add a note when booking and we'll set up back-to-back slots for your group.</p></details>
-          <details><summary>Do you have a dermatologist?</summary><p>Yes. A board-certified dermatologist sees patients every Saturday by appointment.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="visit">
-      <div class="wrap visit">
-        <div>
-          <span class="kicker">Visit us</span>
-          <h2>Clinic hours</h2>
-          <table class="hours">
-            <tbody>
-              <tr data-day="1"><td>Monday</td><td>10:00 AM – 8:00 PM</td></tr>
-              <tr data-day="2"><td>Tuesday</td><td>10:00 AM – 8:00 PM</td></tr>
-              <tr data-day="3"><td>Wednesday</td><td>10:00 AM – 8:00 PM</td></tr>
-              <tr data-day="4"><td>Thursday</td><td>10:00 AM – 8:00 PM</td></tr>
-              <tr data-day="5"><td>Friday</td><td>10:00 AM – 8:00 PM</td></tr>
-              <tr data-day="6"><td>Saturday</td><td>10:00 AM – 8:00 PM</td></tr>
-              <tr data-day="0"><td>Sunday</td><td>10:00 AM – 8:00 PM</td></tr>
-            </tbody>
-          </table>
-          <ul class="contact-list">
-            <li><b>Address:</b> Ground Floor, Sample Arcade, Kapitolyo, Pasig City</li>
-            <li><b>Landmark:</b> Beside the corner coffee shop on East Capitol Dr.</li>
-            <li><b>Mobile:</b> 0918 000 0000 <span class="muted">(sample number)</span></li>
-          </ul>
-        </div>
-        <div class="map" role="img" aria-label="Map placeholder">
-          <div>
-            <div class="map__pin" aria-hidden="true">📍</div>
-            <p>Kutis Derma</p>
-            <small>A real site shows a live Google Map here.</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="wrap">
-        <div class="band">
-          <div>
-            <h2>Your skin will thank you.</h2>
-            <p>Book a first-timer facial for just ₱499.</p>
-          </div>
-          <a href="#book" class="btn">Book now</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="foot">
-    <div class="wrap">
-      <span>Kutis Derma &amp; Aesthetics is a fictional business. All names, numbers and prices are examples.</span>
-      <span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your business →</a></span>
+    <div class="f-row">
+      <div class="f"><label for="b-service">Treatment</label><select id="b-service" name="service"><option value="">Select…</option><option>First Glow ritual</option><option>Signature Kutis Facial</option><option>Hydra Facial</option><option>Acne Clearing Facial</option><option>Diode laser</option><option>Pico laser</option><option>Lash extensions</option><option>Gel manicure / pedicure</option></select></div>
+      <div class="f"><label for="b-date">Preferred date</label><input id="b-date" name="date" type="date"></div>
     </div>
-  </footer>
+    
+    <fieldset class="f"><legend>Available times</legend><div class="slots" aria-live="polite"></div></fieldset>
+    <div class="f"><label for="b-notes">Notes <span class="opt">(optional)</span></label><textarea id="b-notes" name="notes" rows="3" placeholder="Anything we should know?"></textarea></div>
+    <p class="form__error" role="alert" hidden></p>
+    <button type="submit" class="btn">Request reservation</button>
+    <p class="f-note">We’ll confirm by text. Your details are only used for this booking.</p>
+  </form>
+</div></section>
 
-  <button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
-  <div class="toast" role="status" aria-live="polite"></div>
-
-  <script>
-/* Shared behaviour for Stackclever sample sites: hours highlight, slot picker, demo booking, demo chat. */
+<section class="sec sec--line" id="faq"><div class="wrap">
+  <div class="center"><span class="over">Good to know</span><h2>Questions, <em>answered</em></h2></div>
+  <div class="qa"><div><h3>Is diode laser painful?</h3><p>Most clients feel a quick warm snap. Our machine has a cooling tip, so it is far gentler than older lasers.</p></div><div><h3>How many laser sessions will I need?</h3><p>Usually six to eight, spaced four to six weeks apart, for long-lasting results.</p></div><div><h3>Do you have a dermatologist?</h3><p>Yes. A board-certified dermatologist sees patients every Saturday by appointment.</p></div><div><h3>Can I come with friends?</h3><p>Of course. Add a note when booking and we will arrange back-to-back treatments for your group.</p></div></div>
+  <div class="visit" id="visit" style="margin-top:90px">
+    <div><h3>Studio hours</h3><table><tbody><tr data-day="1"><td>Monday</td><td>10:00 – 20:00</td></tr><tr data-day="2"><td>Tuesday</td><td>10:00 – 20:00</td></tr><tr data-day="3"><td>Wednesday</td><td>10:00 – 20:00</td></tr><tr data-day="4"><td>Thursday</td><td>10:00 – 20:00</td></tr><tr data-day="5"><td>Friday</td><td>10:00 – 21:00</td></tr><tr data-day="6"><td>Saturday</td><td>10:00 – 21:00</td></tr><tr data-day="0"><td>Sunday</td><td>11:00 – 19:00</td></tr></tbody></table></div>
+    <div><h3>Find us</h3><p>Ground Floor, Sample Arcade<br>East Capitol Drive, Kapitolyo, Pasig City</p><p>Beside the corner coffee shop. Street parking available.</p></div>
+    <div><h3>Contact</h3><p>0918 000 0000 (sample)</p><p>hello@example.com</p><p>Walk-ins welcome when slots are open.</p></div>
+  </div>
+</div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <a href="#" class="mark"><b>KUTIS</b><small style="color:#a8968a">Derma &amp; Aesthetics</small></a>
+  <p>Skin, laser, lash and nail care in Kapitolyo, Pasig.</p>
+  <p class="credit">Kutis Derma &amp; Aesthetics is a fictional business. Names, numbers and prices are examples. · Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your salon →</a></p>
+</div></footer>
+<button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
+<div class="toast" role="status" aria-live="polite"></div>
+<script>
 (function () {
-  var toastEl = document.querySelector('.toast');
-  var toastTimer;
-  function toast(msg) {
-    if (!toastEl) return;
-    toastEl.textContent = msg;
-    toastEl.classList.add('is-on');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
+  var toastEl = document.querySelector('.toast'), tt;
+  function toast(m) {
+    toastEl.textContent = m; toastEl.classList.add('is-on');
+    clearTimeout(tt); tt = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
   }
-
-  // Demo Messenger button
   document.querySelectorAll('[data-demo-chat]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      toast('Sample site: on a real site this opens the business’s Messenger chat.');
+    b.addEventListener('click', function () { toast('Sample site: on a real site this opens the business’s Messenger chat.'); });
+  });
+
+  // Tabs: [data-tabs] > [role=tab][aria-controls]
+  document.querySelectorAll('[data-tabs]').forEach(function (group) {
+    var tabs = group.querySelectorAll('[role="tab"]');
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute('aria-selected', on);
+          document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+        });
+      });
     });
   });
 
-  // Highlight today in the hours table
   var today = new Date().getDay();
-  var row = document.querySelector('.hours tr[data-day="' + today + '"]');
-  if (row) row.classList.add('is-today');
+  document.querySelectorAll('[data-day="' + today + '"]').forEach(function (r) { r.classList.add('is-today'); });
 
   var form = document.getElementById('booking');
   if (!form) return;
-
   var cfg = JSON.parse(form.dataset.config);
-  var dateIn = form.elements.date;
-  var slotBox = form.querySelector('.slots');
-  var picked = '';
-
+  var dateIn = form.elements.date, slotBox = form.querySelector('.slots'), picked = '';
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
   function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-
-  var start = new Date();
-  dateIn.min = iso(start);
-  var max = new Date(); max.setDate(max.getDate() + 60);
-  dateIn.max = iso(max);
-
-  // Deterministic "already booked" slots so the demo looks realistic
-  function taken(dateStr, i) {
-    var h = 0, s = dateStr + ':' + i;
+  function taken(ds, i) {
+    var h = 0, s = ds + ':' + i;
     for (var k = 0; k < s.length; k++) h = (h * 31 + s.charCodeAt(k)) >>> 0;
     return h % 100 < cfg.busy;
   }
+  window.SampleBooking = { taken: taken, cfg: cfg, iso: iso };
+  if (dateIn.type === 'date') {
+    dateIn.min = iso(new Date());
+    var mx = new Date(); mx.setDate(mx.getDate() + 60); dateIn.max = iso(mx);
+  }
 
-  function renderSlots() {
-    slotBox.innerHTML = '';
-    picked = '';
-    if (!dateIn.value) {
-      slotBox.innerHTML = '<p class="slots__empty">Pick a date first to see open ' + cfg.slotWord + 's.</p>';
-      return;
-    }
+  function render() {
+    slotBox.innerHTML = ''; picked = '';
+    if (!dateIn.value) { slotBox.innerHTML = '<p class="slots__empty">Pick a date to see open ' + cfg.slotWord + 's.</p>'; return; }
     var d = new Date(dateIn.value + 'T00:00:00');
-    if (cfg.closed.indexOf(d.getDay()) !== -1) {
-      slotBox.innerHTML = '<p class="slots__empty">We’re closed that day. Please pick another date.</p>';
-      return;
-    }
-    var now = new Date();
-    var isToday = dateIn.value === iso(now);
-    var any = false;
+    if (cfg.closed.indexOf(d.getDay()) !== -1) { slotBox.innerHTML = '<p class="slots__empty">Closed on ' + d.toLocaleDateString('en-PH', { weekday: 'long' }) + 's. Please pick another date.</p>'; return; }
+    var now = new Date(), isToday = dateIn.value === iso(now), any = false;
     cfg.slots.forEach(function (label, i) {
       var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'slot';
-      b.textContent = label;
-      b.setAttribute('aria-pressed', 'false');
-      var past = isToday && cfg.hours && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
-      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; }
-      else any = true;
+      b.type = 'button'; b.className = 'slot'; b.textContent = label; b.setAttribute('aria-pressed', 'false');
+      var past = isToday && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
+      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; } else any = true;
       b.addEventListener('click', function () {
         slotBox.querySelectorAll('.slot').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
-        b.setAttribute('aria-pressed', 'true');
-        picked = label;
+        b.setAttribute('aria-pressed', 'true'); picked = label;
       });
       slotBox.appendChild(b);
     });
-    if (!any) {
-      var p = document.createElement('p');
-      p.className = 'slots__empty';
-      p.textContent = 'Fully booked that day. Try the next date.';
-      slotBox.appendChild(p);
-    }
+    if (!any) { var p = document.createElement('p'); p.className = 'slots__empty'; p.textContent = 'Fully booked that day. Try another date.'; slotBox.appendChild(p); }
   }
-  dateIn.addEventListener('change', renderSlots);
-  renderSlots();
+  dateIn.addEventListener('change', render);
+  render();
 
   var err = form.querySelector('.form__error');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var d = new FormData(form);
-    var missing = [];
-    if (!(d.get('name') || '').trim()) missing.push('your name');
-    if (!(d.get('mobile') || '').trim()) missing.push('a mobile number');
-    if (!d.get('service')) missing.push(cfg.serviceWord);
-    if (!d.get('date')) missing.push('a date');
-    if (!picked) missing.push('a ' + cfg.slotWord);
-    if (missing.length) {
-      err.textContent = 'Please add ' + missing.join(', ') + '.';
-      err.hidden = false;
-      return;
-    }
+    var d = new FormData(form), miss = [];
+    if (!(d.get('name') || '').trim()) miss.push('your name');
+    if (!(d.get('mobile') || '').trim()) miss.push('a mobile number');
+    if (!d.get('service')) miss.push(cfg.serviceWord);
+    if (!d.get('date')) miss.push('a date');
+    if (!picked) miss.push('a ' + cfg.slotWord);
+    if (miss.length) { err.textContent = 'Please add ' + miss.join(', ') + '.'; err.hidden = false; return; }
     err.hidden = true;
-
-    var when = new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric' });
-    var rows = [
-      ['Name', d.get('name')],
-      [cfg.serviceLabel, d.get('service')],
-      ['Date', when],
-      [cfg.slotLabel, picked]
-    ];
+    var rows = [['Name', d.get('name')], [cfg.serviceLabel, d.get('service')],
+      ['Date', new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })],
+      [cfg.slotLabel, picked]];
     if (d.get('guests')) rows.push(['Guests', d.get('guests')]);
-
+    if (d.get('grade')) rows.push(['Grade level', d.get('grade')]);
     var done = document.createElement('div');
-    done.className = 'done';
-    done.setAttribute('role', 'status');
-    done.innerHTML = '<div class="done__icon">✓</div><h3></h3><p class="muted"></p><dl></dl>' +
-      '<p class="done__demo">This is a sample site, so nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
-      '<button type="button" class="btn btn--ghost btn--sm">Book another</button>';
+    done.className = 'done'; done.setAttribute('role', 'status');
+    done.innerHTML = '<div class="done__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3></h3><p></p><dl></dl>' +
+      '<p class="done__demo"><b>Sample site:</b> nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
+      '<button type="button" class="again">Make another booking</button>';
     done.querySelector('h3').textContent = cfg.doneTitle;
-    done.querySelector('p.muted').textContent = cfg.doneText;
+    done.querySelector('h3 + p').textContent = cfg.doneText;
     var dl = done.querySelector('dl');
     rows.forEach(function (r) {
       var dt = document.createElement('dt'); dt.textContent = r[0];
       var dd = document.createElement('dd'); dd.textContent = r[1];
       dl.appendChild(dt); dl.appendChild(dd);
     });
-    done.querySelector('button').addEventListener('click', function () {
-      done.remove();
-      form.reset();
-      form.hidden = false;
-      renderSlots();
+    done.querySelector('.again').addEventListener('click', function () {
+      done.remove(); form.reset(); form.hidden = false; render();
+      form.dispatchEvent(new Event('sample:reset'));
     });
     form.hidden = true;
     form.parentNode.insertBefore(done, form.nextSibling);
     done.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
-  // "Book this" buttons in the price list pre-select the service
   document.querySelectorAll('[data-book]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      form.elements.service.value = a.dataset.book;
-    });
+    a.addEventListener('click', function () { form.elements.service.value = a.dataset.book; });
   });
 })();
 
-  </script>
+
+</script>
 </body>
 </html>
