@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ngiti Dental Clinic (sample site by Stackclever)</title>
+  <meta name="description" content="Sample dental clinic website by Stackclever. Ngiti Dental Clinic is a fictional business.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0e7490">
+  <meta property="og:title" content="Sample dental clinic website · Stackclever">
+  <meta property="og:description" content="Price list, online booking, FAQs and Messenger. Get a site like this for your business.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+/* Shared styles for Stackclever sample sites. Each page sets its own theme vars on <body>. */
+:root {
+  --brand: #0f766e;
+  --brand-ink: #ffffff;
+  --brand-soft: #e6f4f2;
+  --ink: #16181d;
+  --muted: #5b616e;
+  --line: #e4e6eb;
+  --bg: #ffffff;
+  --bg-alt: #f6f7f9;
+  --radius: 14px;
+  --head: "Inter", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--head); line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.015em; }
+h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
+h3 { font-size: 1.1rem; }
+p { margin: 0 0 1em; }
+.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+.muted { color: var(--muted); }
+
+/* Sample banner */
+.sample-bar { background: #111; color: #f2f2f2; font-size: .85rem; }
+.sample-bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; padding: 8px 0; }
+.sample-bar p { margin: 0; }
+.sample-bar b { color: #ffd54a; font-weight: 600; }
+.sample-bar a { color: #ffd54a; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.sample-bar a:hover { text-decoration: underline; }
+
+/* Header */
+.top { position: sticky; top: 0; z-index: 40; background: rgba(255, 255, 255, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--head); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+.brand__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--brand); color: var(--brand-ink); font-size: 1rem; }
+.top nav { display: flex; align-items: center; gap: 24px; }
+.top nav a:not(.btn) { color: var(--muted); text-decoration: none; font-size: .95rem; }
+.top nav a:not(.btn):hover { color: var(--ink); }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .85em 1.5em; border-radius: 999px; background: var(--brand); color: var(--brand-ink); border: 1px solid var(--brand); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform .15s, filter .15s; }
+.btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn--ghost:hover { border-color: var(--brand); color: var(--brand); }
+.btn--sm { padding: .55em 1.1em; font-size: .9rem; }
+.btn--block { width: 100%; }
+
+/* Hero */
+.hero { padding: 64px 0 56px; background: linear-gradient(180deg, var(--brand-soft), var(--bg)); }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+.kicker { display: inline-block; color: var(--brand); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .8em; }
+.lead { font-size: 1.12rem; color: var(--muted); max-width: 34em; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
+.ticks { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .92rem; color: var(--muted); }
+.ticks li::before { content: "\2713"; color: var(--brand); font-weight: 700; margin-right: 6px; }
+
+.hero__card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px; box-shadow: 0 30px 60px -30px rgba(20, 30, 50, .35); }
+.hero__art { aspect-ratio: 16/10; border-radius: 14px; margin-bottom: 18px; background: var(--art); position: relative; overflow: hidden; display: grid; place-items: center; font-size: 4rem; }
+.hero__art span { filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .2)); }
+.next { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--bg-alt); }
+.next small { display: block; color: var(--muted); font-size: .8rem; }
+.next strong { font-family: var(--head); }
+.live { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; color: #15803d; font-weight: 600; }
+.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, .18); }
+
+/* Sections */
+.section { padding: 80px 0; }
+.section--alt { background: var(--bg-alt); }
+.section__head { max-width: 640px; margin-bottom: 36px; }
+
+.perks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.perk { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.perk__icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--brand-soft); font-size: 1.3rem; margin-bottom: 14px; }
+.perk p { color: var(--muted); font-size: .93rem; margin: 0; }
+
+/* Price list */
+.prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.price-group { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 24px 12px; }
+.price-group h3 { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.price-group ul { list-style: none; margin: 0; padding: 0; }
+.price-group li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
+.price-group li:last-child { border-bottom: 0; }
+.price-group li span small { display: block; color: var(--muted); font-size: .84rem; }
+.price-group li b { font-family: var(--head); white-space: nowrap; color: var(--brand); }
+.note { font-size: .88rem; color: var(--muted); margin-top: 18px; }
+
+/* Booking */
+.book { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; align-items: start; }
+.book__info ul { padding-left: 1.1em; color: var(--muted); }
+.book__info li { margin-bottom: .4em; }
+.form { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 20px 50px -35px rgba(20, 30, 50, .4); }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.field label, .field legend { font-weight: 600; font-size: .9rem; }
+.field input, .field select, .field textarea { font: inherit; padding: .7em .85em; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); width: 100%; }
+.field textarea { resize: vertical; min-height: 80px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
+fieldset.field { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; }
+.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin-top: 4px; }
+.slot { font: inherit; font-size: .88rem; padding: .6em .4em; border-radius: 10px; border: 1px solid var(--line); background: #fff; cursor: pointer; color: var(--ink); }
+.slot:hover:not(:disabled) { border-color: var(--brand); }
+.slot[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.slot:disabled { color: #b3b7c0; text-decoration: line-through; cursor: not-allowed; background: var(--bg-alt); }
+.slots__empty { grid-column: 1 / -1; color: var(--muted); font-size: .9rem; margin: 0; }
+.form__error { color: #b91c1c; font-size: .9rem; font-weight: 500; }
+.form__small { font-size: .82rem; color: var(--muted); margin: 12px 0 0; text-align: center; }
+.done { text-align: center; padding: 12px 4px; }
+.done__icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-size: 1.6rem; margin: 0 auto 14px; }
+.done dl { text-align: left; background: var(--bg-alt); border-radius: 12px; padding: 14px 18px; margin: 16px 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: .93rem; }
+.done dt { color: var(--muted); }
+.done dd { margin: 0; font-weight: 600; }
+.done__demo { font-size: .85rem; color: var(--muted); background: #fff8db; border: 1px solid #f3e3a1; border-radius: 10px; padding: 10px 12px; }
+
+/* FAQ */
+.faq { max-width: 780px; }
+.faq details { border-bottom: 1px solid var(--line); padding: 4px 0; }
+.faq summary { cursor: pointer; list-style: none; font-weight: 600; padding: 14px 32px 14px 0; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 10px; font-size: 1.4rem; color: var(--brand); transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { color: var(--muted); margin: 0 0 16px; }
+
+/* Visit */
+.visit { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
+.hours { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.hours td { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.hours td:last-child { text-align: right; font-weight: 600; }
+.hours tr.is-today td { color: var(--brand); }
+.map { border-radius: var(--radius); border: 1px solid var(--line); min-height: 260px; background:
+  linear-gradient(90deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
+  linear-gradient(0deg, transparent 49%, rgba(0,0,0,.06) 49% 51%, transparent 51%) 0 0 / 60px 60px,
+  var(--brand-soft);
+  display: grid; place-items: center; text-align: center; padding: 24px; }
+.map__pin { font-size: 2.4rem; }
+.map p { margin: 6px 0 0; font-weight: 600; }
+.map small { color: var(--muted); }
+.contact-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
+.contact-list li { color: var(--muted); }
+.contact-list b { color: var(--ink); }
+
+/* CTA band */
+.band { background: var(--brand); color: var(--brand-ink); border-radius: 22px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.band h2 { margin: 0 0 .2em; }
+.band p { margin: 0; opacity: .85; }
+.band .btn { background: #fff; color: var(--ink); border-color: #fff; }
+
+/* Footer */
+.foot { border-top: 1px solid var(--line); padding: 28px 0 100px; font-size: .88rem; color: var(--muted); }
+.foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.foot a { color: var(--brand); font-weight: 600; text-decoration: none; }
+
+/* Floating chat + toast */
+.chat { position: fixed; right: 18px; bottom: 18px; z-index: 50; display: inline-flex; align-items: center; gap: 8px; padding: .8em 1.2em; border-radius: 999px; border: 0; background: #0866ff; color: #fff; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 14px 30px -10px rgba(8, 102, 255, .6); }
+.chat svg { width: 20px; height: 20px; }
+.toast { position: fixed; left: 50%; bottom: 84px; z-index: 60; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #111; color: #fff; padding: 12px 18px; border-radius: 12px; font-size: .9rem; max-width: min(420px, 100% - 32px); text-align: center; transition: opacity .25s, transform .25s; }
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 900px) {
+  .hero .wrap, .book, .visit { grid-template-columns: 1fr; }
+  .perks { grid-template-columns: repeat(2, 1fr); }
+  .prices { grid-template-columns: 1fr; }
+  .top nav a:not(.btn) { display: none; }
+}
+@media (max-width: 540px) {
+  .perks, .form__row { grid-template-columns: 1fr; }
+  .section { padding: 60px 0; }
+  .hero { padding: 40px 0; }
+  .form { padding: 20px; }
+  .band { padding: 28px; }
+  .chat span { display: none; }
+}
+
+body { --brand: #0e7490; --brand-soft: #e3f4f8; --head: "Plus Jakarta Sans", system-ui, sans-serif; --art: linear-gradient(135deg,#67e8f9,#0e7490); }
+  </style>
+</head>
+<body>
+  <div class="sample-bar" role="note">
+    <div class="wrap">
+      <p><b>Sample site.</b> Ngiti Dental Clinic is a fictional business, made by Stackclever to show what your dental clinic website could look like.</p>
+      <a href="https://xcmoizoe.github.io/service/#contact">Get a site like this →</a>
+    </div>
+  </div>
+
+  <header class="top">
+    <div class="wrap">
+      <a href="#" class="brand"><span class="brand__mark" aria-hidden="true">N</span>Ngiti Dental</a>
+      <nav aria-label="Main">
+        <a href="#prices">Prices</a>
+        <a href="#book">Book</a>
+        <a href="#faq">FAQ</a>
+        <a href="#visit">Visit us</a>
+        <a href="#book" class="btn btn--sm">Book now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="kicker">Family dental clinic · Quezon City</span>
+          <h1>Gentle dental care, booked in 30 seconds.</h1>
+          <p class="lead">Cleaning, fillings, braces and whitening for the whole family. See our prices up front and pick a time that works for you, with no need to PM for price.</p>
+          <div class="hero__cta">
+            <a href="#book" class="btn">Book online</a>
+            <a href="#prices" class="btn btn--ghost">See prices</a>
+          </div>
+          <ul class="ticks">
+            <li>HMO accepted</li>
+            <li>Same-week braces consult</li>
+            <li>Kid-friendly dentists</li>
+          </ul>
+        </div>
+        <div class="hero__card" aria-hidden="true">
+          <div class="hero__art"><span>🦷</span></div>
+          <div class="next">
+            <div><small>Next open slot</small><strong>Tomorrow, 10:00 AM</strong></div>
+            <span class="live">Booking open</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="perks">
+          <div class="perk"><div class="perk__icon" aria-hidden="true">💳</div><h3>HMO &amp; cards</h3><p>Maxicare, Intellicare, Medicard and more. GCash and card payments too.</p></div>
+          <div class="perk"><div class="perk__icon" aria-hidden="true">😌</div><h3>Pain-free focus</h3><p>Topical numbing and a calm, unhurried chair-side manner.</p></div>
+          <div class="perk"><div class="perk__icon" aria-hidden="true">🧒</div><h3>Kids welcome</h3><p>Our pedia dentist makes first visits fun, not scary.</p></div>
+          <div class="perk"><div class="perk__icon" aria-hidden="true">🧼</div><h3>Sterilized tools</h3><p>Autoclave-sterilized instruments for every patient.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="prices">
+      <div class="wrap">
+        <div class="section__head">
+          <span class="kicker">Price list</span>
+          <h2>Clear prices, no need to PM</h2>
+          <p class="muted">Rates below are starting prices. Book a slot and we'll confirm the details with you.</p>
+        </div>
+        <div class="prices">
+          <div class="price-group">
+            <h3><span aria-hidden="true">🪥</span> General dentistry</h3>
+            <ul>
+              <li><span>Consultation</span><b>₱500</b></li>
+              <li><span>Oral prophylaxis (cleaning)<small>Includes polishing</small></span><b>₱1,200</b></li>
+              <li><span>Tooth-colored filling<small>Per surface</small></span><b>₱1,500</b></li>
+              <li><span>Simple extraction<small>Per tooth</small></span><b>₱1,500</b></li>
+            </ul>
+          </div>
+          <div class="price-group">
+            <h3><span aria-hidden="true">😁</span> Braces &amp; cosmetic</h3>
+            <ul>
+              <li><span>Metal braces<small>Down payment from ₱5,000</small></span><b>₱45,000</b></li>
+              <li><span>Ceramic braces<small>Tooth-colored brackets</small></span><b>₱65,000</b></li>
+              <li><span>Teeth whitening<small>In-clinic, 1 session</small></span><b>₱8,000</b></li>
+              <li><span>Retainers<small>Per arch</small></span><b>₱4,500</b></li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">Final cost depends on your check-up. Braces include monthly adjustments for up to 24 months.</p>
+      </div>
+    </section>
+
+    <section class="section" id="book">
+      <div class="wrap book">
+        <div class="book__info">
+          <span class="kicker">Online booking</span>
+          <h2>Book your visit</h2>
+          <p class="muted">Choose a time and we'll confirm by text within the hour.</p>
+          <ul>
+            <li>Arrive 10 minutes early for your first visit</li>
+            <li>Bring your HMO card and a valid ID</li>
+            <li>Free rescheduling up to 24 hours before</li>
+          </ul>
+        </div>
+        <div>
+          <form class="form" id="booking" novalidate data-config="{&quot;slots&quot;:[&quot;9:00 AM&quot;,&quot;10:00 AM&quot;,&quot;11:00 AM&quot;,&quot;12:00 PM&quot;,&quot;1:00 PM&quot;,&quot;2:00 PM&quot;,&quot;3:00 PM&quot;,&quot;4:00 PM&quot;,&quot;5:00 PM&quot;],&quot;hours&quot;:[9,10,11,12,13,14,15,16,17],&quot;busy&quot;:35,&quot;closed&quot;:[0],&quot;serviceLabel&quot;:&quot;Service&quot;,&quot;serviceWord&quot;:&quot;a service&quot;,&quot;slotLabel&quot;:&quot;Time&quot;,&quot;slotWord&quot;:&quot;time slot&quot;,&quot;doneTitle&quot;:&quot;Appointment requested!&quot;,&quot;doneText&quot;:&quot;We'll text you to confirm your slot shortly.&quot;}">
+            <div class="form__row">
+              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" placeholder="Juan Dela Cruz"></div>
+              <div class="field"><label for="f-mobile">Mobile number</label><input id="f-mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" placeholder="09XX XXX XXXX"></div>
+            </div>
+            <div class="form__row">
+              <div class="field"><label for="f-service">Service</label>
+                <select id="f-service" name="service">
+                  <option value="">Choose service…</option>
+                  <option>Consultation / check-up</option>
+                  <option>Cleaning</option>
+                  <option>Filling</option>
+                  <option>Extraction</option>
+                  <option>Braces consultation</option>
+                  <option>Teeth whitening</option>
+                </select>
+              </div>
+              <div class="field"><label for="f-date">Date</label><input id="f-date" name="date" type="date"></div>
+            </div>
+            
+            <fieldset class="field">
+              <legend>Time</legend>
+              <div class="slots" aria-live="polite"></div>
+            </fieldset>
+            <div class="field"><label for="f-notes">Notes <span class="muted">(optional)</span></label><textarea id="f-notes" name="notes" placeholder="Anything we should know?"></textarea></div>
+            <p class="form__error" role="alert" hidden></p>
+            <button type="submit" class="btn btn--block">Request booking</button>
+            <p class="form__small">We'll confirm by text. Your details are only used for this booking.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="faq">
+      <div class="wrap">
+        <div class="section__head">
+          <span class="kicker">FAQ</span>
+          <h2>Questions we get a lot</h2>
+        </div>
+        <div class="faq">
+          <details open><summary>Do you accept HMO?</summary><p>Yes. We accept most major HMOs for check-ups, cleaning and simple fillings. Message us your HMO name and we'll check your coverage before your visit.</p></details>
+          <details><summary>How much are braces, and can I pay monthly?</summary><p>Metal braces start at ₱45,000 with a ₱5,000 down payment. The balance is paid monthly during your adjustments.</p></details>
+          <details><summary>Do you treat kids?</summary><p>Yes. Our pedia dentist sees kids from age 2, usually on Saturday mornings.</p></details>
+          <details><summary>Is there parking?</summary><p>Yes, free parking is available in front of the building for 4 cars.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="visit">
+      <div class="wrap visit">
+        <div>
+          <span class="kicker">Visit us</span>
+          <h2>Clinic hours</h2>
+          <table class="hours">
+            <tbody>
+              <tr data-day="1"><td>Monday</td><td>9:00 AM – 6:00 PM</td></tr>
+              <tr data-day="2"><td>Tuesday</td><td>9:00 AM – 6:00 PM</td></tr>
+              <tr data-day="3"><td>Wednesday</td><td>9:00 AM – 6:00 PM</td></tr>
+              <tr data-day="4"><td>Thursday</td><td>9:00 AM – 6:00 PM</td></tr>
+              <tr data-day="5"><td>Friday</td><td>9:00 AM – 6:00 PM</td></tr>
+              <tr data-day="6"><td>Saturday</td><td>9:00 AM – 3:00 PM</td></tr>
+              <tr data-day="0"><td>Sunday</td><td>Closed</td></tr>
+            </tbody>
+          </table>
+          <ul class="contact-list">
+            <li><b>Address:</b> 2/F Sample Building, Visayas Ave., Quezon City</li>
+            <li><b>Landmark:</b> Near the corner of Congressional Ave.</li>
+            <li><b>Mobile:</b> 0917 000 0000 <span class="muted">(sample number)</span></li>
+          </ul>
+        </div>
+        <div class="map" role="img" aria-label="Map placeholder">
+          <div>
+            <div class="map__pin" aria-hidden="true">📍</div>
+            <p>Ngiti Dental</p>
+            <small>A real site shows a live Google Map here.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="wrap">
+        <div class="band">
+          <div>
+            <h2>Time for your 6-month check-up?</h2>
+            <p>Book now and get a free fluoride treatment for kids.</p>
+          </div>
+          <a href="#book" class="btn">Book now</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <span>Ngiti Dental Clinic is a fictional business. All names, numbers and prices are examples.</span>
+      <span>Website by <a href="https://xcmoizoe.github.io/service/">Stackclever</a> · <a href="https://xcmoizoe.github.io/service/#contact">Get one for your business →</a></span>
+    </div>
+  </footer>
+
+  <button type="button" class="chat" data-demo-chat><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.99-.88c.17-.07.36-.09.53-.04.91.25 1.88.39 2.9.39 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg><span>Message us</span></button>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+/* Shared behaviour for Stackclever sample sites: hours highlight, slot picker, demo booking, demo chat. */
+(function () {
+  var toastEl = document.querySelector('.toast');
+  var toastTimer;
+  function toast(msg) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('is-on'); }, 3600);
+  }
+
+  // Demo Messenger button
+  document.querySelectorAll('[data-demo-chat]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      toast('Sample site: on a real site this opens the business’s Messenger chat.');
+    });
+  });
+
+  // Highlight today in the hours table
+  var today = new Date().getDay();
+  var row = document.querySelector('.hours tr[data-day="' + today + '"]');
+  if (row) row.classList.add('is-today');
+
+  var form = document.getElementById('booking');
+  if (!form) return;
+
+  var cfg = JSON.parse(form.dataset.config);
+  var dateIn = form.elements.date;
+  var slotBox = form.querySelector('.slots');
+  var picked = '';
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+
+  var start = new Date();
+  dateIn.min = iso(start);
+  var max = new Date(); max.setDate(max.getDate() + 60);
+  dateIn.max = iso(max);
+
+  // Deterministic "already booked" slots so the demo looks realistic
+  function taken(dateStr, i) {
+    var h = 0, s = dateStr + ':' + i;
+    for (var k = 0; k < s.length; k++) h = (h * 31 + s.charCodeAt(k)) >>> 0;
+    return h % 100 < cfg.busy;
+  }
+
+  function renderSlots() {
+    slotBox.innerHTML = '';
+    picked = '';
+    if (!dateIn.value) {
+      slotBox.innerHTML = '<p class="slots__empty">Pick a date first to see open ' + cfg.slotWord + 's.</p>';
+      return;
+    }
+    var d = new Date(dateIn.value + 'T00:00:00');
+    if (cfg.closed.indexOf(d.getDay()) !== -1) {
+      slotBox.innerHTML = '<p class="slots__empty">We’re closed that day. Please pick another date.</p>';
+      return;
+    }
+    var now = new Date();
+    var isToday = dateIn.value === iso(now);
+    var any = false;
+    cfg.slots.forEach(function (label, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'slot';
+      b.textContent = label;
+      b.setAttribute('aria-pressed', 'false');
+      var past = isToday && cfg.hours && cfg.hours[i] !== undefined && cfg.hours[i] <= now.getHours();
+      if (past || taken(dateIn.value, i)) { b.disabled = true; b.title = 'Already booked'; }
+      else any = true;
+      b.addEventListener('click', function () {
+        slotBox.querySelectorAll('.slot').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+        b.setAttribute('aria-pressed', 'true');
+        picked = label;
+      });
+      slotBox.appendChild(b);
+    });
+    if (!any) {
+      var p = document.createElement('p');
+      p.className = 'slots__empty';
+      p.textContent = 'Fully booked that day. Try the next date.';
+      slotBox.appendChild(p);
+    }
+  }
+  dateIn.addEventListener('change', renderSlots);
+  renderSlots();
+
+  var err = form.querySelector('.form__error');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form);
+    var missing = [];
+    if (!(d.get('name') || '').trim()) missing.push('your name');
+    if (!(d.get('mobile') || '').trim()) missing.push('a mobile number');
+    if (!d.get('service')) missing.push(cfg.serviceWord);
+    if (!d.get('date')) missing.push('a date');
+    if (!picked) missing.push('a ' + cfg.slotWord);
+    if (missing.length) {
+      err.textContent = 'Please add ' + missing.join(', ') + '.';
+      err.hidden = false;
+      return;
+    }
+    err.hidden = true;
+
+    var when = new Date(d.get('date') + 'T00:00:00').toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric' });
+    var rows = [
+      ['Name', d.get('name')],
+      [cfg.serviceLabel, d.get('service')],
+      ['Date', when],
+      [cfg.slotLabel, picked]
+    ];
+    if (d.get('guests')) rows.push(['Guests', d.get('guests')]);
+
+    var done = document.createElement('div');
+    done.className = 'done';
+    done.setAttribute('role', 'status');
+    done.innerHTML = '<div class="done__icon">✓</div><h3></h3><p class="muted"></p><dl></dl>' +
+      '<p class="done__demo">This is a sample site, so nothing was sent. On a real site, this request goes straight to the business by Messenger, SMS or email.</p>' +
+      '<button type="button" class="btn btn--ghost btn--sm">Book another</button>';
+    done.querySelector('h3').textContent = cfg.doneTitle;
+    done.querySelector('p.muted').textContent = cfg.doneText;
+    var dl = done.querySelector('dl');
+    rows.forEach(function (r) {
+      var dt = document.createElement('dt'); dt.textContent = r[0];
+      var dd = document.createElement('dd'); dd.textContent = r[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    done.querySelector('button').addEventListener('click', function () {
+      done.remove();
+      form.reset();
+      form.hidden = false;
+      renderSlots();
+    });
+    form.hidden = true;
+    form.parentNode.insertBefore(done, form.nextSibling);
+    done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  // "Book this" buttons in the price list pre-select the service
+  document.querySelectorAll('[data-book]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      form.elements.service.value = a.dataset.book;
+    });
+  });
+})();
+
+  </script>
+</body>
+</html>
