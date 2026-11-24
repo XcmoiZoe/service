@@ -508,3 +508,4 @@ p { margin: 0 0 1em; }
 @media (max-width: 1000px) { .samples { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .samples { grid-template-columns: 1fr; } }
 #samples + #case-studies { border-top: 1px solid var(--line); }
+.inquiry [hidden] { display: none !important; }

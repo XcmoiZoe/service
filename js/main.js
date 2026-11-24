@@ -56,81 +56,72 @@
     items.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
   }
 
-  // Inquiry form -> Messenger
-  var MESSENGER = 'https://m.me/168737504976524';
+  // Inquiry form -> email (FormSubmit). m.me is blocked by some PH ISPs, so Messenger is only a fallback.
+  var MESSENGER = 'https://www.messenger.com/t/168737504976524';
+  var INBOX = 'eugeniourbano07' + '@' + 'gmail.com';
+  var ENDPOINT = 'https://formsubmit.co/ajax/' + INBOX;
   var form = document.getElementById('inquiry');
   if (form) {
     var errBox = document.getElementById('inquiry-error');
     var done = document.getElementById('inquiry-done');
-    var openLink = document.getElementById('inquiry-open');
-    var lastMsg = '';
+    var submitBtn = form.querySelector('.inquiry__submit');
+    var submitLabel = submitBtn.querySelector('.inquiry__label');
 
-    var copyText = function (text) {
-      if (navigator.clipboard && window.isSecureContext) {
-        return navigator.clipboard.writeText(text).catch(function () { legacyCopy(text); });
-      }
-      legacyCopy(text);
-      return Promise.resolve();
-    };
-    var legacyCopy = function (text) {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta);
-    };
+    var showError = function (html) { errBox.innerHTML = html; errBox.hidden = false; };
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var d = new FormData(form);
+      if ((d.get('_honey') || '').trim()) return; // bot
       var name = (d.get('name') || '').trim();
+      var contact = (d.get('contact') || '').trim();
       var details = (d.get('details') || '').trim();
       var services = d.getAll('service');
 
       var missing = [];
       if (!name) missing.push('your name');
+      if (!contact) missing.push('an email or phone so I can reply');
       if (!services.length) missing.push('at least one service');
       if (!details) missing.push('project details');
-      if (missing.length) {
-        errBox.textContent = 'Please add ' + missing.join(', ') + '.';
-        errBox.hidden = false;
-        return;
-      }
+      if (missing.length) { showError('Please add ' + missing.join(', ') + '.'); return; }
       errBox.hidden = true;
 
-      var lines = [
-        'Hi Emman! New project inquiry from your website:',
-        '',
-        'Name: ' + name
-      ];
-      var contact = (d.get('contact') || '').trim();
-      if (contact) lines.push('Contact: ' + contact);
-      lines.push('Service: ' + services.join(', '));
-      lines.push('Budget: ' + (d.get('budget') || 'Not sure yet'));
-      lines.push('Timeline: ' + (d.get('timeline') || 'Flexible'));
-      var site = (d.get('site') || '').trim();
-      if (site) lines.push('Website: ' + site);
-      lines.push('', 'Details:', details);
-      lastMsg = lines.join('\n');
+      var payload = {
+        _subject: 'New website inquiry from ' + name,
+        _template: 'table',
+        Name: name,
+        'Email or phone': contact,
+        Service: services.join(', '),
+        Budget: d.get('budget') || 'Not sure yet',
+        Timeline: d.get('timeline') || 'Flexible',
+        Website: (d.get('site') || '').trim() || '—',
+        Details: details
+      };
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) payload._replyto = contact;
 
-      var url = MESSENGER + '?text=' + encodeURIComponent(lastMsg);
-      openLink.href = url;
-      // Open synchronously so popup blockers allow it
-      window.open(url, '_blank', 'noopener');
-      copyText(lastMsg);
-      done.hidden = false;
-    });
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Sending…';
 
-    document.getElementById('inquiry-copy').addEventListener('click', function (e) {
-      var btn = e.currentTarget;
-      copyText(lastMsg).then(function () {
-        btn.textContent = 'Copied!';
-        setTimeout(function () { btn.textContent = 'Copy again'; }, 1500);
-      });
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (!res.ok || String(res.j.success) === 'false') throw new Error(res.j.message || 'Send failed');
+          form.querySelectorAll('.inquiry__row, .field, .inquiry__submit, .inquiry__note').forEach(function (el) { el.hidden = true; });
+          done.querySelector('[data-name]').textContent = name.split(' ')[0];
+          done.hidden = false;
+          done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .catch(function () {
+          showError('Sorry, your message didn\u2019t go through. Please email me at <a href="mailto:' + INBOX + '">' + INBOX + '</a> or <a href="' + MESSENGER + '" target="_blank" rel="noopener">message me on Messenger</a>.');
+        })
+        .then(function () {
+          submitBtn.disabled = false;
+          submitLabel.textContent = 'Send my inquiry';
+        });
     });
 
     // Service cards, pricing buttons and add-ons pre-fill the form

@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="img/4.png">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -657,7 +657,7 @@
         <div>
           <p class="kicker">FAQ</p>
           <h2>Questions before you start</h2>
-          <p class="lead">Don't see your question? <a href="https://m.me/168737504976524" target="_blank" rel="noopener" class="link">Ask me on Messenger →</a></p>
+          <p class="lead">Don't see your question? <a href="https://www.messenger.com/t/168737504976524" target="_blank" rel="noopener" class="link">Ask me on Messenger →</a></p>
         </div>
         <div class="faq__list">
           <details open>
@@ -702,7 +702,7 @@
           </ol>
           <div class="contact__alt">
             <span>Prefer another way?</span>
-            <a href="https://m.me/168737504976524" target="_blank" rel="noopener" class="link">Chat on Messenger →</a>
+            <a href="https://www.messenger.com/t/168737504976524" target="_blank" rel="noopener" class="link">Chat on Messenger →</a>
             <a href="https://www.upwork.com/freelancers/emmanu2" target="_blank" rel="noopener" class="link">Hire me on Upwork →</a>
           </div>
         </div>
@@ -714,8 +714,8 @@
               <input type="text" name="name" required autocomplete="name" placeholder="Juan Dela Cruz">
             </label>
             <label class="field">
-              <span>Email or phone <em>optional</em></span>
-              <input type="text" name="contact" autocomplete="email" placeholder="you@email.com">
+              <span>Email or phone *</span>
+              <input type="text" name="contact" required autocomplete="email" placeholder="you@email.com">
             </label>
           </div>
 
@@ -766,17 +766,16 @@
 
           <p class="inquiry__error" id="inquiry-error" role="alert" hidden></p>
 
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <button type="submit" class="btn inquiry__submit">
-            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.8.8 0 0 0 1.12.71l1.98-.87c.17-.08.36-.09.53-.04.91.25 1.88.38 2.91.38 5.64 0 10-4.13 10-9.7S17.64 2 12 2Zm6 7.46-2.94 4.66a1.5 1.5 0 0 1-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66a1.5 1.5 0 0 1 2.17-.4l2.34 1.75a.6.6 0 0 0 .72 0l3.16-2.4c.42-.32.97.18.69.63Z"/></svg>
-            Get my free quote
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+            <span class="inquiry__label">Send my inquiry</span>
           </button>
-          <p class="inquiry__note">🔒 Opens Messenger with your message ready. Nothing is sent until you press send.</p>
-
-          <div class="inquiry__done" id="inquiry-done" hidden>
-            <p><strong>Your message is copied.</strong> Messenger opened in a new tab. If the text isn't already there, paste it (Ctrl+V or long-press → Paste) and hit send.</p>
+          <p class="inquiry__note">🔒 Goes straight to my inbox. I reply within 24 hours, usually much sooner.</p>
+          <div class="inquiry__done" id="inquiry-done" hidden role="status">
+            <p><strong>Thanks, <span data-name></span>! Your inquiry is in my inbox.</strong> I'll reply within 24 hours with a free quote. Need a faster answer? Message me on Messenger.</p>
             <div class="hero__cta">
-              <button type="button" class="btn btn--sm" id="inquiry-copy">Copy again</button>
-              <a href="https://m.me/168737504976524" target="_blank" rel="noopener" class="btn btn--sm btn--ghost" id="inquiry-open">Open Messenger</a>
+              <a href="https://www.messenger.com/t/168737504976524" target="_blank" rel="noopener" class="btn btn--sm btn--ghost">Open Messenger</a>
             </div>
           </div>
         </form>
@@ -788,7 +787,7 @@
     <div class="wrap footer__inner">
       <span>&copy; <span id="year"></span> Stackclever · Emman</span>
       <span class="footer__links">
-        <a href="https://m.me/168737504976524" target="_blank" rel="noopener">Messenger</a>
+        <a href="https://www.messenger.com/t/168737504976524" target="_blank" rel="noopener">Messenger</a>
         <a href="https://www.upwork.com/freelancers/emmanu2" target="_blank" rel="noopener">Upwork</a>
         <a href="#top">Back to top ↑</a>
       </span>
@@ -797,7 +796,7 @@
 
   <!-- Sticky mobile CTA -->
   <div class="sticky-cta" id="sticky-cta">
-    <a href="https://m.me/168737504976524" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">Chat</a>
+    <a href="https://www.messenger.com/t/168737504976524" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">Chat</a>
     <a href="#contact" class="btn btn--sm">Get my free quote →</a>
   </div>
 
@@ -806,6 +805,6 @@
     <img src="" alt="">
   </dialog>
 
-  <script src="js/main.js?v=6" defer></script>
+  <script src="js/main.js?v=7" defer></script>
 </body>
 </html>
